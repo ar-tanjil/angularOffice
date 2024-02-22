@@ -9,6 +9,11 @@ import { AppRoutingModule } from "../app-routing.module";
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TopnavComponent } from "./navbar/topnav/topnav.component";
+import { SidenavComponent } from "./navbar/sidenav/sidenav.component";
+import { DepartmentsComponent } from './departments/departments.component';
+import { DesignationsComponent } from './designations/designations.component';
+import { PayrollComponent } from './payroll/payroll.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +21,12 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         EmployeeTableComponent,
         DashbordComponent,
         RegisterFormComponent,
-        ProfileComponent
+        ProfileComponent,
+        TopnavComponent,
+        SidenavComponent,
+        DepartmentsComponent,
+        DesignationsComponent,
+        PayrollComponent
     ],
     exports: [
         NavbarComponent,

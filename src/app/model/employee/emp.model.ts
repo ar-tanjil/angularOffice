@@ -13,7 +13,7 @@ export class EmpModel {
     constructor(private datasouce: EmpDatasource) {
         this.employees = new Array<Employee>();
         this.replaySubject = new ReplaySubject<Employee[]>(1);
-        this.datasouce.getEmployees().subscribe(emp => {
+        this.datasouce.getAll().subscribe(emp => {
             this.employees = emp;
             this.replaySubject.next(emp);
             this.replaySubject.complete();
@@ -38,7 +38,7 @@ export class EmpModel {
     }
 
     deleteEmployee(id: number) {
-        this.datasouce.deleteEmpoloyee(id).subscribe(() => {
+        this.datasouce.delete(id).subscribe(() => {
             let index = this.employees.findIndex(emp => this.locator(emp, id));
             if (index > -1) {
                 this.employees.splice(index, 1);
@@ -48,10 +48,10 @@ export class EmpModel {
 
     saveEmployee(employee: Employee) {
         if (employee.id == 0 || employee.id == null) {
-            this.datasouce.saveEmployee(employee)
+            this.datasouce.save(employee)
                 .subscribe(emp => this.employees.push(emp));
         } else {
-            this.datasouce.updateEmployee(employee)
+            this.datasouce.update(employee)
                 .subscribe(emp => {
                     let index = this.employees.findIndex(item => {
                         this.locator(item, emp.id);

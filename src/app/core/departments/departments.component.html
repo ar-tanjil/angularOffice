@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <button mat-button class="m-5 bg-primary mat-elevation-z8" [routerLink]="['/register', 'DEPARTMENT']">Add Employee</button>
+    <table class="table table-hover table-striped w-100" >
+        <thead><tr>
+                <th scope="row">#</th>
+                <th scope="row">Department Name</th>
+                <th scope="row">Manager Name</th>
+                <!-- <th scope="row">Description</th> -->
+            </tr>
+        </thead>    
+    
+    <tbody>
+        <tr *ngFor="let dep of getDepartmetns(); let i = index;">
+            <th scope="col"> {{ i + 1}} </th>
+            <td> {{ dep.departmentName }} </td>
+            <td> {{ dep.managerName }} </td>
+            <!-- <td> {{ dep.}} </td> -->
+        </tr>
+    </tbody>
+    
+    </table>
+</div>

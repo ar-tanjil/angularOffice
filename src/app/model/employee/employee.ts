@@ -7,6 +7,8 @@ export class Employee{
         public email?: string,
         public phoneNumber?: string,
         public job?: number,
+        public jobTitle?: string,
+        public departmentName?: string,
         public department?: number,
         public address?: string
     ){}
