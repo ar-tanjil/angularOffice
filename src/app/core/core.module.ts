@@ -8,6 +8,7 @@ import { ModelModule } from "../model/model.module";
 import { AppRoutingModule } from "../app-routing.module";
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -26,7 +27,9 @@ import { ProfileComponent } from './profile/profile.component';
         MaterialModule,
         BrowserModule,
         ModelModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class CoreModule {

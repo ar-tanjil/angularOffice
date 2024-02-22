@@ -5,8 +5,9 @@ export class Employee{
         public lastName?: string,
         public hireDate?: Date,
         public email?: string,
-        public phone?: string,
-        public jobTitle?: string,
-        public departmentName?: string,
+        public phoneNumber?: string,
+        public job?: number,
+        public department?: number,
+        public address?: string
     ){}
 }

@@ -1,39 +1,84 @@
 <mat-card class="mat-card">
-    <mat-card-content>
-        <mat-card-header>
-            <mat-card-title>Add Employee</mat-card-title>
-        </mat-card-header>
-        <form>
-            <mat-form-field class="form-field">
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Your Name">
-            </mat-form-field>
-            <mat-form-field class="form-field">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="Give your Email" required>
-                <mat-error *ngIf="true">Email is <strong>required</strong></mat-error>
-            </mat-form-field>
-            <mat-form-field class="form-field">
-                <mat-label>Date</mat-label>
-                <input matInput type="date">
-            </mat-form-field>
+  <mat-card-content>
+    <mat-card-header>
+      <mat-card-title>Add Employee</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
+      <mat-form-field class="form-field">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          placeholder="Your First Name"
+          formControlName="firstName"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          placeholder="Your Last Name"
+          formControlName="lastName"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Give your Email" formControlName="email" />
+        <mat-error *ngIf="true">Email is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Telephone</mat-label>
+        <span matTextPrefix>+088 &nbsp;</span>
+        <input
+          type="tel"
+          matInput
+          placeholder=""
+          formControlName="phoneNumber"
+        />
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select Disigantion</mat-label>
+        <mat-select>
+          <mat-option value="1">Manager</mat-option>
+          <mat-option value="1">Sr. Officer</mat-option>
+          <mat-option value="1">Trainee</mat-option>
+        </mat-select>
+        <mat-hint>Here's the dropdown arrow ^</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select Department</mat-label>
+        <mat-select>
+          <mat-option value="1">Admin</mat-option>
+          <mat-option value="1">Account</mat-option>
+          <mat-option value="1">Salse</mat-option>
+        </mat-select>
+        <mat-hint>Here's the dropdown arrow ^</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Hire Date</mat-label>
+        <input matInput type="date" formControlName="hireDate" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <input type="submit" value="submit">
+      <!--
             <mat-form-field class="form-field">
                 <mat-label>Password</mat-label>
                 <input matInput type="password">
-            </mat-form-field>
-            <mat-form-field class="form-field">
-                <mat-label>Telephone</mat-label>
-                <span matTextPrefix>+088 &nbsp;</span>
-                <input type="tel" matInput placeholder="">
-                <mat-icon matSuffix>mode_edit</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field class="form-field">
@@ -50,13 +95,7 @@
                 </mat-radio-group>
               </div>
 
-              <mat-form-field>
-                <mat-label>Select me</mat-label>
-                <mat-select>
-                  <mat-option value="option">Option</mat-option>
-                </mat-select>
-                <mat-hint >Here's the dropdown arrow ^</mat-hint>
-              </mat-form-field>
-        </form>
-    </mat-card-content>
+              -->
+    </form>
+  </mat-card-content>
 </mat-card>
