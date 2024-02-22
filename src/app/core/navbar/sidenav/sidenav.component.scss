@@ -1,0 +1,33 @@
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    float: left;
+    width: 100%;
+  }
+  
+  li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bolder;
+    cursor: pointer;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  li a:hover {
+    background-color: #b6d5e1;
+    color: #555273;  
+  }
+
+  li .active {
+    background-color: #555273;
+    size: 1.3rem;
+    color: #e2eff1;
+    font-weight: bolder;
+  }
