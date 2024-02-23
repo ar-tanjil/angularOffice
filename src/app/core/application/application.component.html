@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <h1>Jobs</h1>
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="main-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item fw-bolder">
+        <a href="index.html">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item fw-bolder active">
+        <a href="index.html">Jobs</a>
+      </li>
+    </ol>
+  </nav>
+  <!-- /Breadcrumb -->
+  <button class="btn btn-danger" routerLink="/apply">Application</button>
+  <button class="btn btn-primary" routerLink="/applicationList">
+    Application List
+  </button>
+
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-6" *ngFor="let job of getVacantJobs">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title> {{ job.jobTitle }} </mat-card-title>
+            <mat-card-subtitle>{{ job.departmentName }} </mat-card-subtitle>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <div>
+            <span
+              class="fw-bolder">Salary- {{ job.minSalary | currency : "USD" }}-{{
+                job.maxSalary | currency : "USD"
+              }}</span
+            >
+            <div style="float: right;">            <!-- <button mat-button>DETAILS</button> -->
+            
+            <button mat-raised-button class="bg-success m-2" [routerLink]="['/apply', 'edit', job.id]">
+              APPLAY
+            </button>
+          </div>
+
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- 
+    <div class="col">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Actions Buttons</mat-card-title>
+          <mat-card-subtitle>End</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Actions Buttons</mat-card-title>
+          <mat-card-subtitle>End</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div> -->
+</div>

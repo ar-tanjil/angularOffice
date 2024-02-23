@@ -6,6 +6,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { EmpModel } from 'src/app/model/employee/emp.model';
 import { Employee } from 'src/app/model/employee/employee';
 import { FormMessage, FormOwner } from 'src/app/model/from.message.service';
+import { Designation } from 'src/app/model/designation/designation';
 
 @Component({
   selector: 'app-register-form',
@@ -15,25 +16,36 @@ import { FormMessage, FormOwner } from 'src/app/model/from.message.service';
 export class RegisterFormComponent {
 
   employee: Employee = new Employee();
-  department: Department = new Department();
-  mood!: string;
+  editing!: boolean;
   title!: string;
 
 
-  constructor(private empModel: EmpModel, private depMode: DepModel,  private route: ActivatedRoute) {
+  constructor(private model: EmpModel, private route: ActivatedRoute) {
 
     route.params.subscribe(params => {
-      this.mood = params["mode"];
-      console.log(this.mood);
+      this.editing = params["mode"] == "edit";
+      let id = params["id"];
+      if (id) {
+        model.getOrgEmployee(id).subscribe(emp => {
+          this.employee = emp ?? new Employee();
+          this.employeeForm.patchValue(this.employee);
+          
+        })
+      }
+    });
+  }
 
-    })
+  get departmentList(): Department[] {
+    return this.model.getDeprtmentList();
+  }
 
+  get designationList(): Designation[] {
+    return this.model.getDesignationList();
   }
 
 
   ngOnInit() {
-    
-    this.chooseTitle(this.mood);
+    this.chooseTitle(this.editing);
   }
 
   employeeForm: FormGroup = new FormGroup(
@@ -41,33 +53,42 @@ export class RegisterFormComponent {
       id: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
-      hireDate: new FormControl(new Date()),
+      dob: new FormControl(),
       email: new FormControl(),
       phoneNumber: new FormControl(),
-      job: new FormControl(),
-      department: new FormControl(),
-      address: new FormControl(),
+      ssc: new FormControl(),
+      sscPassingYear: new FormControl(),
+      hsc: new FormControl(),
+      hscPassingYear: new FormControl(),
+      undergraduate: new FormControl(),
+      undergraduatePassingYear: new FormControl(),
+      postgraduate: new FormControl(),
+      postgraduatePassingYear: new FormControl(),
+      zipCode: new FormControl(),
+      roadNo: new FormControl(),
+      city: new FormControl(),
+      country: new FormControl(),
+      jobId: new FormControl(),
+      departmentId: new FormControl(),
+      departmentName: new FormControl(),
+      jobTitle: new FormControl()
     }
   )
 
   submitForm() {
-    
-      Object.assign(this.employee, this.employeeForm.value);
-      this.empModel.saveEmployee(this.employee);
-      console.log(this.employee);
-    
+
+    Object.assign(this.employee, this.employeeForm.value);
+    this.model.saveEmployee(this.employee);
+
 
   }
 
 
-  chooseTitle(val: string){
-    switch (val) {
-      case "EMPLOYEE":
-        this.title = "Employee";
-        break;
-      case "DEPARTMENT":
-        this.title = "Department";
-        break;
+  chooseTitle(val: boolean) {
+    if (val) {
+      this.title = `Update ${this.employee.firstName} details`
+    } else {
+      this.title = `Add new Employee`
     }
   }
 

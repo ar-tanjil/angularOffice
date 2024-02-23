@@ -7,6 +7,8 @@ import { DepModel } from "./department/department.model";
 import { DesinationDatasource } from "./designation/desig.datasource";
 import { DesigModel } from "./designation/designation.model";
 import { FormMessage } from "./from.message.service";
+import { ApplicationDatasource } from "./application/application.datsource";
+import { ApplicationModel } from "./application/application.model";
 
 @NgModule({
     declarations: [],
@@ -17,7 +19,9 @@ import { FormMessage } from "./from.message.service";
         DepModel,
         DesinationDatasource,
         DesigModel,
-        FormMessage
+        FormMessage,
+        ApplicationDatasource,
+        ApplicationModel
     ],
     imports: [HttpClientModule]
 })

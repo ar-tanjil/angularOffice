@@ -1,9 +1,9 @@
 <mat-card class="mat-card">
   <mat-card-content>
     <mat-card-header>
-      <mat-card-title>Add </mat-card-title>
+      <mat-card-title> Apply Form ({{job.jobTitle}}) </mat-card-title>
     </mat-card-header>
-    <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="applicationForm" (ngSubmit)="submitForm()">
       <!--Employee Form-->
 
       <div class="row">
@@ -54,6 +54,7 @@
           </mat-form-field>
         </div>
         <div class="col-6">
+            
           <mat-form-field class="form-field">
             <mat-label>Ssc Points</mat-label>
             <input
@@ -64,12 +65,14 @@
           </mat-form-field>
         </div>
         <div class="col-6">
-          <mat-form-field class="form-field">
+            
+        <mat-form-field class="form-field">
             <mat-label>Ssc Passing Year</mat-label>
             <input matInput type="date" formControlName="sscPassingYear" />
           </mat-form-field>
         </div>
         <div class="col-6">
+            
           <mat-form-field class="form-field">
             <mat-label>Hsc Points</mat-label>
             <input
@@ -80,12 +83,14 @@
           </mat-form-field>
         </div>
         <div class="col-6">
-          <mat-form-field class="form-field">
+            
+        <mat-form-field class="form-field">
             <mat-label>Hsc Passing Year</mat-label>
             <input matInput type="date" formControlName="hscPassingYear" />
           </mat-form-field>
         </div>
         <div class="col-6">
+            
           <mat-form-field class="form-field">
             <mat-label>Undergraduate Points</mat-label>
             <input
@@ -96,43 +101,38 @@
           </mat-form-field>
         </div>
         <div class="col-6">
-          <mat-form-field class="form-field">
+            
+        <mat-form-field class="form-field">
             <mat-label>Undergraduate Passing Year</mat-label>
-            <input
-              matInput
-              type="date"
-              formControlName="undergraduatePassingYear"
-            />
+            <input matInput type="date" formControlName="undergraduatePassingYear" />
           </mat-form-field>
         </div>
         <div class="col-6">
-          <mat-form-field class="form-field">
-            <mat-label>Postgraduate Points</mat-label>
-            <input
-              matInput
-              placeholder="Your Last Name"
-              formControlName="postgraduate"
-            />
-          </mat-form-field>
-        </div>
+            <mat-form-field class="form-field">
+              <mat-label>Postgraduate Points</mat-label>
+              <input
+                matInput
+                placeholder="Your Last Name"
+                formControlName="postgraduate"
+              />
+            </mat-form-field></div>
         <div class="col-6">
-          <mat-form-field class="form-field">
+            
+        <mat-form-field class="form-field">
             <mat-label>Postgraduate Passing Year</mat-label>
-            <input
-              matInput
-              type="date"
-              formControlName="postgraduatePassingYear"
-            />
+            <input matInput type="date" formControlName="postgraduatePassingYear" />
           </mat-form-field>
         </div>
-
+        
         <div class="col-6">
-          <mat-form-field class="form-field">
-            <mat-label>Date Of Birth</mat-label>
-            <input matInput type="date" formControlName="dob" />
-          </mat-form-field>
-        </div>
+            
+            <mat-form-field class="form-field">
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput type="date" formControlName="dob" />
+              </mat-form-field>
+            </div>
         <div class="col-6">
+            
           <mat-form-field class="form-field">
             <mat-label>Road No</mat-label>
             <input
@@ -143,6 +143,7 @@
           </mat-form-field>
         </div>
         <div class="col-6">
+            
           <mat-form-field class="form-field">
             <mat-label>Zip Code</mat-label>
             <input
@@ -153,6 +154,7 @@
           </mat-form-field>
         </div>
         <div class="col-6">
+            
           <mat-form-field class="form-field">
             <mat-label>City</mat-label>
             <input
@@ -163,6 +165,7 @@
           </mat-form-field>
         </div>
         <div class="col-6">
+            
           <mat-form-field class="form-field">
             <mat-label>Country</mat-label>
             <input
@@ -173,21 +176,14 @@
           </mat-form-field>
         </div>
         <div class="col-6">
-          <mat-form-field>
-            <mat-label>Select Designation</mat-label>
-            <mat-select formControlName="jobId">
-              <mat-option *ngFor="let job of designationList" value= {{job.id}} > {{job.jobTitle}} </mat-option>
-            </mat-select>
-            <!-- <mat-hint>Here's the dropdown arrow ^</mat-hint> -->
-          </mat-form-field>
-        </div>
-        <div class="col-6">
-          <mat-form-field>
-            <mat-label>Select Department</mat-label>
-            <mat-select formControlName="departmentId">
-              <mat-option *ngFor="let dep of departmentList"  value= {{dep.id}} > {{dep.departmentName}} </mat-option>
-            </mat-select>
-            <!-- <mat-hint>Here's the dropdown arrow ^</mat-hint> -->
+            
+          <mat-form-field class="form-field">
+            <mat-label>Referenced</mat-label>
+            <input
+              matInput
+              placeholder="Your Last Name"
+              formControlName="reference"
+            />
           </mat-form-field>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EmpModel } from 'src/app/model/employee/emp.model';
-import { Employee } from 'src/app/model/employee/employee';
+import { Employee, EmployeeTable } from 'src/app/model/employee/employee';
 
 @Component({
   selector: 'app-employee-table',
@@ -13,7 +13,7 @@ export class EmployeeTableComponent {
 
         }
 
-        get getEmployees(): Employee[]{
+        get getEmployees(): EmployeeTable[]{
           return this.empModel.getEmployees();
         }
 

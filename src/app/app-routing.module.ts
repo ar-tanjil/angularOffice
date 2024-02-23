@@ -9,18 +9,27 @@ import { DesignationsComponent } from './core/designations/designations.componen
 import { PayrollComponent } from './core/payroll/payroll.component';
 import { DepartmentFormComponent } from './core/departments/department-form/department-form.component';
 import { DesigFormComponent } from './core/designations/desig-form/desig-form.component';
+import { ApplicationComponent } from './core/application/application.component';
+import { ApplicationFormComponent } from './core/application/form-application/application-form.component';
+import { ApplicationListComponent } from './core/application/list-application/application-list.component';
 
 const routes: Routes = [
   {path:"dashboard", component:DashbordComponent},
-  {path: "emp", component:EmployeeTableComponent},
-  {path: "register/:mode", component: RegisterFormComponent},
+  {path: "employee", component:EmployeeTableComponent},
+  {path:"application", component:ApplicationComponent},
+  {path:"applicationList", component:ApplicationListComponent},
+  {path: "register/:mode/:id", component: RegisterFormComponent},
   {path: "department/:mode", component: DepartmentFormComponent},
+  {path: "department/:mode/:id", component: DepartmentFormComponent},
   {path: "designation/:mode", component: DesigFormComponent},
+  {path: "designation/:mode/:id", component: DesigFormComponent},
+  {path:"apply", component:ApplicationFormComponent},
+  {path:"apply/:mode/:id", component:ApplicationFormComponent},
   {path:"profile", component: ProfileComponent},
   {path:"department", component: DepartmentsComponent},
   {path:"designation", component:DesignationsComponent},
   {path:"payroll", component: PayrollComponent},
-  {path: "", redirectTo:"/dashbord", pathMatch:"full"}
+  {path: "", redirectTo:"/dashboard", pathMatch:"full"}
 ];
 
 @NgModule({

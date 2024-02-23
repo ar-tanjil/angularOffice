@@ -4,9 +4,9 @@ import { Observable, ReplaySubject } from "rxjs";
 import { DepDatasource } from "./dep.datasource";
 
 @Injectable()
-export class DepModel{
+export class DepModel {
 
-    
+
     private departments: Department[];
     private locator = (employee: Department, id?: number) => employee.id == id;
     private replaySubject: ReplaySubject<Department[]>;
@@ -29,7 +29,7 @@ export class DepModel{
         return this.departments.find((dep) => this.locator(dep, id));
     }
 
-    getDepartmentObservable(id: number): Observable<Department | undefined>{
+    getDepartmentObservable(id: number): Observable<Department | undefined> {
         let subject = new ReplaySubject<Department | undefined>(1);
         this.replaySubject.subscribe(emp => {
             subject.next(emp.find(e => this.locator(e, id)));
@@ -50,7 +50,9 @@ export class DepModel{
     saveDepartment(department: Department) {
         if (department.id == 0 || department.id == null) {
             this.datasouce.save(department)
-                .subscribe(dep => this.departments.push(dep));
+                .subscribe(dep => {
+                    this.departments.push(dep)
+                });
         } else {
             this.datasouce.update(department)
                 .subscribe(dep => {
@@ -61,5 +63,11 @@ export class DepModel{
                     this.departments.splice(index, 1, dep);
                 })
         }
+    }
+
+    // The orginal method
+
+    getOrgDepartment(id: number): Observable<Department> {
+        return this.datasouce.getById(id);
     }
 }

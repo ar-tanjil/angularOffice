@@ -1,4 +1,5 @@
-export class Employee {
+export class Application{
+
     constructor(
         public id?: number,
         public firstName?: string,
@@ -19,27 +20,17 @@ export class Employee {
         public city?: string,
         public country?: string,
         public jobId?: number,
-        public departmentId?: number,
-        public hireDate?: Date,
-        public separationDate?: Date,
-        public applicationId?: number,
+        public reference?: string,
         public jobTitle?: string,
         public departmentName?: string
-    ) { }
+
+    ){
+    }
 }
 
-export class EmployeeTable {
-    constructor(
-        public id?: number,
-        public firstName?: string,
-        public lastName?: string,
-        public email?: string,
-        public phoneNumber?: string,
-        public hireDate?: string,
-        public address?: string,
-        public jobTitle?: string,
-        public departmentName?: string
-    ) {
-
-    }
+export interface ApplicationTable{
+    id: number;
+    name: string;
+    jobTitle: string;
+    departmentName: string;
 }

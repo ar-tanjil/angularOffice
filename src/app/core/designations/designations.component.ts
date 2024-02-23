@@ -10,6 +10,8 @@ export class DesignationsComponent {
 
   constructor(private model: DesigModel){
 
+    console.log(this.getDesignations);
+    
   }
 
   get getDesignations(){

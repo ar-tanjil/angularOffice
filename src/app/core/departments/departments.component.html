@@ -1,21 +1,37 @@
 <div class="container-fluid">
-    <button mat-button class="bg-primary mat-elevation-z8" [routerLink]="['/department', 'add']">Add Employee</button>
+    <button mat-button class="bg-primary mat-elevation-z8" [routerLink]="['/department', 'add']">Create New Department</button>
     <mat-divider class="m-2"></mat-divider>
     <table class="table table-hover table-striped w-100" >
-        <thead><tr>
+        <thead><tr class="text-center">
                 <th scope="row">#</th>
                 <th scope="row">Department Name</th>
-                <th scope="row">Manager Name</th>
-                <!-- <th scope="row">Description</th> -->
+                <th scope="row">Description</th>
+                <th scope="row"></th>
             </tr>
         </thead>    
     
     <tbody>
-        <tr *ngFor="let dep of getDepartmetns(); let i = index;">
+        <tr *ngFor="let dep of getDepartmetns(); let i = index;" class="text-center">
             <th scope="col"> {{ i + 1}} </th>
             <td> {{ dep.departmentName }} </td>
-            <td> {{ dep.managerName }} </td>
-            <!-- <td> {{ dep.}} </td> -->
+            <td> {{ dep.departmentDesc }} </td>
+            
+                <td>
+                    <a mat-raised-button [matMenuTriggerFor]="menu1">
+                      <mat-icon  style="cursor: pointer ; color: #504d78; padding: 0; margin: 0;"
+                        >reorder</mat-icon
+                      >
+                      <mat-menu #menu1="matMenu">
+                        <button mat-menu-item [routerLink]="['/department', 'edit', dep.id]" >
+                          <mat-icon style="color: #504d78;">create</mat-icon>Update
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon style="color: #504d78;">info</mat-icon>Details
+                        </button>
+                      </mat-menu>
+                    </a>
+                  </td>
+            
         </tr>
     </tbody>
     

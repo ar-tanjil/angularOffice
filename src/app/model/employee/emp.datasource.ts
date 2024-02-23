@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Employee } from "./employee";
+import { Employee, EmployeeTable } from "./employee";
 import { HttpClient } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
@@ -11,8 +11,8 @@ export class EmpDatasource{
 
     constructor(private http: HttpClient){ };
 
-    getAll(): Observable<Employee[]>{
-        return this.sendRequest<Employee[]>("GET", this.url);
+    getAll(): Observable<EmployeeTable[]>{
+        return this.sendRequest<EmployeeTable[]>("GET", this.url);
     }
 
     getById(id: number): Observable<Employee>{
@@ -39,5 +39,10 @@ export class EmpDatasource{
             throw(`Network Error: ${error.statusText} (${error.status})`)
         }));
     }
+
+    // Direct method 
+    // getDirAll(): Observable<EmployeeTable[]>{
+    //     return this.sendRequest<EmployeeTable[]>("GET", this.url);
+    // }
 
 }

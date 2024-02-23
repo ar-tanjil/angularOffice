@@ -16,6 +16,9 @@ import { DesignationsComponent } from './designations/designations.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { DepartmentFormComponent } from './departments/department-form/department-form.component';
 import { DesigFormComponent } from './designations/desig-form/desig-form.component';
+import { ApplicationComponent } from './application/application.component';
+import { ApplicationFormComponent } from './application/form-application/application-form.component';
+import { ApplicationListComponent } from './application/list-application/application-list.component';
 
 @NgModule({
     declarations: [
@@ -30,12 +33,26 @@ import { DesigFormComponent } from './designations/desig-form/desig-form.compone
         DesignationsComponent,
         PayrollComponent,
         DepartmentFormComponent,
-        DesigFormComponent
+        DesigFormComponent,
+        ApplicationComponent,
+        ApplicationFormComponent,
+        ApplicationListComponent
     ],
     exports: [
         NavbarComponent,
         EmployeeTableComponent,
-        DashbordComponent
+        DashbordComponent,
+        RegisterFormComponent,
+        ProfileComponent,
+        TopnavComponent,
+        SidenavComponent,
+        DepartmentsComponent,
+        DesignationsComponent,
+        PayrollComponent,
+        DepartmentFormComponent,
+        DesigFormComponent,
+        ApplicationComponent,
+        ApplicationFormComponent
     ],
     imports: [
         MaterialModule,

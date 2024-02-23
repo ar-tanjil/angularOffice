@@ -32,6 +32,9 @@ export class DesinationDatasource{
       return this.sendRequest<HttpMessage>("DELETE", `${this.url}/${id}`);
     }
 
+    getAllVacanctPost():Observable<Designation[]>{
+        return this.sendRequest<Designation[]>("GET",`${this.url}/vacancy`);
+    }
 
     private sendRequest<T>(verb: string, url: string, body?: Designation): Observable<T>{
         return this.http.request<T>(verb, url, {
