@@ -1,0 +1,46 @@
+<mat-card class="mat-card">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Add {{title}} </mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="departmentForm" (ngSubmit)="submitForm()">
+        
+  
+        <!-- Department Form-->
+        
+          <mat-form-field class="form-field">
+            <mat-label>Designation</mat-label>
+            <input matInput placeholder="New Department Name" formControlName="departmentName" />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Department Description</mat-label>
+            <textarea matInput placeholder="Department Description" formControlName="departmentDesc"></textarea>
+        </mat-form-field>
+  
+        <input type="submit" class="btn btn-primary d-block mx-auto" value="submit">
+        <!--
+              <mat-form-field class="form-field">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password">
+              </mat-form-field>
+  
+             
+              
+        <mat-form-field class="form-field">
+          <mat-label>Hire Date</mat-label>
+          <input matInput type="date" formControlName="hireDate" />
+        </mat-form-field>
+  
+              <mat-checkbox>Hide required marker</mat-checkbox>
+              <div>
+                  <label>Float label: </label>
+                  <mat-radio-group>
+                    <mat-radio-button value="auto">Auto</mat-radio-button>
+                    <mat-radio-button value="always">Always</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+  
+                -->
+      </form>
+    </mat-card-content>
+  </mat-card>

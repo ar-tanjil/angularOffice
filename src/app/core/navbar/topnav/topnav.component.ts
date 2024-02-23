@@ -10,13 +10,15 @@ export class TopnavComponent {
   notification: number = 0;
   date: Date = new Date();
 
-  @Output("sidenavInput")
+  @Output()
   sidenav = new EventEmitter<boolean>(); 
 
-  @Input("sidenavOutput")
+  @Input()
   sidenavValue!: boolean; 
 
   toggleSidenav(value: boolean){
     this.sidenav.emit(value);
+    console.log(this.sidenav);
+    
   }
 }

@@ -12,8 +12,8 @@ export class NavbarComponent {
 
 
   shouldRun = false;
-  toggleSidenav() {
-    this.shouldRun = this.shouldRun ? false : true;
+  toggleSidenav(value: boolean) {
+    this.shouldRun = value ? false : true;
   }
 
 

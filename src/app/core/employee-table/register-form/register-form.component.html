@@ -7,7 +7,6 @@
 
       <!--Employee Form-->
 
-      <div *ngIf="addEmployee">
         <mat-form-field class="form-field">
           <mat-label>First Name</mat-label>
           <input matInput placeholder="Your First Name" formControlName="firstName" />
@@ -63,21 +62,6 @@
             </mat-form-field>
           </div>
         </div>
-      </div>
-
-      <!-- Department Form-->
-      <div *ngIf="addDepartment">
-      
-        <mat-form-field class="form-field">
-          <mat-label>Department Name</mat-label>
-          <input matInput placeholder="New Department Name" formControlName="departmentName" />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Department Description</mat-label>
-          <textarea matInput placeholder="Department Description" formControlName="departmentDesc"></textarea>
-      </mat-form-field>
-      </div>
-
 
       <input type="submit" class="btn btn-primary d-block mx-auto" value="submit">
       <!--

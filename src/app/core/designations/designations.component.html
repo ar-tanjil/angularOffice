@@ -1,1 +1,23 @@
-<p>designations works!</p>
+<div class="container-fluid">
+    <button mat-button class="bg-primary mat-elevation-z8" [routerLink]="['/designation', 'add']">Add New Job</button>
+    <mat-divider class="m-2"></mat-divider>
+    <table class="table table-hover table-striped w-100" >
+        <thead><tr>
+                <th scope="row">#</th>
+                <th scope="row">Job Title</th>
+                <th scope="row">Min Salary</th>
+                <th scope="row"> Max Salary </th>
+            </tr>
+        </thead>    
+    
+    <tbody>
+        <tr *ngFor="let desig of getDesignations; let i = index;">
+            <th scope="col"> {{ i + 1}} </th>
+            <td> {{ desig.jobTitle }} </td>
+            <td> {{ desig.minSalary }} </td>
+            <td> {{ desig.maxSalary }} </td>
+        </tr>
+    </tbody>
+    
+    </table>
+</div>

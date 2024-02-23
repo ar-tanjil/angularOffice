@@ -1,4 +1,4 @@
-import { DepModel } from './../../model/department/department.model';
+import { DepModel } from '../../../model/department/department.model';
 import { Department } from 'src/app/model/department/deparment';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -19,13 +19,6 @@ export class RegisterFormComponent {
   mood!: string;
   title!: string;
 
-  // form state
-  addEmployee: boolean = false;
-  editEmployee: boolean = false;
-  addDepartment: boolean = false;
-  editDepartment: boolean = false;
-  addDesignation: boolean = false;
-  editDesignation: boolean = false;
 
   constructor(private empModel: EmpModel, private depMode: DepModel,  private route: ActivatedRoute) {
 
@@ -39,14 +32,13 @@ export class RegisterFormComponent {
 
 
   ngOnInit() {
-    this.chooseState(this.mood);
+    
     this.chooseTitle(this.mood);
   }
 
   employeeForm: FormGroup = new FormGroup(
     {
       id: new FormControl(),
-      departmentName: new FormControl(),
       firstName: new FormControl(),
       lastName: new FormControl(),
       hireDate: new FormControl(new Date()),
@@ -55,34 +47,18 @@ export class RegisterFormComponent {
       job: new FormControl(),
       department: new FormControl(),
       address: new FormControl(),
-      departmentDesc: new FormControl()
     }
   )
 
   submitForm() {
-    if (this.addEmployee) {
+    
       Object.assign(this.employee, this.employeeForm.value);
       this.empModel.saveEmployee(this.employee);
       console.log(this.employee);
-    } else if (this.addDepartment) {
-      Object.assign(this.department, this.employeeForm.value);
-      this.depMode.saveDepartment(this.department);
-      console.log(this.department);
-    }
+    
 
   }
 
-
-  chooseState(val: string) {
-    switch (val) {
-      case "EMPLOYEE":
-        this.addEmployee = true;
-        break;
-      case "DEPARTMENT":
-        this.addDepartment = true;
-        break;
-    }
-  }
 
   chooseTitle(val: string){
     switch (val) {
