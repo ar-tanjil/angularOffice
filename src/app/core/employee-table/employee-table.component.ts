@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
 import { EmpModel } from 'src/app/model/employee/emp.model';
 import { Employee, EmployeeTable } from 'src/app/model/employee/employee';
 
@@ -9,12 +10,14 @@ import { Employee, EmployeeTable } from 'src/app/model/employee/employee';
 })
 export class EmployeeTableComponent {
 
-        constructor(private empModel: EmpModel){
+  employTable: EmployeeTable[] = new Array<EmployeeTable>();
+
+        constructor(private model: EmpDatasource){
+            this.model.getAll().subscribe(emp => {
+              this.employTable = emp;
+            })
 
         }
 
-        get getEmployees(): EmployeeTable[]{
-          return this.empModel.getEmployees();
-        }
 
 }

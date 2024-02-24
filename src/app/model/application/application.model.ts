@@ -8,9 +8,9 @@ import { DesigModel } from "../designation/designation.model";
 import { Designation } from "../designation/designation";
 
 @Injectable()
-export class ApplicationModel{
+export class ApplicationModel {
 
-    
+
     private applications: Application[];
     private locator = (app: Application, id?: number) => app.id == id;
     private replaySubject: ReplaySubject<Application[]>;
@@ -33,11 +33,11 @@ export class ApplicationModel{
         return this.applications.find((app) => this.locator(app, id));
     }
 
-    getOrgiJob(id: number): Observable<Designation>{
+    getOrgiJob(id: number): Observable<Designation> {
         return this.desigModel.getOrgDesiganation(id);
     }
 
-    getApplicationObservable(id: number): Observable<Application | undefined>{
+    getApplicationObservable(id: number): Observable<Application | undefined> {
         let subject = new ReplaySubject<Application | undefined>(1);
         this.replaySubject.subscribe(app => {
             subject.next(app.find(a => this.locator(a, id)));
@@ -56,9 +56,15 @@ export class ApplicationModel{
     }
 
     saveApplication(application: Application) {
+        let subject = new ReplaySubject<Application>();
         if (application.id == 0 || application.id == null) {
             this.datasouce.save(application)
-                .subscribe(app => this.applications.push(app));
+                .subscribe(app => {
+                    this.datasouce.getAll().subscribe(app => {
+                        this.applications = app;
+                    })
+
+                });
         } else {
             this.datasouce.update(application)
                 .subscribe(app => {
@@ -71,13 +77,23 @@ export class ApplicationModel{
         }
     }
 
-    recruit(id: number){
+
+    // All new method
+
+    recruit(id: number) {
         let replay = new ReplaySubject<Employee>(1);
         this.datasouce.recruitFromApplication(id).subscribe(emp => {
-                replay.next(emp);
-                replay.complete();
-                this.deleteApplication(id);
+            replay.next(emp);
+            replay.complete();
+            let index = this.applications.findIndex(app => this.locator(app, id));
+            if (index > -1) {
+                this.applications.splice(index, 1);
+            }
         });
+    }
+
+    getOrgApplications(): Observable<Application[]> {
+        return this.datasouce.getAll();
     }
 
 }

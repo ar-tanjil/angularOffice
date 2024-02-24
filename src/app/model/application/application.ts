@@ -1,4 +1,4 @@
-export class Application{
+export class Application {
 
     constructor(
         public id?: number,
@@ -24,13 +24,18 @@ export class Application{
         public jobTitle?: string,
         public departmentName?: string
 
-    ){
+    ) {
     }
 }
 
-export interface ApplicationTable{
-    id: number;
-    name: string;
-    jobTitle: string;
-    departmentName: string;
+export class ApplicationTable {
+
+    constructor(
+        public id?: number,
+        public firstName?: string,
+        public jobTitle?: string,
+        public departmentName?: string
+    ) {
+
+    }
 }

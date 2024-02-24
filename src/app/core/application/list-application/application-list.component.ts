@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { Application } from 'src/app/model/application/application';
 import { ApplicationModel } from 'src/app/model/application/application.model';
 
@@ -7,12 +7,18 @@ import { ApplicationModel } from 'src/app/model/application/application.model';
   templateUrl: './application-list.component.html',
   styleUrls: ['./application-list.component.scss']
 })
-export class ApplicationListComponent {
+export class ApplicationListComponent implements OnChanges {
 
 
+  
   constructor(private model: ApplicationModel){
-
     
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    
+        
   }
 
   get getApplications(): Application[]{
