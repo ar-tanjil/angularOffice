@@ -2,23 +2,22 @@
 <div class="container-fluid">
 
    <!-- Breadcrumb -->
-   <nav aria-label="breadcrumb" class="main-breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Employee</a></li>
-    </ol>
-  </nav>
+   <h1 class="fw-bold"><i class="fa-solid fa-users fs-1 m-2"></i>Employee</h1>
   <!-- /Breadcrumb -->
-    
-    <button mat-button class="bg-primary mat-elevation-z8" [routerLink]="['/register', 'add']">Add Employee</button>
-    <mat-divider class="m-2"></mat-divider>
-    <table class="table table-hover table-striped w-100"  >
-    <thead><tr class="text-center">
+  <mat-divider class="m-2"></mat-divider>
+    <div style="float: right;" class="m-2">
+    <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;"  [routerLink]="['/register', 'add']">Add Employee</button>
+  </div>
+   
+    <table class="table table-hover table-striped w-100 "  >
+    <thead ><tr class="text-center ">
             <th scope="row">#</th>
             <th scope="row">Firs Name</th>
             <th scope="row">Last Name</th>
             <th scope="row">Email</th>
             <th scope="row">Designation</th>
             <th scope="row">Department</th>
+            <th></th>
         </tr>
     </thead>    
 
@@ -31,16 +30,17 @@
         <td> {{emp.jobTitle}} </td>
         <td> {{emp.departmentName}} </td>
         <td>
-          <a mat-raised-button [matMenuTriggerFor]="menu1">
-            <mat-icon  style="cursor: pointer ; color: #504d78; padding: 0; margin: 0;"
+          <a [matMenuTriggerFor]="menu1">
+            <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
+            <!-- <mat-icon  style="cursor: pointer ; color: #504d78; padding: 0; margin: 0;"
               >reorder</mat-icon
-            >
+            > -->
             <mat-menu #menu1="matMenu">
               <button mat-menu-item [routerLink]="['/register', 'edit', emp.id]">
-                <mat-icon style="color: #504d78;">create</mat-icon>Update
+                <mat-icon >create</mat-icon>Update
               </button>
               <button mat-menu-item>
-                <mat-icon style="color: #504d78;">info</mat-icon>Details
+                <mat-icon >info</mat-icon>Details
               </button>
             </mat-menu>
           </a>

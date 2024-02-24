@@ -9,6 +9,10 @@
     flex: 1,1,auto;
   }
  
+  .sideNav-container{
+    background: #421820;
+    color: #ffffff;
+  }
   
   li a {
    width: 100%;
@@ -23,8 +27,8 @@
   }
 
   li a:hover {
-    background-color: #b6d5e1;
-    color: #555273;  
+    background-color: #ffffff;
+    color: #91171F;  
   }
 
   li .active {

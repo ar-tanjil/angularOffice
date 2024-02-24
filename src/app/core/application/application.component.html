@@ -1,41 +1,35 @@
 <div class="container-fluid">
-  <h1>Jobs</h1>
+  
   <!-- Breadcrumb -->
-  <nav aria-label="breadcrumb" class="main-breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item fw-bolder">
-        <a href="index.html">Dashboard</a>
-      </li>
-      <li class="breadcrumb-item fw-bolder active">
-        <a href="index.html">Jobs</a>
-      </li>
-    </ol>
-  </nav>
+  <h1 class="fw-bold"><i class="fa-solid fa-user-plus fs-1 m-2"></i>Vacancies</h1>
+    <!-- /Breadcrumb -->
+    <mat-divider class="m-2"></mat-divider>
+      <div style="float: right;" class="m-2">
+        <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;" [routerLink]="['/applicationList']">Applicants List</button>
+    </div>
   <!-- /Breadcrumb -->
-  <button class="btn btn-danger" routerLink="/apply">Application</button>
-  <button class="btn btn-primary" routerLink="/applicationList">
-    Application List
-  </button>
+  <!-- <button class="btn btn-danger" routerLink="/apply">Application</button> -->
+  
 
   <div class="container">
     <div class="row g-3">
       <div class="col-6" *ngFor="let job of getVacantJobs">
-        <mat-card>
+        <mat-card style="background-color: #780000; color:#ffffff">
           <mat-card-header>
-            <mat-card-title> {{ job.jobTitle }} </mat-card-title>
-            <mat-card-subtitle>{{ job.departmentName }} </mat-card-subtitle>
+            <mat-card-title class="fs-2 m-2"> {{ job.jobTitle }} </mat-card-title>
+            <mat-card-subtitle class="fs-4" style="color: #ffffff;">{{ job.departmentName }} </mat-card-subtitle>
           </mat-card-header>
-          <mat-divider></mat-divider>
+          <mat-divider style="background-color: #ffffff; padding: 1px; margin: 2px;"></mat-divider>
           <div>
             <span
-              class="fw-bolder">Salary- {{ job.minSalary | currency : "USD" }}-{{
+              class="fw-bolder fs-6 m-4"><i class="fa-solid fa-money-check-dollar"></i> {{ job.minSalary | currency : "USD" }} - {{
                 job.maxSalary | currency : "USD"
               }}</span
             >
             <div style="float: right;">            <!-- <button mat-button>DETAILS</button> -->
             
-            <button mat-raised-button class="bg-success m-2" [routerLink]="['/apply', 'edit', job.id]">
-              APPLAY
+            <button mat-raised-button class="m-2" style="background-color: #ffffff; color: #780000;" [routerLink]="['/apply', 'edit', job.id]">
+              APPLY
             </button>
           </div>
 

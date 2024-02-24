@@ -1,4 +1,6 @@
+import { DesinationDatasource } from './../../model/designation/desig.datasource';
 import { Component } from '@angular/core';
+import { Designation } from 'src/app/model/designation/designation';
 import { DesigModel } from 'src/app/model/designation/designation.model';
 
 @Component({
@@ -8,15 +10,16 @@ import { DesigModel } from 'src/app/model/designation/designation.model';
 })
 export class DesignationsComponent {
 
-  constructor(private model: DesigModel){
+  designationTable: Designation[] = new Array<Designation>()
 
-    console.log(this.getDesignations);
+  constructor(private model: DesinationDatasource){
+
+    this.model.getAll().subscribe(desig => {
+      this.designationTable = desig;
+    })
     
   }
 
-  get getDesignations(){
-   return this.model.getDesignations();
-  }
 
 
 

@@ -1,6 +1,12 @@
 <div class="container-fluid">
-    <button mat-button class="bg-primary mat-elevation-z8" [routerLink]="['/department', 'add']">Create New Department</button>
+    <h1 class="fw-bold"><i class="fa-solid fa-building-user fs-1 m-2"></i>Departments</h1>
+    <!-- /Breadcrumb -->
     <mat-divider class="m-2"></mat-divider>
+      <div style="float: right;" class="m-2">
+        <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;" [routerLink]="['/department', 'add']">Create New Department</button>
+    </div>
+
+
     <table class="table table-hover table-striped w-100" >
         <thead><tr class="text-center">
                 <th scope="row">#</th>
@@ -17,16 +23,14 @@
             <td> {{ dep.departmentDesc }} </td>
             
                 <td>
-                    <a mat-raised-button [matMenuTriggerFor]="menu1">
-                      <mat-icon  style="cursor: pointer ; color: #504d78; padding: 0; margin: 0;"
-                        >reorder</mat-icon
-                      >
+                    <a [matMenuTriggerFor]="menu1">
+                      <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
                       <mat-menu #menu1="matMenu">
                         <button mat-menu-item [routerLink]="['/department', 'edit', dep.id]" >
-                          <mat-icon style="color: #504d78;">create</mat-icon>Update
+                          <mat-icon >create</mat-icon>Update
                         </button>
                         <button mat-menu-item>
-                          <mat-icon style="color: #504d78;">info</mat-icon>Details
+                          <mat-icon >info</mat-icon>Details
                         </button>
                       </mat-menu>
                     </a>
