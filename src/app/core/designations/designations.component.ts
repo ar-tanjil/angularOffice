@@ -13,7 +13,6 @@ export class DesignationsComponent {
   designationTable: Designation[] = new Array<Designation>()
 
   constructor(private model: DesinationDatasource){
-
     this.model.getAll().subscribe(desig => {
       this.designationTable = desig;
     })

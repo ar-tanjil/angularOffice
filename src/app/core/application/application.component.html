@@ -13,7 +13,7 @@
 
   <div class="container">
     <div class="row g-3">
-      <div class="col-6" *ngFor="let job of getVacantJobs">
+      <div class="col-6" *ngFor="let job of vacantJobs">
         <mat-card style="background-color: #780000; color:#ffffff">
           <mat-card-header>
             <mat-card-title class="fs-2 m-2"> {{ job.jobTitle }} </mat-card-title>
@@ -28,7 +28,7 @@
             >
             <div style="float: right;">            <!-- <button mat-button>DETAILS</button> -->
             
-            <button mat-raised-button class="m-2" style="background-color: #ffffff; color: #780000;" [routerLink]="['/apply', 'edit', job.id]">
+            <button mat-raised-button class="m-2" style="background-color: #ffffff; color: #780000;" [routerLink]="['/apply', 'add', job.id]">
               APPLY
             </button>
           </div>

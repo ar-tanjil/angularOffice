@@ -12,13 +12,16 @@ import { DesigFormComponent } from './core/designations/desig-form/desig-form.co
 import { ApplicationComponent } from './core/application/application.component';
 import { ApplicationFormComponent } from './core/application/form-application/application-form.component';
 import { ApplicationListComponent } from './core/application/list-application/application-list.component';
+import { DetailsApplicationComponent } from './core/application/details-application/details-application.component';
 
 const routes: Routes = [
   {path:"dashboard", component:DashbordComponent},
   {path: "employee", component:EmployeeTableComponent},
   {path:"application", component:ApplicationComponent},
   {path:"applicationList", component:ApplicationListComponent},
+  {path:"details/:mode/:id", component:DetailsApplicationComponent},
   {path: "register/:mode/:id", component: RegisterFormComponent},
+  {path: "register", component: RegisterFormComponent},
   {path: "department/:mode", component: DepartmentFormComponent},
   {path: "department/:mode/:id", component: DepartmentFormComponent},
   {path: "designation/:mode", component: DesigFormComponent},
@@ -26,6 +29,7 @@ const routes: Routes = [
   {path:"apply", component:ApplicationFormComponent},
   {path:"apply/:mode/:id", component:ApplicationFormComponent},
   {path:"profile", component: ProfileComponent},
+  {path:"profile/:id", component: ProfileComponent},
   {path:"department", component: DepartmentsComponent},
   {path:"designation", component:DesignationsComponent},
   {path:"payroll", component: PayrollComponent},

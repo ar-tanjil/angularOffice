@@ -19,20 +19,24 @@
         </thead>    
     
     <tbody>
-        <tr *ngFor="let app of getApplications; let i = index;" class="text-center">
+        <tr *ngFor="let app of applicants; let i = index;" class="text-center">
             <th scope="col"> {{ i + 1}} </th>
             <td> {{ app.firstName }} </td>
             <td> {{ app.jobTitle }} </td>
             <td> {{ app.departmentName }} </td>
             <td>
+              <!-- <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i> -->
                 <a  [matMenuTriggerFor]="menu1">
                   <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
                   <mat-menu #menu1="matMenu">
-                    <button mat-menu-item (click)="recruit(app.id??0)" >
-                      <mat-icon >create</mat-icon>Accept
+                    <button mat-menu-item [routerLink]="['/details','app', app.id]">
+                      <i class="fa-solid fa-file textColor"></i>
+                      Details
                     </button>
-                    <button mat-menu-item>
-                      <mat-icon >info</mat-icon>Details
+                    <button mat-menu-item 
+                    [routerLink]="['/apply', 'edit', app.id]">
+                      <i class="fa-solid fa-pen-to-square textColor"></i>
+                      Edit
                     </button>
                   </mat-menu>
                 </a>

@@ -19,6 +19,7 @@ import { DesigFormComponent } from './designations/desig-form/desig-form.compone
 import { ApplicationComponent } from './application/application.component';
 import { ApplicationFormComponent } from './application/form-application/application-form.component';
 import { ApplicationListComponent } from './application/list-application/application-list.component';
+import { DetailsApplicationComponent } from './application/details-application/details-application.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { ApplicationListComponent } from './application/list-application/applica
         DesigFormComponent,
         ApplicationComponent,
         ApplicationFormComponent,
-        ApplicationListComponent
+        ApplicationListComponent,
+        DetailsApplicationComponent
     ],
     exports: [
         NavbarComponent,

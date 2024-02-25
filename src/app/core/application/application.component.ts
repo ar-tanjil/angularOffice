@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DesinationDatasource } from 'src/app/model/designation/desig.datasource';
+import { Designation } from 'src/app/model/designation/designation';
 import { DesigModel } from 'src/app/model/designation/designation.model';
 
 @Component({
@@ -8,9 +10,12 @@ import { DesigModel } from 'src/app/model/designation/designation.model';
 })
 export class ApplicationComponent {
 
+vacantJobs: Designation[] = new Array <Designation>();
 
-  constructor(private model: DesigModel,) {
-
+  constructor(private model: DesigModel, private data: DesinationDatasource) {
+    this.data.getAllVacanctPost().subscribe(v => {
+      this.vacantJobs = v;
+    })
   }
 
 

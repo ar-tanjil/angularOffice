@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Department } from 'src/app/model/department/deparment';
 import { DepModel } from 'src/app/model/department/department.model';
 import { Designation } from 'src/app/model/designation/designation';
@@ -17,7 +17,7 @@ export class DesigFormComponent {
   designation: Designation = new Designation();
   editing: boolean = false;
 
-  constructor(private model: DesigModel, private route: ActivatedRoute) {
+  constructor(private model: DesigModel, private route: ActivatedRoute, private router: Router) {
 
     route.params.subscribe(parmas => {
       this.editing = parmas["mode"] == 'edit';
@@ -60,6 +60,7 @@ export class DesigFormComponent {
       Object.assign(this.designation, this.designationForm.value);
       this.model.saveDesignation(this.designation);
       this.designationForm.reset();
+      this.router.navigateByUrl('/designation')
     }
   }
 

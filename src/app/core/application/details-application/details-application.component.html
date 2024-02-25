@@ -1,0 +1,261 @@
+<div class="container-fluid">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-12">
+        <div class="card mb-3">
+          <div class="card-body textColor">
+            <div class="row">
+                <div class="col-sm-12">
+                  <h1 class="fs-2 fw-bolder text-center"> {{title}} </h1></div>
+              </div>
+            <div class="row ">
+              <div class="col-sm-12 ">
+                <h1 class="fs-3 fw-bolder">Personal Information </h1></div>
+            </div>
+
+            <mat-divider class="mb-3"></mat-divider>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="mb-0 fs-5">First Name</h6>
+              </div>
+              <div class="col-sm-6 fs-6">
+                {{
+                  (app.firstName ?? "" | titlecase)}}
+              </div>
+            </div>
+            <hr />
+
+
+            
+            <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Last Name</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{
+                    (app.lastName ?? "" | titlecase)}}
+                </div>
+              </div>
+              <hr />
+            <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Date Of Birth</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{app.dob ?? "" | date: 'MMM d, y'}}
+                </div>
+              </div>
+              <hr />
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="mb-0 fs-5">Email</h6>
+              </div>
+              <div class="col-sm-6 fs-6">
+                {{ app.email ?? "" }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="mb-0 fs-5">Phone Number</h6>
+              </div>
+              <div class="col-sm-6 fs-6">
+                {{ app.phoneNumber ?? "" }}
+              </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <div class="col-sm-12 ">
+                  <h1 class="fs-3 fw-bolder">Education </h1></div>
+              </div>
+              <mat-divider class="mb-3"></mat-divider>
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">SSC Points</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.ssc ?? "" }}
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">SSC Passing Year</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.sscPassingYear ?? "" | date: 'mediumDate' }}
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">HSC Points</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.hsc ?? "" }}
+                </div>
+              </div>
+              <hr>
+
+              
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">HSC Passing Year</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.hscPassingYear ?? "" | date: 'mediumDate' }}
+                </div>
+              </div>
+              <hr>
+
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Undergraduation Points</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.undergraduate ?? "" }}
+                </div>
+              </div>
+              <hr>
+
+              
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Graduation Year</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.undergraduatePassingYear ?? "" | date: 'mediumDate' }}
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Postgraduation Points</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.postgraduatePassingYear ?? "" }}
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Postgraduation Year</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.postgraduatePassingYear ?? "" | date: 'mediumDate' }}
+                </div>
+              </div>
+              <hr>
+
+
+              <div class="row">
+                <div class="col-sm-12 ">
+                  <h1 class="fs-3 fw-bolder">Address </h1></div>
+              </div>
+              <mat-divider class="mb-3"></mat-divider>
+
+            
+              
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Road No</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.roadNo ?? "" }}
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Zip Code</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.zipCode ?? "" }}
+                </div>
+              </div>
+              <hr>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="mb-0 fs-5 textColor">City</h6>
+              </div>
+              <div class="col-sm-6 fs-6">
+                {{ app.city || "" }}
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="mb-0 fs-5">Country</h6>
+              </div>
+              <div class="col-sm-6 fs-6">
+                {{ app.country ?? "" }}
+              </div>
+            </div>
+            <hr />
+
+            
+            <div class="row">
+                <div class="col-sm-12 ">
+                  <h1 class="fs-3 fw-bolder">Address </h1></div>
+              </div>
+              <mat-divider class="mb-3"></mat-divider>
+
+            
+
+            
+            <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Post</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.jobTitle ?? "" }}
+                </div>
+              </div>
+              <hr />
+
+            
+            <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0 fs-5">Department</h6>
+                </div>
+                <div class="col-sm-6 fs-6">
+                  {{ app.departmentName ?? "" }}
+                </div>
+              </div>
+              <hr />
+
+            <div class="row" >
+              <div class="col-sm-12">
+                <a *ngIf="!emp"
+                  class="btn btn-success mx-4"
+                  (click)="recruit(app.id ?? 0)"
+                  > <i class="fa-solid fa-square-check"></i> Recruit</a
+                >
+                <a *ngIf="!emp"
+                  class="btn btn-danger"
+                  (click)="reject(app.id ?? -1)"
+                  > <i class="fa-solid fa-rectangle-xmark text-light"></i> Reject</a
+                >
+
+                <a *ngIf="emp"
+                  class="btn btn-danger"
+                  (click)="terminate(app.id ?? 0)"
+                  > <i class="fa-solid fa-rectangle-xmark text-light"></i> Terminate</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

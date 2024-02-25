@@ -1,5 +1,6 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { Application } from 'src/app/model/application/application';
+import { Application, ApplicationTable } from 'src/app/model/application/application';
+import { ApplicationDatasource } from 'src/app/model/application/application.datsource';
 import { ApplicationModel } from 'src/app/model/application/application.model';
 
 @Component({
@@ -7,26 +8,23 @@ import { ApplicationModel } from 'src/app/model/application/application.model';
   templateUrl: './application-list.component.html',
   styleUrls: ['./application-list.component.scss']
 })
-export class ApplicationListComponent implements OnChanges {
+export class ApplicationListComponent{
+
+applicants: ApplicationTable[] = new Array<ApplicationTable>();
+  
+  constructor(private model: ApplicationDatasource){
+    
+    
+  }
+
+  ngOnInit(){
+    this.model.getAllTable().subscribe(tbl => {
+      this.applicants = tbl;
+    })
+  }
+
 
 
   
-  constructor(private model: ApplicationModel){
-    
-    
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    
-        
-  }
-
-  get getApplications(): Application[]{
-    return this.model.getApplications();
-  }
-
-  recruit(id: number){
-    this.model.recruit(id);
-  }
 
 }

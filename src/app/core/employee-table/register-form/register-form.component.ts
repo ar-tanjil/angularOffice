@@ -17,7 +17,7 @@ export class RegisterFormComponent {
 
   employee: Employee = new Employee();
   editing!: boolean;
-  title!: string;
+  title: string = "Add New Employee";
 
 
   constructor(private model: EmpModel, private route: ActivatedRoute) {
@@ -29,7 +29,7 @@ export class RegisterFormComponent {
         model.getOrgEmployee(id).subscribe(emp => {
           this.employee = emp ?? new Employee();
           this.employeeForm.patchValue(this.employee);
-          
+          this.chooseTitle(this.editing);
         })
       }
     });
@@ -45,7 +45,6 @@ export class RegisterFormComponent {
 
 
   ngOnInit() {
-    this.chooseTitle(this.editing);
   }
 
   employeeForm: FormGroup = new FormGroup(
@@ -86,7 +85,7 @@ export class RegisterFormComponent {
 
   chooseTitle(val: boolean) {
     if (val) {
-      this.title = `Update ${this.employee.firstName} details`
+      this.title = `Update ${this.employee.firstName} Details`
     } else {
       this.title = `Add new Employee`
     }
