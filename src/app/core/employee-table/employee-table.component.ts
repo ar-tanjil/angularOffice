@@ -10,13 +10,12 @@ import { Employee, EmployeeTable } from 'src/app/model/employee/employee';
 })
 export class EmployeeTableComponent {
 
-  employTable: EmployeeTable[] = new Array<EmployeeTable>();
+        constructor(private model: EmpModel){
+            
+        }
 
-        constructor(private model: EmpDatasource){
-            this.model.getAll().subscribe(emp => {
-              this.employTable = emp;
-            })
-
+        get employTable(): EmployeeTable[]{
+          return this.model.getEmployees();
         }
 
 

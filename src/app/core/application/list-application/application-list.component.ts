@@ -10,17 +10,14 @@ import { ApplicationModel } from 'src/app/model/application/application.model';
 })
 export class ApplicationListComponent{
 
-applicants: ApplicationTable[] = new Array<ApplicationTable>();
-  
-  constructor(private model: ApplicationDatasource){
+  constructor(private appModel: ApplicationModel){
     
     
   }
 
-  ngOnInit(){
-    this.model.getAllTable().subscribe(tbl => {
-      this.applicants = tbl;
-    })
+  
+  get applicants(){
+    return this.appModel.getApplications(); 
   }
 
 

@@ -19,7 +19,7 @@ export class ApplicationFormComponent {
   editing: boolean = false;
   job: Designation = new Designation();
 
-  constructor(private model: ApplicationModel, private route: ActivatedRoute, 
+  constructor(private appModel: ApplicationModel, private route: ActivatedRoute,
     private appData: ApplicationDatasource, private router: Router) {
 
     route.params.subscribe(params => {
@@ -28,7 +28,7 @@ export class ApplicationFormComponent {
       if (id) {
 
         if (!this.editing) {
-          model.getOrgiJob(id).subscribe(job => {
+          appModel.getOrgiJob(id).subscribe(job => {
             this.job = job;
             this.application.jobId = id;
             this.application.jobTitle = job.jobTitle;
@@ -36,10 +36,10 @@ export class ApplicationFormComponent {
             this.applicationForm.patchValue(this.application);
           })
         } else {
-            this.appData.getById(id).subscribe( app => {
-              this.application = app;
-              this.applicationForm.patchValue(this.application);
-            })
+          this.appData.getById(id).subscribe(app => {
+            this.application = app;
+            this.applicationForm.patchValue(this.application);
+          })
         }
       }
     })
@@ -74,13 +74,12 @@ export class ApplicationFormComponent {
 
   submitForm() {
 
-    if(this.applicationForm.valid){
+    if (this.applicationForm.valid) {
 
       Object.assign(this.application, this.applicationForm.value);
-      this.appData.save(this.application).subscribe(a => {
-        this.applicationForm.reset();
-        this.router.navigate(['/details', 'app', a.id])
-      })
+      this.appModel.saveApplication(this.application);
+      this.applicationForm.reset();
+
     }
   }
 

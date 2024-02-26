@@ -19,9 +19,9 @@ vacantJobs: Designation[] = new Array <Designation>();
   }
 
 
-  get getVacantJobs() {
-    return this.model.getVacantJobs();
-  }
+  // get getVacantJobs() {
+  //   return this.model.getVacantJobs();
+  // }
 
 
 }
