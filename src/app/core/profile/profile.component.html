@@ -125,9 +125,17 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                       <a class="btn btn-info " [routerLink]="['/register', 'edit', emp.id]">Edit</a>
                     </div>
+                    
+                    <div class="col-sm-6">
+                      <a class="btn btn-info " (click)="openDialog()">Add Salary</a>
+                    </div>
+
+                    <!-- <div class="col-sm-6">
+                      <a class="btn btn-info " [routerLink]="['/salary', 'add', emp.id]">Add Salary</a>
+                    </div> -->
                   </div>
                   
                 </div>

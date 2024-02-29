@@ -2,18 +2,33 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
-import { PayrollTable } from "./payroll.model";
+import { PayrollTable, Salary } from "./payroll.model";
 
 @Injectable()
 export class PayrollDatasource{
 
-    private url: string = "http://localhost:8080/payrolls";
+    private payUrl: string = "http://localhost:8080/payrolls";
+    private salUrl: string = "http://localhost:8080/salaries";
 
     constructor(private http: HttpClient){ };
 
     getAllByPeriod(year: number, month: number): Observable<PayrollTable[]>{
-        return this.sendRequest<PayrollTable[]>("GET", `${this.url}/${year}/${month}`);
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payUrl}/${year}/${month}`);
     }
+
+    getSalaryByEmployee(id: number):Observable<Salary>{
+        return this.sendRequest<Salary>("GET", `${this.salUrl}/${id}`);
+    }
+
+    saveSalaryByEmployee(salary: Salary):Observable<Salary>{
+        return this.sendRequest<Salary>("POST", `${this.salUrl}/${salary.employeeId}`, salary )
+    }
+
+    updateSalaryByEmployee(salary: Salary):Observable<Salary>{
+        return this.sendRequest<Salary>("PATCH", `${this.salUrl}/${salary.employeeId}`, salary )
+    }
+
+    
 
     // getById(id: number): Observable<Employee>{
     //     return this.sendRequest<Employee>("GET", `${this.url}/${id}`);
@@ -32,7 +47,7 @@ export class PayrollDatasource{
     // }
 
 
-    private sendRequest<T>(verb: string, url: string, body?: PayrollTable): Observable<T>{
+    private sendRequest<T>(verb: string, url: string, body?: T): Observable<T>{
         return this.http.request<T>(verb, url, {
             body: body
         }).pipe(catchError((error: Response) => {

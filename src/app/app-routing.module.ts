@@ -13,6 +13,7 @@ import { ApplicationComponent } from './core/application/application.component';
 import { ApplicationFormComponent } from './core/application/form-application/application-form.component';
 import { ApplicationListComponent } from './core/application/list-application/application-list.component';
 import { DetailsApplicationComponent } from './core/application/details-application/details-application.component';
+import { AddSalaryComponent } from './core/payroll/add-salary/add-salary.component';
 
 const routes: Routes = [
   {path:"dashboard", component:DashbordComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:"department", component: DepartmentsComponent},
   {path:"designation", component:DesignationsComponent},
   {path:"payroll", component: PayrollComponent},
+  {path:"salary/:mode/:id", component: AddSalaryComponent},
   {path: "", redirectTo:"/dashboard", pathMatch:"full"}
 ];
 

@@ -20,6 +20,10 @@ import { ApplicationComponent } from './application/application.component';
 import { ApplicationFormComponent } from './application/form-application/application-form.component';
 import { ApplicationListComponent } from './application/list-application/application-list.component';
 import { DetailsApplicationComponent } from './application/details-application/details-application.component';
+import { AddSalaryComponent } from './payroll/add-salary/add-salary.component';
+import { DeductionsComponent } from './payroll/deductions/deductions.component';
+import { AdditionsComponent } from './payroll/additions/additions.component';
+import { TaxComponent } from './payroll/tax/tax.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +42,11 @@ import { DetailsApplicationComponent } from './application/details-application/d
         ApplicationComponent,
         ApplicationFormComponent,
         ApplicationListComponent,
-        DetailsApplicationComponent
+        DetailsApplicationComponent,
+        AddSalaryComponent,
+        DeductionsComponent,
+        AdditionsComponent,
+        TaxComponent
     ],
     exports: [
         NavbarComponent,
@@ -54,7 +62,8 @@ import { DetailsApplicationComponent } from './application/details-application/d
         DepartmentFormComponent,
         DesigFormComponent,
         ApplicationComponent,
-        ApplicationFormComponent
+        ApplicationFormComponent,
+        AddSalaryComponent
     ],
     imports: [
         MaterialModule,

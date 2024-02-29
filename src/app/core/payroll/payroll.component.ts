@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ReplaySubject } from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { PayrollTable } from 'src/app/model/payroll/payroll.model';
+import { AddSalaryComponent } from './add-salary/add-salary.component';
 
 @Component({
   selector: 'app-payroll',
@@ -16,7 +18,7 @@ export class PayrollComponent implements OnInit {
   private replaySubject: ReplaySubject<PayrollTable[]>;
 
 
-  constructor(private model: PayrollDatasource) {
+  constructor(private model: PayrollDatasource, private dialog: MatDialog) {
     this.lastMonth();
     this.payTable = new Array<PayrollTable>();
     this.replaySubject = new ReplaySubject<PayrollTable[]>();
@@ -28,6 +30,8 @@ export class PayrollComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPayrollByPeriod(this.year, this.month);
   }
+
+
 
 
 

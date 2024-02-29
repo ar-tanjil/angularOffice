@@ -1,24 +1,29 @@
-<mat-sidenav-container class="nav-container">
-  <!--Start of sidnav-->
-  <mat-sidenav mode="side" [opened]="shouldRun" class="side-nav-container">
-    <app-sidenav></app-sidenav>
-   
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <!--Start of main navbar-->
-    <app-topnav [sidenavValue]="shouldRun" (sidenav)="toggleSidenav($event)"></app-topnav>
-  <!-- end of navbar -->
-    <div class="w-100 h-100" (click)="sidenavClose()">
-      <div class="m-2 textColor">
-        <ng-content></ng-content>
-      </div>
-    </div>
+<div class="nav-container">
   
-     </mat-sidenav-content>
-</mat-sidenav-container>
+    <app-topnav [sidenavValue]="shouldRun" (sidenav)="toggleSidenav($event)"></app-topnav>
+    <mat-sidenav-container autosize class="h-100">
+      <!--Start of sidnav-->
+      <mat-sidenav mode="side" [opened]="shouldRun" class="side-nav-container">
+        <app-sidenav></app-sidenav>
+  
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <!--Start of main navbar-->
+        <!-- <app-topnav [sidenavValue]="shouldRun" (sidenav)="toggleSidenav($event)"></app-topnav> -->
+        <!-- end of navbar -->
+        <div class="w-100 h-100" (click)="sidenavClose()">
+          <div class="m-2 textColor">
+            <ng-content></ng-content>
+          </div>
+        </div>
+  
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+
 
 
 
 
 <!-- Last  -->
-
