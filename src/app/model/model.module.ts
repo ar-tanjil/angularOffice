@@ -10,6 +10,7 @@ import { FormMessage } from "./from.message.service";
 import { ApplicationDatasource } from "./application/application.datsource";
 import { ApplicationModel } from "./application/application.model";
 import { RefreshService } from "./msgService/refereshService";
+import { PayrollDatasource } from "./payroll/payroll.datasouce";
 
 @NgModule({
     declarations: [],
@@ -23,7 +24,8 @@ import { RefreshService } from "./msgService/refereshService";
         FormMessage,
         ApplicationDatasource,
         ApplicationModel,
-        RefreshService
+        RefreshService,
+        PayrollDatasource
     ],
     imports: [HttpClientModule]
 })

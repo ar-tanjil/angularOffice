@@ -1,3 +1,45 @@
 <h1 class="fw-bold"><i class="fa-solid fa-wallet fs-1 m-2"></i>Payroll</h1>
 <!-- /Breadcrumb -->
 <mat-divider class="m-2"></mat-divider>
+
+<table class="table table-hover table-striped w-100 "  >
+    <thead ><tr class="text-center ">
+            <th scope="row">#</th>
+            <th scope="row">First Name</th>
+            <th scope="row">Net Pay</th>
+            <th scope="row">Pay Period</th>
+            <!-- <th scope="row">Designation</th>
+            <th scope="row">Department</th> -->
+            <th></th>
+        </tr>
+    </thead>    
+
+<tbody>
+    <tr *ngFor="let pay of payTable; let i = index;" class="text-center">
+        <th scope="col"> {{ i + 1}} </th>
+        <td> {{pay.firstName}} </td>
+        <td> {{pay.netPay}} </td>
+        <td> {{pay.period}} </td>
+        <!-- <td> {{emp.jobTitle}} </td>
+        <td> {{emp.departmentName}} </td> -->
+        <td>
+          <!-- <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i> -->
+            <a  [matMenuTriggerFor]="menu1">
+              <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
+              <mat-menu #menu1="matMenu">
+                <button mat-menu-item [routerLink]="['/details','emp', pay.employeeId]">
+                  <i class="fa-solid fa-file textColor"></i>
+                  Details
+                </button>
+                <button mat-menu-item 
+                [routerLink]="['/profile', pay.employeeId]">
+                  <i class="fa-solid fa-user-tie textColor"></i>
+                  Profile
+                </button>
+              </mat-menu>
+            </a>
+          </td>
+    </tr>
+</tbody>
+
+</table>
