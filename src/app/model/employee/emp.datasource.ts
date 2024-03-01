@@ -31,6 +31,10 @@ export class EmpDatasource{
       return this.sendRequest<HttpMessage>("DELETE", `${this.url}/${id}`);
     }
 
+    getEmpWithoutSal():Observable<EmployeeTable[]>{
+        return this.sendRequest<EmployeeTable[]>("GET", `${this.url}/without_sal`);
+    }
+
 
     private sendRequest<T>(verb: string, url: string, body?: Employee): Observable<T>{
         return this.http.request<T>(verb, url, {

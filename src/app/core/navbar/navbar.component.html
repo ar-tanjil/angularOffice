@@ -1,17 +1,16 @@
 <div class="nav-container">
   
-    <app-topnav [sidenavValue]="shouldRun" (sidenav)="toggleSidenav($event)"></app-topnav>
-    <mat-sidenav-container autosize class="h-100">
+    <app-topnav [sidenavValue]="shouldRun" (sidenav)="toggleSidenav($event)"
+    style="position: stickf; top: 0;"
+    ></app-topnav>
+    <mat-sidenav-container autosize style="height: 100vh;">
       <!--Start of sidnav-->
       <mat-sidenav mode="side" [opened]="shouldRun" class="side-nav-container">
         <app-sidenav></app-sidenav>
   
       </mat-sidenav>
-      <mat-sidenav-content>
-        <!--Start of main navbar-->
-        <!-- <app-topnav [sidenavValue]="shouldRun" (sidenav)="toggleSidenav($event)"></app-topnav> -->
-        <!-- end of navbar -->
-        <div class="w-100 h-100" (click)="sidenavClose()">
+      <mat-sidenav-content (click)="sidenavClose()">
+        <div class="w-100">
           <div class="m-2 textColor">
             <ng-content></ng-content>
           </div>

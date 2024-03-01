@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReplaySubject } from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { PayrollTable } from 'src/app/model/payroll/payroll.model';
+import { PayrollTable, Salary } from 'src/app/model/payroll/payroll.model';
 import { AddSalaryComponent } from './add-salary/add-salary.component';
+import { auto } from '@popperjs/core';
 
 @Component({
   selector: 'app-payroll',
@@ -13,22 +14,22 @@ import { AddSalaryComponent } from './add-salary/add-salary.component';
 export class PayrollComponent implements OnInit {
   month!: number;
   year!: number;
-  payTable: PayrollTable[];
+  salaryTable: Salary[];
   private locator = (payroll: PayrollTable, id?: number) => payroll.employeeId == id;
-  private replaySubject: ReplaySubject<PayrollTable[]>;
+  private replaySubject: ReplaySubject<Salary[]>;
 
 
   constructor(private model: PayrollDatasource, private dialog: MatDialog) {
     this.lastMonth();
-    this.payTable = new Array<PayrollTable>();
-    this.replaySubject = new ReplaySubject<PayrollTable[]>();
+    this.salaryTable = new Array<Salary>();
+    this.replaySubject = new ReplaySubject<Salary[]>();
   }
 
 
 
 
   ngOnInit(): void {
-    this.getAllPayrollByPeriod(this.year, this.month);
+    this.getAllSalary();
   }
 
 
@@ -48,13 +49,44 @@ export class PayrollComponent implements OnInit {
   }
 
 
+  openDialog() {
+    let addSalaryDialog = this.dialog.open(AddSalaryComponent, {
+      height: auto,
+      width: '45%'
+    }
+    );
+    addSalaryDialog.afterClosed().subscribe(ob => {
+      this.getAllSalary();
+    })
 
-  getAllPayrollByPeriod(year: number, month: number) {
-    this.model.getAllByPeriod(year, month).subscribe(pay => {
-      this.payTable = pay;
-      this.replaySubject.next(pay);
+  }
+
+
+
+  getAllSalary() {
+    this.model.getAllSalary().subscribe(emp => {
+      this.salaryTable = emp;
+      this.replaySubject.next(emp);
       this.replaySubject.complete();
     })
   }
+
+
+
+
+
+
+
+
+
+
+
+  // getAllPayrollByPeriod(year: number, month: number) {
+  //   this.model.getAllByPeriod(year, month).subscribe(pay => {
+  //     this.payTable = pay;
+  //     this.replaySubject.next(pay);
+  //     this.replaySubject.complete();
+  //   })
+  // }
 
 }

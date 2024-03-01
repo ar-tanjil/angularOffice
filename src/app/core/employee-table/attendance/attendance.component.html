@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <!-- Breadcrumb -->
+  <h3 class="fw-bold"><i class="fa-solid fa-users fs-3 m-2"></i>Attendance</h3>
+  <!-- /Breadcrumb -->
+  <mat-divider class="m-2"></mat-divider>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th *ngFor="let month of getMonths; let i = index">{{ i + 1 }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let att of attendance">
+            <td> {{att.firstName}} </td>
+            <td *ngFor="let pr of att.present"> {{pr}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

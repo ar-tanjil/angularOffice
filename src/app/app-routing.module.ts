@@ -14,6 +14,9 @@ import { ApplicationFormComponent } from './core/application/form-application/ap
 import { ApplicationListComponent } from './core/application/list-application/application-list.component';
 import { DetailsApplicationComponent } from './core/application/details-application/details-application.component';
 import { AddSalaryComponent } from './core/payroll/add-salary/add-salary.component';
+import { SalaryDetailsComponent } from './core/payroll/salary-details/salary-details.component';
+import { TaxComponent } from './core/payroll/tax/tax.component';
+import { AttendanceComponent } from './core/employee-table/attendance/attendance.component';
 
 const routes: Routes = [
   {path:"dashboard", component:DashbordComponent},
@@ -35,6 +38,9 @@ const routes: Routes = [
   {path:"designation", component:DesignationsComponent},
   {path:"payroll", component: PayrollComponent},
   {path:"salary/:mode/:id", component: AddSalaryComponent},
+  {path:"salaryDetails/:id", component: SalaryDetailsComponent},
+  {path:"attendance", component: AttendanceComponent},
+  {path:"tax", component: TaxComponent},
   {path: "", redirectTo:"/dashboard", pathMatch:"full"}
 ];
 

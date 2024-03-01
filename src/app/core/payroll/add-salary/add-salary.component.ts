@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { loadTranslations } from '@angular/localize';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
+import { Employee, EmployeeTable } from 'src/app/model/employee/employee';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { Salary } from 'src/app/model/payroll/payroll.model';
 
@@ -14,19 +16,25 @@ export class AddSalaryComponent implements OnInit {
 
   salary: Salary;
   editing: boolean = false;
+  employee: EmployeeTable[];
+  closeByAdd: boolean = true;
+  // @Inject(MAT_DIALOG_DATA) private data: { id: number }
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: { id: number },
+  constructor(
     public dialogRef: MatDialogRef<AddSalaryComponent>,
-    private payData: PayrollDatasource) {
-        this.salary = new Salary();
+    private payData: PayrollDatasource,
+    private empData: EmpDatasource
+    ) {
+    this.salary = new Salary();
+    this.employee = new Array<EmployeeTable>();
   }
 
   ngOnInit(): void {
-    this.getSalary(this.data.id);
+    this.getEmpWithoutSal();
   }
 
   salaryForm: FormGroup = new FormGroup({
-    employeeId: new FormControl(this.data.id),
+    employeeId: new FormControl(),
     basic: new FormControl("", Validators.pattern("^[1-9][0-9]+$")),
     medicalAllowance: new FormControl("", Validators.pattern("^[1-9][0-9]+$")),
     providentFund: new FormControl("", Validators.pattern("^[1-9][0-9]+$"))
@@ -41,21 +49,29 @@ export class AddSalaryComponent implements OnInit {
         this.editing = true;
         return;
       }
-      
-    })
 
+    })
   }
+
+
+  getEmpWithoutSal(){
+    this.empData.getEmpWithoutSal().subscribe(emp => {
+      this.employee = emp;
+    })
+  }
+
+
 
   submit() {
     if (this.salaryForm.valid && this.editing) {
       Object.assign(this.salary, this.salaryForm.value);
       this.payData.updateSalaryByEmployee(this.salary).subscribe(sal => {
-        console.log(sal);
+        this.dialogRef.close();
       })
     } else if (this.salaryForm.valid) {
       Object.assign(this.salary, this.salaryForm.value);
       this.payData.saveSalaryByEmployee(this.salary).subscribe(sal => {
-        console.log(sal);
+        this.dialogRef.close();
       })
     }
   }

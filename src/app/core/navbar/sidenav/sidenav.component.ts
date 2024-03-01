@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class SidenavComponent {
 
+
+
+
+payroll: boolean = false;
+  toggle(){
+     this.payroll = this.payroll ? false : true;
+  }
 }

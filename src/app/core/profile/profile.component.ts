@@ -31,15 +31,6 @@ export class ProfileComponent {
   }
 
 
-  openDialog() {
-    this.dialog.open(AddSalaryComponent, {
-      height: '400px',
-      width: '400px',
-      data: {
-        id: this.emp.id
-      }
-    },
-    );
-  }
+  
 
 }

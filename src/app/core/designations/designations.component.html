@@ -5,7 +5,9 @@
     <!-- /Breadcrumb -->
     <mat-divider class="m-2"></mat-divider>
       <div style="float: right;" class="m-2">
-        <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;" [routerLink]="['/designation', 'add']">Create New Job</button>
+        <button mat-raised-button 
+        style="background-color: #421820; color:#faf9f7 ;" 
+        (click)="openDialog()">Create New Job</button>
     </div>
 
     <table class="table table-hover table-striped w-100" >

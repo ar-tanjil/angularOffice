@@ -3,7 +3,9 @@
     <!-- /Breadcrumb -->
     <mat-divider class="m-2"></mat-divider>
       <div style="float: right;" class="m-2">
-        <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;" [routerLink]="['/department', 'add']">Create New Department</button>
+        <button mat-raised-button 
+        style="background-color: #421820; color:#faf9f7 ;" 
+        (click)="openDialog()">Create New Department</button>
     </div>
 
 

@@ -2,18 +2,23 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
-import { PayrollTable, Salary } from "./payroll.model";
+import { AttendanceSheet, Payroll, PayrollTable, Salary } from "./payroll.model";
 
 @Injectable()
 export class PayrollDatasource{
 
     private payUrl: string = "http://localhost:8080/payrolls";
     private salUrl: string = "http://localhost:8080/salaries";
+    private attUrl: string = "http://localhost:8080/attendances";
 
     constructor(private http: HttpClient){ };
 
     getAllByPeriod(year: number, month: number): Observable<PayrollTable[]>{
         return this.sendRequest<PayrollTable[]>("GET", `${this.payUrl}/${year}/${month}`);
+    }
+
+    getPayrollByEmpAndPeriod(empId:number,year:number,month: number):Observable<Payroll[]> {
+        return this.sendRequest<Payroll[]>("GET", `${this.payUrl}/${empId}/${year}/${month}`);        
     }
 
     getSalaryByEmployee(id: number):Observable<Salary>{
@@ -28,6 +33,13 @@ export class PayrollDatasource{
         return this.sendRequest<Salary>("PATCH", `${this.salUrl}/${salary.employeeId}`, salary )
     }
 
+    getAllSalary():Observable<Salary[]>{
+        return this.sendRequest<Salary[]>("GET", this.salUrl);
+    }
+
+    getAttendanceSheet(start: string, end: string):Observable<AttendanceSheet[]>{
+        return this.sendRequest<AttendanceSheet[]>("GET", `${this.attUrl}/${start}/${end}`);
+    }
     
 
     // getById(id: number): Observable<Employee>{

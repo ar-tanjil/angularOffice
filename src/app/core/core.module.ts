@@ -24,6 +24,9 @@ import { AddSalaryComponent } from './payroll/add-salary/add-salary.component';
 import { DeductionsComponent } from './payroll/deductions/deductions.component';
 import { AdditionsComponent } from './payroll/additions/additions.component';
 import { TaxComponent } from './payroll/tax/tax.component';
+import { SalaryDetailsComponent } from './payroll/salary-details/salary-details.component';
+import { AddTaxComponent } from './payroll/tax/add-tax/add-tax.component';
+import { AttendanceComponent } from "./employee-table/attendance/attendance.component";
 
 @NgModule({
     declarations: [
@@ -46,7 +49,10 @@ import { TaxComponent } from './payroll/tax/tax.component';
         AddSalaryComponent,
         DeductionsComponent,
         AdditionsComponent,
-        TaxComponent
+        TaxComponent,
+        SalaryDetailsComponent,
+        AddTaxComponent,
+        AttendanceComponent
     ],
     exports: [
         NavbarComponent,
@@ -63,7 +69,8 @@ import { TaxComponent } from './payroll/tax/tax.component';
         DesigFormComponent,
         ApplicationComponent,
         ApplicationFormComponent,
-        AddSalaryComponent
+        AddSalaryComponent,
+        AttendanceComponent
     ],
     imports: [
         MaterialModule,

@@ -1,1 +1,67 @@
-<p>tax works!</p>
+<div class="container-fluid">
+    <h3 class="fw-bold d-inline-block">
+      <i class="fa-solid fa-coins fs-3 m-2"></i>Tax
+    </h3>
+    <!-- /Breadcrumb -->
+    <mat-divider class="m-2"></mat-divider>
+  
+    <div style="float: right" class="m-2">
+      <button
+        mat-raised-button
+        style="background-color: #421820; color: #faf9f7"
+        (click)="openDialog()"
+      >
+        Add Tax
+      </button>
+    </div>
+
+    <!-- upore chodon -->
+  
+    <table class="table table-hover table-striped w-75 mx-auto">
+      <thead>
+        <tr class="text-center">
+          <th scope="row">#</th>
+          <th scope="row">Min Income</th>
+          <th scope="row">Max Income</th>
+          <th scope="row">Perchantage</th>
+          <!-- <th scope="row">Designation</th>
+              <th scope="row">Department</th> -->
+          <th></th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let tax of taxTable; let i = index" class="text-center">
+          <th scope="col">{{ i + 1 }}</th>
+          <td>{{ tax.minRange | currency : " BDT" }}</td>
+          <td>{{ tax.maxRange | currency: " BDT"}}</td>
+          <td>{{ tax.percentage | percent }}</td>
+          <!-- <td> {{emp.jobTitle}} </td>
+          <td> {{emp.departmentName}} </td> -->
+          <td>
+            <!-- <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i> -->
+            <a [matMenuTriggerFor]="menu1">
+              <i
+                class="fa-solid fa-bars fs-4 textColor"
+                style="cursor: pointer; margin: 0"
+              ></i>
+              <mat-menu #menu1="matMenu">
+                <button
+                  mat-menu-item
+                  [routerLink]="['/salaryDetails', tax.id]"
+                >
+                  <i class="fa-solid fa-file textColor"></i>
+                  Update
+                </button>
+                <button mat-menu-item [routerLink]="['/profile', tax.id]">
+                  <i class="fa-solid fa-user-tie textColor"></i>
+                  Delete
+                </button>
+              </mat-menu>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
