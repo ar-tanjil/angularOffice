@@ -10,8 +10,15 @@ export class SidenavComponent {
 
 
 
+
+employee: boolean = false;
+toggleEmployee(){
+  this.employee = this.employee ? false : true;
+}
+
+
 payroll: boolean = false;
-  toggle(){
+  togglePayroll(){
      this.payroll = this.payroll ? false : true;
   }
 }

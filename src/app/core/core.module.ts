@@ -27,6 +27,8 @@ import { TaxComponent } from './payroll/tax/tax.component';
 import { SalaryDetailsComponent } from './payroll/salary-details/salary-details.component';
 import { AddTaxComponent } from './payroll/tax/add-tax/add-tax.component';
 import { AttendanceComponent } from "./employee-table/attendance/attendance.component";
+import { CanvasJSAngularChartsModule } from "@canvasjs/angular-charts";
+import { EmpDepChartComponent } from "./dashbord/emp-dep-chart/emp-dep-chart.component";
 
 @NgModule({
     declarations: [
@@ -52,7 +54,8 @@ import { AttendanceComponent } from "./employee-table/attendance/attendance.comp
         TaxComponent,
         SalaryDetailsComponent,
         AddTaxComponent,
-        AttendanceComponent
+        AttendanceComponent,
+        EmpDepChartComponent
     ],
     exports: [
         NavbarComponent,
@@ -78,7 +81,8 @@ import { AttendanceComponent } from "./employee-table/attendance/attendance.comp
         ModelModule,
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CanvasJSAngularChartsModule
     ]
 })
 export class CoreModule {

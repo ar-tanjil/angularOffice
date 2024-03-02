@@ -9,18 +9,39 @@
   </div>
   <ul>
     <li>
-      <a routerLink="/dashboard"
-        ><i class="fa-solid fa-house fs-6 m-2"></i> Dashboard &nbsp;</a
-      >
+      <a routerLink="/dashboard"><i class="fa-solid fa-house fs-6 m-2"></i> Dashboard &nbsp;</a>
     </li>
     <li>
-      <a routerLink="/employee"
-        ><i class="fa-solid fa-users fs-6 m-2"></i> Employee &nbsp;</a
-      >
+      <a (click)="toggleEmployee()"><i class="fa-solid fa-users fs-6 m-2"></i> Employee &nbsp;
+        <i *ngIf="!employee" class="fa-solid fa-caret-right px-2"></i>
+        <i *ngIf="employee" class="fa-solid fa-caret-down px-2"></i>
+      </a>
+      <ul *ngIf="employee" class="red-bg">
+
+        <li>
+          <a routerLink="/employee" class="ps-2">
+            <i class="fa-solid fa-users m-2"></i> Employee List &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/attendance" class="ps-2">
+            <i class="fa-solid fa-calendar-days m-2"></i> Attendance &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/employee" class="ps-2">
+            <i class="fa-solid  fa-person-walking-arrow-right m-2"></i> Leaves &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/employee" class="ps-2">
+            <i class="fa-solid fa-umbrella-beach m-2"></i> Holidays &nbsp;
+          </a>
+        </li>
+      </ul>
     </li>
     <li>
-      <a routerLink="/profile"
-        ><i class="fa-solid fa-user-tie fs-6 m-2"></i> Profile &nbsp;
+      <a routerLink="/profile"><i class="fa-solid fa-user-tie fs-6 m-2"></i> Profile &nbsp;
       </a>
     </li>
     <li>
@@ -34,27 +55,24 @@
       </a>
     </li>
     <li>
-      <a  (click)="toggle()">
+      <a (click)="togglePayroll()">
         <i class="fa-solid fa-wallet fs-6 m-2"></i> Payroll &nbsp;
-        <i  *ngIf="!payroll" class="fa-solid fa-caret-right ps-3"></i>
-        <i *ngIf="payroll" class="fa-solid fa-caret-down ps-3"></i>
+        <i *ngIf="!payroll" class="fa-solid fa-caret-right px-2"></i>
+        <i *ngIf="payroll" class="fa-solid fa-caret-down px-2"></i>
       </a>
       <ul *ngIf="payroll" class="red-bg">
-        
+
         <li>
           <a routerLink="/payroll" class="ps-2">
-            <i class="fa-solid fa-coins m-2"></i> Employee Salary &nbsp;
-          </a></li>
+            <i class="fa-solid fa-money-bills m-2"></i> Employee Salary &nbsp;
+          </a>
+        </li>
         <li>
           <a routerLink="/tax" class="ps-2">
             <i class="fa-solid fa-coins m-2"></i> Tax &nbsp;
-          </a></li>
+          </a>
+        </li>
       </ul>
-    </li>
-    <li>
-      <a routerLink="/attendance">
-        <i class="fa-solid fa-calendar-days fs-6 m-2"></i> Attendance &nbsp;
-      </a>
     </li>
     <li>
       <a routerLink="/application">

@@ -14,12 +14,12 @@
   <div class="container">
     <div class="row g-3">
       <div class="col-6" *ngFor="let job of vacantJobs">
-        <mat-card style="background-color: #780000; color:#ffffff">
+        <mat-card style="background-color: #F3EDC8; color:#7D0A0A" class="shadow-lg">
           <mat-card-header>
             <mat-card-title class="fs-2 m-2"> {{ job.jobTitle }} </mat-card-title>
-            <mat-card-subtitle class="fs-4" style="color: #ffffff;">{{ job.departmentName }} </mat-card-subtitle>
+            <mat-card-subtitle class="fs-4" style="color: #7D0A0A;">{{ job.departmentName }} </mat-card-subtitle>
           </mat-card-header>
-          <mat-divider style="background-color: #ffffff; padding: 1px; margin: 2px;"></mat-divider>
+          <mat-divider style="background-color: #7D0A0A; padding: 1px; margin: 2px;"></mat-divider>
           <div>
             <span
               class="fw-bolder fs-6 m-4"><i class="fa-solid fa-money-check-dollar"></i> {{ job.minSalary | currency : "USD" }} - {{
@@ -28,7 +28,7 @@
             >
             <div style="float: right;">            <!-- <button mat-button>DETAILS</button> -->
             
-            <button mat-raised-button class="m-2" style="background-color: #ffffff; color: #780000;" [routerLink]="['/apply', 'add', job.id]">
+            <button mat-raised-button class="m-2" style="background-color: #7D0A0A; color: #F3EDC8;" [routerLink]="['/apply', 'add', job.id]">
               APPLY
             </button>
           </div>
