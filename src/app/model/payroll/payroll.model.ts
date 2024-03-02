@@ -66,28 +66,38 @@ export class Additions {
     ) { }
 }
 
-export class Tax{
+export class Tax {
     constructor(
         public id?: number,
         public minRange?: number,
         public maxRange?: number,
         public percentage?: number
-    ){
+    ) {
 
     }
 }
 
-export class AttendanceSheet{
+export class AttendanceSheet {
     constructor(
         public present?: boolean[],
         public firstName?: number
-    ){}
+    ) { }
 }
 
-export class AttendanceDemo{
+export class AttendanceDemo {
     constructor(
         public day?: Date,
         public present?: boolean,
         public employeeId?: number
-    ){}
+    ) { }
+}
+
+export class Attendance {
+    constructor(
+        public id?: number,
+        public day?: string,
+        public entryTime?: string,
+        public leaveTime?: string,
+        public employeeId?: string
+    ) { }
 }

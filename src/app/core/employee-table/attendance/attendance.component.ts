@@ -15,24 +15,24 @@ export class AttendanceComponent implements OnInit {
   attendance: AttendanceSheet[] = new Array<AttendanceSheet>();
   sartDate!: string;
   endDate!: string;
+  titleMonth!: string;
 
   constructor(private payData: PayrollDatasource) {
-    this.getPerid(new Date());  
-    
-    
+    let date = new Date();
+    this.getPerid(date);
+    this.titleMonth = this.getMonthsString(date);
+
   }
 
   ngOnInit(): void {
     this.getAttendanceSheet(this.sartDate, this.endDate);
-  
-
   }
 
 
 
   get getMonths(): number[] {
     let date = new Date();
-    let months = new Date(date.getFullYear(), date.getMonth() + 1, 0 );
+    let months = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     let leapYear = this.chekcLeapYea(date.getFullYear());
     if (date.getMonth() == 1 && leapYear) {
       return new Array(29);
@@ -41,12 +41,20 @@ export class AttendanceComponent implements OnInit {
 
   }
 
+  getMonthsString(date: Date) {
+    const month = ["January", "February", "March", "April",
+      "May", "June", "July", "August",
+      "September", "October", "November", "December"];
+
+    return month[date.getMonth()] + " , " + date.getFullYear();
+  }
+
 
 
   getPerid(date: Date) {
     this.sartDate = new Date(date.getFullYear(), date.getMonth(), 1, 6)
       .toISOString().split("T")[0];
-    this.endDate = new Date(date.getFullYear(), date.getMonth() , 6)
+    this.endDate = new Date(date.getFullYear(), date.getMonth(), 6)
       .toISOString().split("T")[0];
   }
 

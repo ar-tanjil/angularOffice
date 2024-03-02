@@ -29,6 +29,8 @@ import { AddTaxComponent } from './payroll/tax/add-tax/add-tax.component';
 import { AttendanceComponent } from "./employee-table/attendance/attendance.component";
 import { CanvasJSAngularChartsModule } from "@canvasjs/angular-charts";
 import { EmpDepChartComponent } from "./dashbord/emp-dep-chart/emp-dep-chart.component";
+import { LeavesComponent } from './employee-table/leaves/leaves.component';
+import { HolidayComponent } from './employee-table/holiday/holiday.component';
 
 @NgModule({
     declarations: [
@@ -55,7 +57,9 @@ import { EmpDepChartComponent } from "./dashbord/emp-dep-chart/emp-dep-chart.com
         SalaryDetailsComponent,
         AddTaxComponent,
         AttendanceComponent,
-        EmpDepChartComponent
+        EmpDepChartComponent,
+        LeavesComponent,
+        HolidayComponent
     ],
     exports: [
         NavbarComponent,

@@ -20,29 +20,23 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-3">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-solid fa-globe fs-4"></i> Website</h4>
-                    <!-- <span class="text-secondary">https://bootdey.com</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-github fs-4"></i> Github</h4> 
-                   <!-- <span class="text-secondary">bootdey</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-square-x-twitter fs-4"></i> X-Twitter</h4> 
-                    <!-- <span class="text-secondary">@bootdey</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-square-instagram fs-4"></i> Instagram</h4> 
-                    <!-- <span class="text-secondary">bootdey</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-square-facebook fs-4"></i> Facebook</h4> 
-                    <!-- <span class="text-secondary">bootdey</span> -->
-                  </li>
-                </ul>
+              <div class="card mt-3" style="height:200px;">
+                  <div class="text-center">
+                    <p class="fs-4 fw-light p-2">{{time | date : 'MMM d, y, h:mm:ss a'}}</p>
+                    <div>
+                      <button mat-raised-button 
+                      class="d-block mx-auto rounded-5 text-danger border-1" 
+                      style="height: 100px; width: 100px; background-color: azure;"
+                      (click)="giveAttendance(emp.id ?? 0)"
+                      >{{checkInButton}} </button>
+                    </div>
+                    <div>
+                      <ul class="list-unstyled">
+                        <li>Chek in: {{checkInTime}}</li>
+                        <li>Chek out: {{checkOutTime}}</li>
+                      </ul>
+                    </div>
+                  </div>
               </div>
             </div>
             <div class="col-md-8">
@@ -129,9 +123,6 @@
                       <a class="btn btn-info " [routerLink]="['/register', 'edit', emp.id]">Edit</a>
                     </div>
                     
-                    <div class="col-sm-6">
-                      <a class="btn btn-info ">Add Salary</a>
-                    </div>
 
                     <!-- <div class="col-sm-6">
                       <a class="btn btn-info " [routerLink]="['/salary', 'add', emp.id]">Add Salary</a>

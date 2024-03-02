@@ -5,10 +5,13 @@
   <mat-divider class="m-2"></mat-divider>
 
   <div class="table-responsive">
+  <div class="text-center">
+    <h3 class="fw-bolder">Attendance Sheet Of {{titleMonth}}</h3>
+  </div>
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Employee</th>
+          <th>Employee Name</th>
           <th *ngFor="let month of getMonths; let i = index">{{ i + 1 }}</th>
         </tr>
       </thead>

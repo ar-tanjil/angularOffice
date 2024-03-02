@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
-import { AttendanceSheet, Payroll, PayrollTable, Salary } from "./payroll.model";
+import { Attendance, AttendanceSheet, Payroll, PayrollTable, Salary } from "./payroll.model";
 
 @Injectable()
 export class PayrollDatasource{
@@ -39,6 +39,15 @@ export class PayrollDatasource{
 
     getAttendanceSheet(start: string, end: string):Observable<AttendanceSheet[]>{
         return this.sendRequest<AttendanceSheet[]>("GET", `${this.attUrl}/${start}/${end}`);
+    }
+
+    getAttendanceByDay(id: number, day: string):Observable<Attendance>{
+        return this.sendRequest<Attendance>("GET", `${this.attUrl}/day/${id}/${day}`);
+    }
+
+    giveAttendance(id:number):Observable<Attendance>{
+        return this.sendRequest<Attendance>("POST", `${this.attUrl}/${id}`);
+        
     }
     
 
