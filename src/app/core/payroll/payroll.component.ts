@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, retry } from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { PayrollTable, Salary } from 'src/app/model/payroll/payroll.model';
 import { AddSalaryComponent } from './add-salary/add-salary.component';
 import { auto } from '@popperjs/core';
+import { SalaryDetailsComponent } from './salary-details/salary-details.component';
 
 @Component({
   selector: 'app-payroll',
@@ -52,15 +53,51 @@ export class PayrollComponent implements OnInit {
   openDialog() {
     let addSalaryDialog = this.dialog.open(AddSalaryComponent, {
       height: auto,
-      width: '45%'
+      width: '45%',
+      data: {
+        id: null
+      }
     }
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
       this.getAllSalary();
     })
-
   }
 
+  updateDialog(id: number){
+    if(id < 0){
+      return;
+    }
+
+    let addSalaryDialog = this.dialog.open(AddSalaryComponent, {
+      height: auto,
+      width: '45%',
+      data: {
+        id: id
+      }
+    }
+    );
+    addSalaryDialog.afterClosed().subscribe(ob => {
+      this.getAllSalary();
+    })
+  }
+
+  salaryDetails(id: number){
+    if(id < 0){
+      return;
+    }
+
+    let addSalaryDialog = this.dialog.open(SalaryDetailsComponent, {
+      height: auto,
+      width: '45%',
+      data: {
+        id: id
+      }
+    }
+    );
+    addSalaryDialog.afterClosed().subscribe(ob => {
+    })
+  }
 
 
   getAllSalary() {

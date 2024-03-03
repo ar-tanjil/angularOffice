@@ -48,7 +48,7 @@
       <mat-form-field *ngIf="!editing">
         <mat-label>Select Department</mat-label>
         <mat-select formControlName="departmentId">
-          <mat-option *ngFor="let dep of getDepartmentList" value= {{dep.id}}> {{dep.departmentName}} </mat-option>
+          <mat-option *ngFor="let dep of departmentList" [value]="dep.id"> {{dep.departmentName}} </mat-option>
           <!-- <mat-option value=1>Account</mat-option>
           <mat-option value=1>Salse</mat-option> -->
         </mat-select>

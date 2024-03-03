@@ -4,7 +4,7 @@
         <div class="row">
             <form [formGroup]="salaryForm" (ngSubmit)="submit()">
 
-                <mat-form-field class="form-field">
+                <mat-form-field class="form-field" *ngIf="!editing">
                     <mat-label>Employee Id</mat-label>
                     <input type="text"
                            matInput

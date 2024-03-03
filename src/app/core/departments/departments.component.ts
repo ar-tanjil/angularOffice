@@ -8,6 +8,7 @@ import { auto } from '@popperjs/core';
 import { ReplaySubject } from 'rxjs';
 import { DepDatasource } from 'src/app/model/department/dep.datasource';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-departments',
@@ -23,7 +24,11 @@ export class DepartmentsComponent {
   private replaySubject: ReplaySubject<Department[]>;
 
 
-  constructor(private depData: DepDatasource, private dialog: MatDialog) {
+  constructor(
+    private depData: DepDatasource, 
+    private dialog: MatDialog,
+    private toster: ToastrService
+    ) {
     this.departments = new Array<Department>();
     this.replaySubject = new ReplaySubject<Department[]>(1);
     this.getDepartments();
@@ -52,6 +57,7 @@ export class DepartmentsComponent {
     addSalaryDialog.afterClosed().subscribe(ob => {
       if (ob) {
         let index = this.departments.push(ob);
+        this.toster.success("Add New Department");
       }
 
     })
@@ -77,7 +83,7 @@ export class DepartmentsComponent {
       if (ob) {
         let index = this.departments.findIndex(dep => this.locator(dep, ob.id));
         this.departments.splice(index, 1, ob);
-        Swal.fire('Updated succesfully!', 'success')
+        this.toster.success("Update Successfully")
 
       }
     })
@@ -110,24 +116,11 @@ export class DepartmentsComponent {
         this.depData.delete(id).subscribe(dep => {
           let index = this.departments.findIndex(item => this.locator(item, id));
           this.departments.splice(index, 1);
-
-          Swal.fire(
-
-            'Deleted!',
-            'success'
-
-          )
+            this.toster.warning("Deleted");
         })
 
       } else if (result.dismiss === Swal.DismissReason.cancel) {
 
-        Swal.fire(
-
-          'Cancelled',
-
-          'error'
-
-        )
       }
 
     })

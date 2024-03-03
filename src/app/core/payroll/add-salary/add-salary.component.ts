@@ -18,12 +18,13 @@ export class AddSalaryComponent implements OnInit {
   editing: boolean = false;
   employee: EmployeeTable[];
   closeByAdd: boolean = true;
-  // @Inject(MAT_DIALOG_DATA) private data: { id: number }
+  
 
   constructor(
     public dialogRef: MatDialogRef<AddSalaryComponent>,
     private payData: PayrollDatasource,
-    private empData: EmpDatasource
+    private empData: EmpDatasource,
+    @Inject(MAT_DIALOG_DATA) private data: { id: number }
     ) {
     this.salary = new Salary();
     this.employee = new Array<EmployeeTable>();
@@ -31,6 +32,11 @@ export class AddSalaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmpWithoutSal();
+    if(this.data.id){
+      this.editing = true;
+      this.getSalary(this.data.id);
+    }
+ 
   }
 
   salaryForm: FormGroup = new FormGroup({
@@ -46,10 +52,7 @@ export class AddSalaryComponent implements OnInit {
       if (sal) {
         this.salary = sal;
         this.salaryForm.patchValue(sal);
-        this.editing = true;
-        return;
       }
-
     })
   }
 

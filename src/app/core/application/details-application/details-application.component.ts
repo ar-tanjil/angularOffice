@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Application } from 'src/app/model/application/application';
@@ -6,6 +7,7 @@ import { ApplicationModel } from 'src/app/model/application/application.model';
 import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
 import { EmpModel } from 'src/app/model/employee/emp.model';
 import { Employee } from 'src/app/model/employee/employee';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-details-application',
@@ -21,11 +23,12 @@ export class DetailsApplicationComponent {
 
 
   constructor(private route: ActivatedRoute,
-    private data: ApplicationDatasource,
+    private appData: ApplicationDatasource,
     private router: Router,
     private empData: EmpDatasource,
     private appModel: ApplicationModel,
-    private empModel: EmpModel
+    private empModel: EmpModel,
+    private toaster: ToastrService
   ) {
 
     route.params.subscribe(parms => {
@@ -33,7 +36,7 @@ export class DetailsApplicationComponent {
       if (parms["mode"] == "app") {
         this.app = new Application();
         if (id) {
-          data.getById(id).subscribe(a => {
+          appData.getById(id).subscribe(a => {
             this.app = a;
             this.title = a.firstName + " Details"
           })
@@ -53,13 +56,50 @@ export class DetailsApplicationComponent {
   }
 
   recruit(id: number) {
+    this.appData.recruitFromApplication(id).subscribe((emp) => {
+      this.toaster.success("Recruited")
+      this.router.navigate(["/profile", emp.id]);
+  })
+
+
+
     this.appModel.recruitApplication(id);
   }
 
 
   terminate(id: number) {
-    this.empModel.deleteEmployee(id);
-    this.router.navigate(["/employee"]);
+
+    if (id < 0) {
+      return;
+    }
+
+    Swal.fire({
+
+      title: 'Are you sure want to remove?',
+
+      icon: 'warning',
+
+      showCancelButton: true,
+
+      confirmButtonText: 'Yes, delete it!',
+
+      cancelButtonText: 'No, keep it'
+
+    }).then((result) => {
+
+      if (result.value) {
+
+        this.empData.delete(id).subscribe(e => {
+          this.router.navigate(["/employee"]);
+          this.toaster.warning("Terminated");
+        })
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+
+    })
+
   }
 
   reject(id: number) {

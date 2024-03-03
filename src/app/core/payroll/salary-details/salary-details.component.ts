@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { Payroll, PayrollTable } from 'src/app/model/payroll/payroll.model';
+import { Payroll, PayrollTable, Salary } from 'src/app/model/payroll/payroll.model';
 
 @Component({
   selector: 'app-salary-details',
@@ -11,56 +12,90 @@ import { Payroll, PayrollTable } from 'src/app/model/payroll/payroll.model';
 })
 export class SalaryDetailsComponent implements OnInit {
 
-  month!: number;
-  year!: number;
-  empId!: number;
-  payroll!: Payroll[];
 
-  constructor(private payData: PayrollDatasource,
-    private activeRouter: ActivatedRoute) {
-    activeRouter.params.subscribe(param => {
-      this.empId = param["id"];
-      this.lastMonth();
-      this.payroll = new Array<Payroll>();
-    })
-  }
+  salary: Salary;
 
-
+  constructor(
+    public dialogRef: MatDialogRef<SalaryDetailsComponent>,
+    private payData: PayrollDatasource,
+    @Inject(MAT_DIALOG_DATA) private data: { id: number }
+  ){
+    this.salary = new Salary();
+  };
 
   ngOnInit(): void {
-    this.getPayroll(this.empId, this.year, this.month);
+      this.getSalary(this.data.id)
   }
 
 
-  addEvent(event: MatDatepickerInputEvent<Date>) {
-    let date = new Date(event.value ?? new Date());
-    let month: number = date.getMonth() - 1;
-    let year: number = date.getFullYear();
-    if (month < 0) {
-      month += 12;
-      year -= 1;
-    }
-
-    this.getPayroll(this.empId, year, month);
-  }
-
-  getPayroll(id: number, year: number, month: number) {
-    this.payData.getPayrollByEmpAndPeriod(id, year, month).subscribe(pay => {
-      this.payroll = pay;
+  getSalary(id: number){
+    this.payData.getSalaryByEmployee(id).subscribe(sal => {
+      this.salary = sal;
     })
   }
 
 
-  lastMonth() {
-    let date: Date = new Date();
-    let month: number = date.getMonth() - 1;
-    let year: number = date.getFullYear();
-    if (month < 0) {
-      month += 12;
-      year -= 1;
-    }
-    this.month = month + 1;
-    this.year = year;
-  }
+
+
+
+
+
+
+
+
+
+
+  //  all of this method will go generate payroll componenet
+  // month!: number;
+  // year!: number;
+  // empId!: number;
+  // payroll!: Payroll[];
+
+  // constructor(private payData: PayrollDatasource,
+  //   private activeRouter: ActivatedRoute) {
+  //   activeRouter.params.subscribe(param => {
+  //     this.empId = param["id"];
+  //     this.lastMonth();
+  //     this.payroll = new Array<Payroll>();
+  //   })
+  // }
+
+
+
+  // ngOnInit(): void {
+  //   this.getPayroll(this.empId, this.year, this.month);
+  // }
+
+
+  // addEvent(event: MatDatepickerInputEvent<Date>) {
+  //   let date = new Date(event.value ?? new Date());
+  //   let month: number = date.getMonth() - 1;
+  //   let year: number = date.getFullYear();
+  //   if (month < 0) {
+  //     month += 12;
+  //     year -= 1;
+  //   }
+
+  //   this.getPayroll(this.empId, year, month);
+  // }
+
+  // getPayroll(id: number, year: number, month: number) {
+  //   this.payData.getPayrollByEmpAndPeriod(id, year, month).subscribe(pay => {
+  //     this.payroll = pay;
+  //   })
+  // }
+
+
+  // lastMonth() {
+  //   let date: Date = new Date();
+  //   let month: number = date.getMonth() - 1;
+  //   let year: number = date.getFullYear();
+  //   if (month < 0) {
+  //     month += 12;
+  //     year -= 1;
+  //   }
+  //   this.month = month + 1;
+  //   this.year = year;
+  // }
 
 }

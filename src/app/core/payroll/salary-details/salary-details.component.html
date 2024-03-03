@@ -1,222 +1,26 @@
-<div class="container-fluid">
-  <h1 class="fw-bold">
-    <i class="fa-solid fa-wallet fs-1 m-2"></i>Salary Details
-  </h1>
 
-  <!-- /Breadcrumb -->
-  <mat-divider class="m-2"></mat-divider>
+<mat-dialog-content class="mat-typography">
+  <h1 class="text-center">Salary Details</h1>
 
-  
-  <div class="main-body">
-    <div class="row gutters-sm">
-
-        <div class="col-12">
-            <div class="row">
-              
-                <div class="col">
-                  <mat-form-field>
-                    <mat-label>Select Category</mat-label>
-                    <mat-select>
-                      <mat-option [value]=""></mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field>
-                    <mat-label>Select Pay Period</mat-label>
-                    <input
-                      matInput
-                      [matDatepicker]="picker"
-                      (dateChange)="addEvent($event)"
-                    />
-                    <mat-datepicker-toggle matIconSuffix [for]="picker">
-                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                </div>
-              </div>
-            
-        </div>
-
-      <div class="col-8">
-        <div class="card mb-3">
-          <div class="card-body textColor">
-            <div class="row">
-              <div class="col">
-                <h1 class="fs-6 fw-bolder">Salary Satement</h1>
-              </div>
-              <div class="col"></div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Pay Period</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Basic</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Medical Allowance</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Travel Allowance</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Bonus</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Loan Payment</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Prodvident Fund</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Unpaid Leave</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Tax</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="mb-0 fs-6">Net Pay</h6>
-              </div>
-              <div class="col-sm-6 fs-6">slary</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-12">
-            <div class="card mb-3">
-              <div class="card-body textColor">
-                <div class="row">
-                  <div class="col-sm-12 text-center">
-                    <h1 class="fs-6 fw-bolder">Addition</h1>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Pay Period</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-                <hr />
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Loan Payment</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-                <hr />
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Unpaid Leave</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Tax</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-                <hr />
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Total</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="card mb-3">
-              <div class="card-body textColor">
-                <div class="row">
-                  <div class="col-sm-12 text-center">
-                    <h1 class="fs-6 fw-bolder">Deductions</h1>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Pay Period</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-                <hr />
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Travel Allowance</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Bonus</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-6">
-                    <h6 class="mb-0 fs-6">Total</h6>
-                  </div>
-                  <div class="col-sm-6 fs-6">slary</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <table class="table p-5">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Basic</th>
+        <td> {{salary.basic}} </td>
+      </tr>
+      <tr>
+        <th>Medical Allowance</th>
+        <td> {{salary.medicalAllowance}} </td>
+      </tr>
+      <tr>
+        <th>Provident Fund</th>
+      <td> {{salary.providentFund}} </td>
+    </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

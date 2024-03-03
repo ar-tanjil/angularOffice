@@ -15,10 +15,6 @@
     </button>
   </div>
 
-  <button mat-menu-item [routerLink]="['/salaryDetails', 1]">
-    <i class="fa-solid fa-file textColor"></i>
-    Salary Details
-  </button>
   <!-- upore chodon -->
 
   <table class="table table-hover table-striped w-100">
@@ -54,14 +50,14 @@
             <mat-menu #menu1="matMenu">
               <button
                 mat-menu-item
-                [routerLink]="['/salaryDetails', sal.employeeId]"
+                (click)="salaryDetails(sal.employeeId ?? -1)"
               >
                 <i class="fa-solid fa-file textColor"></i>
                 Salary Details
               </button>
-              <button mat-menu-item [routerLink]="['/profile', sal.employeeId]">
-                <i class="fa-solid fa-user-tie textColor"></i>
-                Profile
+              <button mat-menu-item (click)="updateDialog(sal.employeeId ?? -1)">
+                <i class="fa-solid fa-pen-to-square textColor"></i>
+                Update
               </button>
             </mat-menu>
           </a>

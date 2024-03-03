@@ -19,8 +19,8 @@ import { DesinationDatasource } from 'src/app/model/designation/desig.datasource
 export class RegisterFormComponent implements OnInit {
 
   employee: Employee = new Employee();
-  departmentList: Department[] = new Array<Department>();
-  designationList: Designation[] = new Array<Designation>();
+  departmentList!: Department[];
+  designationList!: Designation[];
 
   editing!: boolean;
   title: string = "Add New Employee";
@@ -28,25 +28,33 @@ export class RegisterFormComponent implements OnInit {
 
   constructor(
     private empData: EmpDatasource,
-     private activeRoute: ActivatedRoute,
-     private route: Router,
-     private depData: DepDatasource,
-     private jobData: DesinationDatasource
-     ) {
+    private activeRoute: ActivatedRoute,
+    private route: Router,
+    private depData: DepDatasource,
+    private jobData: DesinationDatasource
+  ) {
+
+
 
     activeRoute.params.subscribe(params => {
+
       this.editing = params["mode"] == "edit";
+
+      this.chooseTitle(this.editing);
+      this.getDepartment();
+      this.getDesignation();
+
       let id = params["id"];
       if (id) {
         empData.getById(id).subscribe(emp => {
           this.employee = emp ?? new Employee();
           this.employeeForm.patchValue(this.employee);
           console.log(this.employee);
-          
+
           // Call Method
-          this.chooseTitle(this.editing);
-          this.getDepartment();
-          this.getDesignation();
+         
+          
+          
         })
       }
     });
@@ -60,12 +68,14 @@ export class RegisterFormComponent implements OnInit {
 
   getDepartment(): void {
     this.depData.getAll().subscribe(dep => {
+      this.departmentList = new Array<Department>();
       this.departmentList = dep;
     })
   }
 
   getDesignation(): void {
     this.jobData.getAll().subscribe(job => {
+      this.designationList = new Array<Designation>();
       this.designationList = job;
     })
   }
@@ -99,11 +109,18 @@ export class RegisterFormComponent implements OnInit {
   submitForm() {
     if (this.employeeForm.valid) {
       Object.assign(this.employee, this.employeeForm.value);
-      this.empData.save(this.employee).subscribe(emp => {
-        this.route.navigate(['profile', emp.id]);
-      })
+
+      if(this.editing){
+        this.empData.update(this.employee).subscribe(emp => {
+          this.route.navigate(['profile', emp.id]);
+        })
+      } else{
+        this.empData.save(this.employee).subscribe(emp => {
+            this.route.navigate(["employee"]);
+        })
+      } 
     }
-    
+
   }
 
 
