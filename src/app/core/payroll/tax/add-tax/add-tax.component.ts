@@ -22,7 +22,10 @@ export class AddTaxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+      if(this.data.id){
+        this.getTaxById(this.data.id);
+        this.editing = true;
+      }
   }
 
 
@@ -41,7 +44,12 @@ export class AddTaxComponent implements OnInit {
     if (this.taxForm.valid) {
       Object.assign(this.tax, this.taxForm.value);
       if (this.editing) {
-        return;
+       
+        this.payData.updateTax(this.tax).subscribe(tax => {
+          this.dialogRef.close(tax);
+        })
+
+
       } else {
         this.payData.saveTax(this.tax).subscribe(tax => {
           this.dialogRef.close(tax);

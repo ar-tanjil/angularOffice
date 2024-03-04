@@ -27,7 +27,7 @@
                       <button mat-raised-button 
                       class="d-block mx-auto rounded-5 text-danger border-1" 
                       style="height: 100px; width: 100px; background-color: azure;"
-                      (click)="giveAttendance(emp.id ?? 0)"
+                      (click)="giveAttendance(emp.id ?? 0)" [disabled]="holiday"
                       >{{checkInButton}} </button>
                     </div>
                     <div>

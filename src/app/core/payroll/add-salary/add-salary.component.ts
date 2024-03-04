@@ -41,9 +41,9 @@ export class AddSalaryComponent implements OnInit {
 
   salaryForm: FormGroup = new FormGroup({
     employeeId: new FormControl(),
-    basic: new FormControl("", Validators.pattern("^[1-9][0-9]+$")),
-    medicalAllowance: new FormControl("", Validators.pattern("^[1-9][0-9]+$")),
-    providentFund: new FormControl("", Validators.pattern("^[1-9][0-9]+$"))
+    basic: new FormControl("", Validators.pattern('^[1-9][0-9]+$')),
+    medicalAllowance: new FormControl("", Validators.pattern('^[0-9]{0,2}$')),
+    providentFund: new FormControl("", Validators.pattern('^[0-9]{0,2}$'))
   });
 
 

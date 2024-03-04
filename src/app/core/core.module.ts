@@ -31,6 +31,8 @@ import { CanvasJSAngularChartsModule } from "@canvasjs/angular-charts";
 import { EmpDepChartComponent } from "./dashbord/emp-dep-chart/emp-dep-chart.component";
 import { LeavesComponent } from './employee-table/leaves/leaves.component';
 import { HolidayComponent } from './employee-table/holiday/holiday.component';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
+import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holiday-form.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +61,9 @@ import { HolidayComponent } from './employee-table/holiday/holiday.component';
         AttendanceComponent,
         EmpDepChartComponent,
         LeavesComponent,
-        HolidayComponent
+        HolidayComponent,
+        PayslipComponent,
+        HolidayFormComponent
     ],
     exports: [
         NavbarComponent,

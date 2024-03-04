@@ -6,6 +6,7 @@ import { PayrollTable, Salary } from 'src/app/model/payroll/payroll.model';
 import { AddSalaryComponent } from './add-salary/add-salary.component';
 import { auto } from '@popperjs/core';
 import { SalaryDetailsComponent } from './salary-details/salary-details.component';
+import { PayslipComponent } from './payslip/payslip.component';
 
 @Component({
   selector: 'app-payroll',
@@ -110,7 +111,23 @@ export class PayrollComponent implements OnInit {
 
 
 
+  generatePayslip(){
+    // if(id < 0){
+    //   return;
+    // }
 
+    let addSalaryDialog = this.dialog.open(PayslipComponent, {
+      height: auto,
+      width: "50%"
+      // ,
+      // data: {
+      //   id: id
+      // }
+    }
+    );
+    addSalaryDialog.afterClosed().subscribe(ob => {
+    })
+  }
 
 
 

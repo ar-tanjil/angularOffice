@@ -37,7 +37,9 @@ export class Salary {
         public medicalAllowance?: number,
         public providentFund?: number,
         public jobTitle?: String,
-        public departmentName?: string
+        public departmentName?: string,
+        public provident?: number,
+        public medical?: number
     ) { }
 }
 
@@ -100,4 +102,13 @@ export class Attendance {
         public leaveTime?: string,
         public employeeId?: string
     ) { }
+}
+
+
+export class Holiday{
+    constructor(
+        public id?: number,
+        public day?: Date,
+        public reason?: string
+    ){}
 }

@@ -52,7 +52,7 @@ export class TaxComponent {
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
         if(ob){
-          this.taxTable.push(ob);
+         this.getAllTax();
         }
     })
   }
@@ -103,7 +103,9 @@ export class TaxComponent {
     }).then((result) => {
 
       if (result.value) {
-
+          this.payData.deleteTax(id).subscribe(tax => {
+            this.getAllTax();
+          })
 
       } else if (result.dismiss === Swal.DismissReason.cancel) {
 

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
-import { Attendance, AttendanceSheet, Payroll, PayrollTable, Salary, Tax } from "./payroll.model";
+import { Attendance, AttendanceSheet, Holiday, Payroll, PayrollTable, Salary, Tax } from "./payroll.model";
 
 @Injectable()
 export class PayrollDatasource {
@@ -11,6 +11,7 @@ export class PayrollDatasource {
     private salUrl: string = "http://localhost:8080/salaries";
     private attUrl: string = "http://localhost:8080/attendances";
     private taxUrl: string = "http://localhost:8080/taxes";
+    private holiUrl: string = "http://localhost:8080/holidays";
 
 
     constructor(private http: HttpClient) { };
@@ -52,6 +53,10 @@ export class PayrollDatasource {
 
     }
 
+    getAllTax():Observable<Tax[]>{
+        return this.sendRequest<Tax[]>("GET", this.taxUrl);
+    }
+
     getTaxById(id: number): Observable<Tax> {
         return this.sendRequest<Tax>("GET", `${this.taxUrl}/${id}`);
     }
@@ -60,8 +65,36 @@ export class PayrollDatasource {
         return this.sendRequest<Tax>("POST", this.taxUrl, tax);
     }
 
-    getAllTax():Observable<Tax[]>{
-        return this.sendRequest<Tax[]>("GET", this.taxUrl);
+    updateTax(tax: Tax): Observable<Tax>{
+        return this.sendRequest<Tax>("PUT", this.taxUrl, tax);
+    }
+
+    deleteTax(id: number): Observable<Tax>{
+        return this.sendRequest<Tax>("DELETE", `${this.taxUrl}/${id}`);
+    }
+
+    getAllHoliday():Observable<Holiday[]>{
+        return this.sendRequest<Holiday[]>("GET", this.holiUrl);
+    }
+
+    getHolidayById(id: number): Observable<Holiday> {
+        return this.sendRequest<Holiday>("GET", `${this.holiUrl}/${id}`);
+    }
+
+    saveHoliday(holiday: Holiday): Observable<Holiday>{
+        return this.sendRequest<Holiday>("POST", this.holiUrl, holiday);
+    }
+
+    updateHoliday(holiday: Holiday): Observable<Holiday>{
+        return this.sendRequest<Holiday>("PUT", this.holiUrl, holiday);
+    }
+
+    deleteHoliday(id: number): Observable<Holiday>{
+        return this.sendRequest<Holiday>("DELETE", `${this.holiUrl}/${id}`);
+    }
+
+    checkHoliday(day: string): Observable<boolean>{
+        return this.sendRequest<boolean>("GET", `${this.holiUrl}/check/${day}`);
     }
 
     // getById(id: number): Observable<Employee>{

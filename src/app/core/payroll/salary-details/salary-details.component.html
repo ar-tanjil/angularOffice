@@ -8,15 +8,18 @@
     <tbody>
       <tr>
         <th>Basic</th>
-        <td> {{salary.basic}} </td>
+        
+        <td> {{salary.basic | currency : "BDT "}} </td>
       </tr>
       <tr>
-        <th>Medical Allowance</th>
-        <td> {{salary.medicalAllowance}} </td>
+        <th>Medical Allowance  ({{salary.medicalAllowance+"%"}})</th>
+        
+        <td> {{salary.medical | currency: "BDT "}} </td>
       </tr>
       <tr>
-        <th>Provident Fund</th>
-      <td> {{salary.providentFund}} </td>
+        <th>Provident Fund  ({{salary.providentFund+"%"}})</th>
+      
+      <td> {{salary.provident | currency: "BDT "}} </td>
     </tr>
     </tbody>
   </table>

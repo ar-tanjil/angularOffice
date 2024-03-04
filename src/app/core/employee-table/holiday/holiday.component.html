@@ -7,20 +7,46 @@
     <!-- /Breadcrumb -->
     <mat-divider class="m-2"></mat-divider>
     <div style="float: right" class="m-2">
-      <button mat-raised-button style="background-color: #421820; color: #faf9f7">
+      <button mat-raised-button style="background-color: #421820; color: #faf9f7"
+      (click)="openDialog()">
 Add Holiday      </button>
     </div>
   
   
-    <table class="table table-striped mt-5">
+    <table class="table w-50 table-striped mx-auto">
       <thead><tr>
           <th>#</th>
           <th>Title</th>
           <th>Holiday Date</th>
           <th>Day</th>
+          <th></th>
       </tr></thead>
       <tbody>
-          <tr></tr>
+          <tr *ngFor="let holy of holiday; let i = index">
+            <td> {{i + 1}}  </td>
+            <td> {{ holy.reason}}  </td>
+            <td> {{holy.day | date: 'longDate' }}  </td>
+            <td> {{holy.day | date: 'EEEE' }}  </td>
+            <td>
+              <a [matMenuTriggerFor]="menu1">
+                <i
+                  class="fa-solid fa-bars fs-4 textColor"
+                  style="cursor: pointer; margin: 0"
+                ></i>
+                <mat-menu #menu1="matMenu">
+                
+                  <button mat-menu-item (click)="updateDialog(holy.id ?? -1)">
+                    <i class="fa-solid fa-pen-to-square textColor"></i>
+                    Update
+                  </button>
+                  <button mat-menu-item (click)="deleteDialog(holy.id ?? -1)">
+                    <i class="fa-solid fa-file-invoice-dollar textColor"></i>
+                    Delete
+                  </button>
+                </mat-menu>
+              </a>
+            </td>
+          </tr>
       </tbody>
     </table>
   

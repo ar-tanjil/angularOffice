@@ -1,3 +1,4 @@
+import { Holiday } from './../../model/payroll/payroll.model';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -25,6 +26,7 @@ export class ProfileComponent {
   attendance: Attendance = new Attendance();
   checkInTime!: string;
   checkOutTime!: string;
+  holiday: boolean = false;
 
   constructor(private empData: EmpDatasource,
     private payData: PayrollDatasource,
@@ -44,8 +46,7 @@ export class ProfileComponent {
       this.empData.getById(id).subscribe(e => {
         this.emp = e ?? new Employee();
         this.getAttendanc(id, this.date);
-        console.log(id, this.date);
-
+        
       })
     });
 
@@ -57,13 +58,26 @@ export class ProfileComponent {
 
 
 
+  checkHoliday(day: string){
+    this.payData.checkHoliday(day).subscribe(check => {
+      this.holiday = check;
+      this.getCheckInOut(this.attendance);
+    })
+  }
+
+
   getCheckInOut(att: Attendance) {
 
+    if(this.holiday){
+      this.checkInButton = "Holiday"
+    } else{
     this.checkInButton = "Check In";
+    }
 
     if (att.entryTime) {
       this.checkInButton = "Check Out"
     }
+
 
     this.checkInTime = att.entryTime ?? "--/--/--";
     this.checkOutTime = att.leaveTime ?? "--/--/--";
@@ -83,9 +97,9 @@ export class ProfileComponent {
   getAttendanc(id: number, day: string) {
     this.payData.getAttendanceByDay(id, day).subscribe(att => {
       this.attendance = att ?? new Attendance();
-      console.log(att);
-
-      this.getCheckInOut(this.attendance);
+     
+      this.checkHoliday(this.date);
+     
     })
   }
 
