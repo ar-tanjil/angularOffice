@@ -111,18 +111,18 @@ export class PayrollComponent implements OnInit {
 
 
 
-  generatePayslip(){
-    // if(id < 0){
-    //   return;
-    // }
+  generatePayslip(id: number){
+    if(id < 0){
+      return;
+    }
 
     let addSalaryDialog = this.dialog.open(PayslipComponent, {
       height: auto,
-      width: "50%"
-      // ,
-      // data: {
-      //   id: id
-      // }
+      width: "70%"
+      ,
+      data: {
+        id: id
+      }
     }
     );
     addSalaryDialog.afterClosed().subscribe(ob => {

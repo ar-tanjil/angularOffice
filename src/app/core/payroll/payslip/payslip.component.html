@@ -14,14 +14,16 @@
       </button>
     </div> -->
   <!-- </div> --> 
-<div
+<!-- <div
   class="m-2 d-flex align-items-center justify-content-center h-50"
   style="background-color: #e2eff1"
->
-  <div class="card m-2 w-75 h-75">
+> -->
+
+<mat-dialog-content class="mat-typography">
+  <div class="card">
     <div class="card-body" style="color: #555273; background-color: #fcfcfc">
       <p class="text-center fs-3 fw-medium">
-        PAYSLIP FOR THE MONTH OF 
+        PAYSLIP FOR THE MONTH OF {{payroll.period | date: "short"}}
       </p>
       <div class="d-flex flex-row">
         <div>
@@ -53,7 +55,7 @@
             <tbody>
               <tr>
                 <th scope="row">Basic</th>
-                <td></td>
+                <td>{{payroll.basicSalary}} </td>
               </tr>
               <tr>
                 <th scope="row">Conveyance</th>
@@ -61,11 +63,11 @@
               </tr>
               <tr>
                 <th scope="row">Medical Allowence</th>
-                <td></td>
+                <td>{{payroll.providentFund}} </td>
               </tr>
               <tr>
                 <th scope="row">Total Earnings</th>
-                <td></td>
+                <td> {{payroll.grossSalary}} </td>
               </tr>
             </tbody>
           </table>
@@ -79,11 +81,11 @@
             <tbody>
               <tr>
                 <th scope="row">Provident Fund</th>
-                <td></td>
+                <td> {{payroll.providentFund}} </td>
               </tr>
               <tr>
                 <th scope="row">Leave Deduction</th>
-                <td></td>
+                <td> {{payroll.unpaidLeave}} </td>
               </tr>
               <tr>
                 <th scope="row">Tax</th>
@@ -102,7 +104,8 @@
       </h4>
     </div>
   </div>
-</div>
+</mat-dialog-content>
+<!-- </div> -->
 
 <mat-dialog-actions align="end">
     <button mat-raised-button class="btn btn-sm" color="primary">Print</button>

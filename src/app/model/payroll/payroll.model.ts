@@ -5,8 +5,10 @@ export class PayrollTable {
         public id?: number,
         public employeeId?: number,
         public firstName?: string,
-        public netPay?: number,
-        public period?: Date
+        public netSalary?: number,
+        public period?: Date,
+        public grossSalary?: number,
+        public jobTitle?: string
     ) { }
 }
 
@@ -19,10 +21,13 @@ export class Payroll {
         public tax?: number,
         public travelAllowance?: number,
         public bonus?: number,
-        public basic?: number,
+        public basicSalary?: number,
         public medicalAllowance?: number,
         public providentFund?: number,
-        public netPay?: number,
+        public netSalary?: number,
+        public grossSalary?: number,
+        public otherEarning?: number,
+        public otherDeduction?: number,
         public employeeId?: number
     ) { }
 }
@@ -39,7 +44,9 @@ export class Salary {
         public jobTitle?: String,
         public departmentName?: string,
         public provident?: number,
-        public medical?: number
+        public medical?: number,
+        public bonus?: number,
+        public loan?: number
     ) { }
 }
 

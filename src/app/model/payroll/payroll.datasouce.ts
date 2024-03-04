@@ -16,12 +16,12 @@ export class PayrollDatasource {
 
     constructor(private http: HttpClient) { };
 
-    getAllByPeriod(year: number, month: number): Observable<PayrollTable[]> {
+    getPayrollByPeriod(year: number, month: number): Observable<PayrollTable[]> {
         return this.sendRequest<PayrollTable[]>("GET", `${this.payUrl}/${year}/${month}`);
     }
 
-    getPayrollByEmpAndPeriod(empId: number, year: number, month: number): Observable<Payroll[]> {
-        return this.sendRequest<Payroll[]>("GET", `${this.payUrl}/${empId}/${year}/${month}`);
+    getPayrollByEmpAndPeriod(empId: number, year: number, month: number): Observable<Payroll> {
+        return this.sendRequest<Payroll>("GET", `${this.payUrl}/${empId}/${year}/${month}`);
     }
 
     getSalaryByEmployee(id: number): Observable<Salary> {
