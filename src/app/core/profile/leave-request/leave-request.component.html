@@ -1,18 +1,39 @@
-<h2 mat-dialog-title>Add Tax</h2>
+<h2 mat-dialog-title>Leave Request</h2>
 <mat-dialog-content class="mat-typography">
     <div>
         <div class="row">
             <form [formGroup]="leaveForm" (ngSubmit)="submit()">
 
+                
                 <mat-form-field class="form-field">
-                    <mat-label>Min Range</mat-label>
-                    <input matInput placeholder="Minumum Tax Range" formControlName="content" />
+                    <mat-label>Select Leave Type</mat-label>
+                    <mat-select formControlName="type">
+                      <mat-option value="sick"
+                      >Sick
+                      </mat-option>
+                      <mat-option value="casual"
+                      >Casual
+                      </mat-option>
+                    </mat-select>
+                    <!-- <mat-hint>Here's the dropdown arrow ^</mat-hint> -->
+                  </mat-form-field>
+                  <mat-form-field class="form-field">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="day">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field class="form-field">
+                    <mat-label>Reason</mat-label>
+                    <input matInput placeholder="Leave Reaosn" formControlName="reason" />
                 </mat-form-field>
+                  
 
                 <mat-dialog-actions align="end">
                     <button mat-button mat-dialog-close class="bg-secondary">Cancel</button>
                     <!-- [mat-dialog-close]="true" -->
-                    <button mat-button type="submit" class="colorMain"  >Add</button>
+                    <button mat-button type="submit" class="colorMain"  >Send</button>
                 </mat-dialog-actions>
             </form>
 

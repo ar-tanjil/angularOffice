@@ -5,13 +5,13 @@
     ></app-topnav>
     <mat-sidenav-container autosize style="height: 100vh;">
       <!--Start of sidnav-->
-      <mat-sidenav mode="side" [opened]="shouldRun" class="side-nav-container">
+      <mat-sidenav mode="side" [opened]="shouldRun">
         <app-sidenav></app-sidenav>
   
       </mat-sidenav>
-      <mat-sidenav-content>
+      <mat-sidenav-content class="example">
         <div class="w-100">
-          <div class="m-2 textColor">
+          <div class="m-2 textColor example">
             <ng-content></ng-content>
           </div>
         </div>

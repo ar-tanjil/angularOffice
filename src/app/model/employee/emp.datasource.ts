@@ -35,6 +35,10 @@ export class EmpDatasource{
         return this.sendRequest<EmployeeTable[]>("GET", `${this.url}/without_sal`);
     }
 
+    countEmployee():Observable<number>{
+        return this.sendRequest<number>("GET", `${this.url}/count/employee`);
+        
+    }
 
     private sendRequest<T>(verb: string, url: string, body?: Employee): Observable<T>{
         return this.http.request<T>(verb, url, {

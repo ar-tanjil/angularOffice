@@ -20,7 +20,7 @@ export class Payroll {
         public loanPayment?: number,
         public tax?: number,
         public travelAllowance?: number,
-        public bonus?: number,
+        public bonusAmount?: number,
         public basicSalary?: number,
         public medicalAllowance?: number,
         public providentFund?: number,
@@ -118,4 +118,17 @@ export class Holiday{
         public day?: Date,
         public reason?: string
     ){}
+}
+
+export class Leave{
+    constructor(
+        public id?: number,
+        public day?: Date,
+        public type?: string,
+        public reason?: string,
+        public status?: boolean,
+        public employeeId?: number
+    ){
+
+    }
 }

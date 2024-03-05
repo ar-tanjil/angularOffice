@@ -11,11 +11,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: #fdf0d5;
 }
 
+.example::-webkit-scrollbar {
+    display: none;
+}
+
 .colorSecondry{
     background-color:#003049;
     color: #fdf0d5;
 }
 
 .textColor{
-    color:#421820;
+    color:#353535;
 }
+
+.btnAdd{
+    background: #354f52;
+    color: #ffff;
+}
+
+
+// nav #284b63
+// sidenab  #3c6e71
+// text #353535

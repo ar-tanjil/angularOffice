@@ -1,10 +1,10 @@
 
 
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography example">
   <div class="card">
     <div class="card-body" style="color: #555273; background-color: #fcfcfc">
       <p class="text-center fs-3 fw-medium">
-        Payslip For THE MONTH OF {{payroll.period | date: "MMMM - YYYY"}}
+      {{payroll.period | date: "MMMM - YYYY"}} Payslip
       </p>
       <div class="d-flex flex-row">
        
@@ -14,10 +14,10 @@
         </div>
       </div>
       <div>
-        <p style="margin: 0">Name</p>
-        <p style="margin: 0">Designation</p>
+        <p style="margin: 0">Name: {{employee.firstName}} {{employee.lastName}}</p>
+        <p style="margin: 0">Designation: {{employee.jobTitle}}</p>
         <p style="margin: 0">TIN: </p>
-        <p>Joning Date: </p>
+        <p>Joning Date: {{employee.hireDate | date: 'longDate'	}} </p>
       </div>
       <div class="row gap-4">
         <div class="col">
@@ -32,17 +32,22 @@
                 <td>{{payroll.basicSalary}} </td>
               </tr>
               <tr>
-                <th scope="row"></th>
-                <td></td>
+                <th scope="row">Medical Allowance</th>
+                <td>{{payroll.medicalAllowance}}</td>
               </tr>
               <tr>
-                <th scope="row">Medical Allowence</th>
-                <td>{{payroll.providentFund}} </td>
+                <th scope="row">Travel Allowance</th>
+                <td>{{payroll.travelAllowance}} </td>
               </tr>
               <tr>
-                <th scope="row">Total Earnings</th>
-                <td> {{payroll.grossSalary}} </td>
+                <th scope="row">Bonus</th>
+                <td>{{payroll.bonusAmount}} </td>
               </tr>
+              <tr>
+                <th scope="row">Other</th>
+                <td>{{payroll.otherEarning}} </td>
+              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -63,18 +68,25 @@
               </tr>
               <tr>
                 <th scope="row">Tax</th>
-                <td></td>
+                <td>{{payroll.tax}} </td>
               </tr>
               <tr>
-                <th scope="row">Total Deduction</th>
-                <td></td>
+                <th scope="row">Loan Payment</th>
+                <td>{{payroll.loanPayment}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Others</th>
+                <td>{{payroll.otherDeduction}} </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       <h4 class="fw-bold text-center">
-        Net Salary: 
+        Gross Salary: {{payroll.grossSalary}}
+      </h4>
+      <h4 class="fw-bold text-center">
+        Net Salary: {{payroll.netSalary}}
       </h4>
     </div>
   </div>

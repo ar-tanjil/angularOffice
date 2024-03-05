@@ -20,8 +20,6 @@ export class EmpDepChartComponent implements OnInit {
         
     }
 ngOnInit(): void {
-  console.log(this.model.getChartData());
-  console.log(this.model.getDepartments());
   
 }
 

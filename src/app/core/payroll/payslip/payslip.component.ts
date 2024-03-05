@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
+import { Employee } from 'src/app/model/employee/employee';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { Payroll } from 'src/app/model/payroll/payroll.model';
 
@@ -13,20 +15,24 @@ export class PayslipComponent implements OnInit {
   year!: number;
 
   payroll: Payroll;
+  employee: Employee;
 
   constructor(
 
     public dialogRef: MatDialogRef<PayslipComponent>,
     private payData: PayrollDatasource,
+    private empData: EmpDatasource,
     @Inject(MAT_DIALOG_DATA) private data: { id: number }
   ) {
       this.lastMonth();
       this.payroll = new Payroll();
+      this.employee = new Employee();
     }
 
   ngOnInit(): void {
     if (this.data.id) {
       this.getPayrollByEmp();
+      this.getEmployee();
     }
   }
 
@@ -39,6 +45,11 @@ export class PayslipComponent implements OnInit {
   }
 
 
+  getEmployee(){
+      this.empData.getById(this.data.id).subscribe(emp => {
+        this.employee = emp;
+      })
+  }
 
 
   lastMonth() {
