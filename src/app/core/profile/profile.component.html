@@ -15,7 +15,7 @@
                       <p class="text-secondary mb-1"> {{emp.jobTitle ?? "" | titlecase}} </p>
                       <!-- <p class="text-muted font-size-sm"> {{(emp.city ?? "" | titlecase) + ", "+ (emp.country ?? ""|titlecase)}} </p> -->
                       <button class="btn btn-primary mx-2">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <button class="btn btn-outline-primary" (click)="openDialog()">Message</button>
                     </div>
                   </div>
                 </div>

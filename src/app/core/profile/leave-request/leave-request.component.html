@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Add Tax</h2>
+<mat-dialog-content class="mat-typography">
+    <div>
+        <div class="row">
+            <form [formGroup]="leaveForm" (ngSubmit)="submit()">
+
+                <mat-form-field class="form-field">
+                    <mat-label>Min Range</mat-label>
+                    <input matInput placeholder="Minumum Tax Range" formControlName="content" />
+                </mat-form-field>
+
+                <mat-dialog-actions align="end">
+                    <button mat-button mat-dialog-close class="bg-secondary">Cancel</button>
+                    <!-- [mat-dialog-close]="true" -->
+                    <button mat-button type="submit" class="colorMain"  >Add</button>
+                </mat-dialog-actions>
+            </form>
+
+        </div>
+
+    </div>
+</mat-dialog-content>
+
+<!-- 
+      <mat-dialog-actions align="end">
+                <button mat-button mat-dialog-close>Cancel</button>
+                <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+              </mat-dialog-actions>
+ -->

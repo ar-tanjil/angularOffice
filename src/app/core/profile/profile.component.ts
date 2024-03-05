@@ -9,6 +9,8 @@ import { Subscription, retry } from 'rxjs';
 import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { Attendance } from 'src/app/model/payroll/payroll.model';
+import { LeaveRequestComponent } from './leave-request/leave-request.component';
+import { auto } from '@popperjs/core';
 
 @Component({
   selector: 'app-profile',
@@ -102,6 +104,26 @@ export class ProfileComponent {
      
     })
   }
+
+
+
+  
+  openDialog() {
+    let addSalaryDialog = this.dialog.open(LeaveRequestComponent, {
+      height: auto,
+      width: '45%',
+      data: {
+        id: null
+      }
+    }
+    );
+    addSalaryDialog.afterClosed().subscribe(ob => {
+      console.log(ob);
+      
+    })
+  }
+
+
 
 
   // getPerid(date: Date) {

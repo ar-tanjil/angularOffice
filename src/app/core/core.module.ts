@@ -33,6 +33,8 @@ import { LeavesComponent } from './employee-table/leaves/leaves.component';
 import { HolidayComponent } from './employee-table/holiday/holiday.component';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holiday-form.component';
+import { NotificationComponent } from './navbar/notification/notification.component';
+import { LeaveRequestComponent } from './profile/leave-request/leave-request.component';
 
 @NgModule({
     declarations: [
@@ -63,7 +65,9 @@ import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holi
         LeavesComponent,
         HolidayComponent,
         PayslipComponent,
-        HolidayFormComponent
+        HolidayFormComponent,
+        NotificationComponent,
+        LeaveRequestComponent
     ],
     exports: [
         NavbarComponent,
@@ -81,7 +85,8 @@ import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holi
         ApplicationComponent,
         ApplicationFormComponent,
         AddSalaryComponent,
-        AttendanceComponent
+        AttendanceComponent,
+        LeaveRequestComponent
     ],
     imports: [
         MaterialModule,

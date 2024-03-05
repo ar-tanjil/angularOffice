@@ -11,6 +11,7 @@ import { ApplicationDatasource } from "./application/application.datsource";
 import { ApplicationModel } from "./application/application.model";
 import { RefreshService } from "./msgService/refereshService";
 import { PayrollDatasource } from "./payroll/payroll.datasouce";
+import { NotificationService } from "./notification/notifiaction.data";
 
 @NgModule({
     declarations: [],
@@ -25,7 +26,8 @@ import { PayrollDatasource } from "./payroll/payroll.datasouce";
         ApplicationDatasource,
         ApplicationModel,
         RefreshService,
-        PayrollDatasource
+        PayrollDatasource,
+        NotificationService
     ],
     imports: [HttpClientModule]
 })
