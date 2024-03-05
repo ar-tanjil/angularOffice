@@ -12,7 +12,7 @@ export class LeaveRequestComponent {
 
   notify: NotifyModel = new NotifyModel();
 
-  notfiyList: NotifyModel[] = new Array<NotifyModel>();
+  notfiyList: NotifyModel[] = [];
 
   constructor(private notifyServ: NotificationService){
       
@@ -22,6 +22,8 @@ export class LeaveRequestComponent {
     this.notifyServ.listen(task => {
             this.notfiyList.push(task);
     })
+    console.log(this.notfiyList);
+
   }
 
 

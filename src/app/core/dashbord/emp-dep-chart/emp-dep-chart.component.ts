@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
+import { DepDatasource } from 'src/app/model/department/dep.datasource';
+import { Department, DepartmentChart } from 'src/app/model/department/deparment';
+import { DepModel } from 'src/app/model/department/department.model';
 
 
 @Component({
@@ -6,9 +10,25 @@ import { Component } from '@angular/core';
   templateUrl: './emp-dep-chart.component.html',
   styleUrls: ['./emp-dep-chart.component.scss']
 })
-export class EmpDepChartComponent {
+export class EmpDepChartComponent implements OnInit {
 
-  chartOptions = {
+  
+
+
+    constructor(private depData: DepDatasource,
+      private model: DepModel){
+        
+    }
+ngOnInit(): void {
+  console.log(this.model.getChartData());
+  console.log(this.model.getDepartments());
+  
+}
+
+
+
+
+chartOptions = {
     animationEnabled: true,
     title: {
       text: "Employee By Department"
@@ -18,15 +38,13 @@ export class EmpDepChartComponent {
       startAngle: -90,
       indexLabel: "{name}: {y}",
       yValueFormatString: "#,###.##'%'",
-      dataPoints: [
-        { y: 14.1, name: "Toys" },
-        { y: 28.2, name: "Electronics" },
-        { y: 14.4, name: "Groceries" },
-        { y: 43.3, name: "Furniture" }
-      ]
+      dataPoints: this.model.getChartData()
     }]
   }
 
+
+
+ 
 }
 
 // https://canvasjs.com/angular-charts/pie-chart-index-data-label/

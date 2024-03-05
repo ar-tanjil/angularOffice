@@ -7,3 +7,11 @@ export class Department{
         public departmentDesc?: string
     ){}
 }
+
+export class DepartmentChart{
+    constructor(
+        
+        public name: string,
+        public y: number
+    ){}
+}

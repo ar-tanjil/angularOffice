@@ -54,7 +54,7 @@ export class PayrollComponent implements OnInit {
   openDialog() {
     let addSalaryDialog = this.dialog.open(AddSalaryComponent, {
       height: auto,
-      width: '45%',
+      width: auto,
       data: {
         id: null
       }

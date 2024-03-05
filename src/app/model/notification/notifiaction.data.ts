@@ -29,7 +29,7 @@ export class NotificationService implements OnDestroy{
   public listen(fun: ListenerCallBack): void {
     if (this.connection) {
       this.connection.connect({}, () => {
-        this.subscription = this.connection!.subscribe('/notification/admin', 
+        this.subscription = this.connection!.subscribe('/user/admin/topic', 
         message => fun(JSON.parse(message.body)));
       }); 
     }

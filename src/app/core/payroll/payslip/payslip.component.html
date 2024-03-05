@@ -1,39 +1,13 @@
 
-<!-- <div class="d-flex flex-row mt-3 mx-5">
-   <div>
-      <button mat-raised-button class="btn btn-sm" color="primary">Print</button>
-    </div> -->
-    <!-- <div style="flex: auto"></div> -->
-    <!-- <div>
-      <button
-        mat-raised-button
-        class="btn btn-sm bg-secondary-subtle"
-        routerLink="/payroll"
-      >
-        Back
-      </button>
-    </div> -->
-  <!-- </div> --> 
-<!-- <div
-  class="m-2 d-flex align-items-center justify-content-center h-50"
-  style="background-color: #e2eff1"
-> -->
 
 <mat-dialog-content class="mat-typography">
   <div class="card">
     <div class="card-body" style="color: #555273; background-color: #fcfcfc">
       <p class="text-center fs-3 fw-medium">
-        PAYSLIP FOR THE MONTH OF {{payroll.period | date: "short"}}
+        Payslip For THE MONTH OF {{payroll.period | date: "MMMM - YYYY"}}
       </p>
       <div class="d-flex flex-row">
-        <div>
-          <img
-            src="../assets/logo.webp"
-            alt=""
-            width="110px"
-            style="display: block; margin: auto"
-          />
-        </div>
+       
         <div style="flex: auto"></div>
         <div>
           <p>PAYSLIP #</p>
@@ -58,7 +32,7 @@
                 <td>{{payroll.basicSalary}} </td>
               </tr>
               <tr>
-                <th scope="row">Conveyance</th>
+                <th scope="row"></th>
                 <td></td>
               </tr>
               <tr>
