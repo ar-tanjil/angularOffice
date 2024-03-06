@@ -1,5 +1,5 @@
 import { Department } from 'src/app/model/department/deparment.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/model/employee/employee.model';
@@ -7,6 +7,7 @@ import { JobDatasource } from 'src/app/model/designation/job.datasource';
 import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
 import { Job } from 'src/app/model/designation/job.model';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -20,7 +21,6 @@ export class RegisterFormComponent implements OnInit {
   departmentList!: Department[];
   designationList!: Job[];
 
-  editing!: boolean;
   title: string = "Add New Employee";
 
 
@@ -29,33 +29,13 @@ export class RegisterFormComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private route: Router,
     private depData: DepartmentDatasource,
-    private jobData: JobDatasource
+    private jobData: JobDatasource,    
+    public dialogRef: MatDialogRef<RegisterFormComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: { id: number }
   ) {
-
-
-
-    activeRoute.params.subscribe(params => {
-
-      this.editing = params["mode"] == "edit";
-
-      this.chooseTitle(this.editing);
       this.getDepartment();
       this.getDesignation();
 
-      let id = params["id"];
-      if (id) {
-        empData.getById(id).subscribe(emp => {
-          this.employee = emp ?? new Employee();
-          this.employeeForm.patchValue(this.employee);
-          console.log(this.employee);
-
-          // Call Method
-         
-          
-          
-        })
-      }
-    });
   }
 
 
@@ -75,6 +55,8 @@ export class RegisterFormComponent implements OnInit {
     this.jobData.getAll().subscribe(job => {
       this.designationList = new Array<Job>();
       this.designationList = job;
+      console.log(this.designationList);
+      
     })
   }
 
@@ -105,16 +87,26 @@ export class RegisterFormComponent implements OnInit {
   )
 
   submitForm() {
-    if (this.employeeForm.valid) {
+    if (!this.employeeForm.valid) {
       Object.assign(this.employee, this.employeeForm.value);
 
-      if(this.editing){
+      if(this.data.id){
         this.empData.update(this.employee).subscribe(emp => {
-          this.route.navigate(['profile', emp.id]);
+          if(emp){
+          this.dialogRef.close(emp)
+          }
         })
       } else{
+        console.log(this.employee);
+        
         this.empData.save(this.employee).subscribe(emp => {
-            this.route.navigate(["employee"]);
+          console.log(emp);
+
+          if(emp){
+            this.dialogRef.close(emp)
+          
+          }
+          
         })
       } 
     }
@@ -130,6 +122,23 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
+
+  // Maintain Group Positon
+  
+groupPosition: number = 1;
+
+
+risePosition(){
+if(this.groupPosition < 4){
+  this.groupPosition++;
+}
+}
+
+reducePosition(){
+if(this.groupPosition > 1){
+  this.groupPosition--;
+}
+}
 
 
 }

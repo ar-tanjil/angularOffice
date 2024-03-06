@@ -35,6 +35,7 @@ import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holiday-form.component';
 import { NotificationComponent } from './navbar/notification/notification.component';
 import { LeaveRequestComponent } from './profile/leave-request/leave-request.component';
+import { DemoFormComponent } from './demo/demo-form/demo-form.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import { LeaveRequestComponent } from './profile/leave-request/leave-request.com
         PayslipComponent,
         HolidayFormComponent,
         NotificationComponent,
-        LeaveRequestComponent
+        LeaveRequestComponent,
+        DemoFormComponent
     ],
     exports: [
         NavbarComponent,

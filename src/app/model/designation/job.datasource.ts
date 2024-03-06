@@ -8,7 +8,7 @@ import { HttpMessage } from "../httpMessage.model";
 export class JobDatasource{
 
 
-    private url: string = "http://localhost:8080/Jobs";
+    private url: string = "http://localhost:8080/designations";
 
     constructor(private http: HttpClient){ };
 
