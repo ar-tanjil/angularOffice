@@ -3,7 +3,10 @@
     <!-- /Breadcrumb -->
     <mat-divider class="m-2"></mat-divider>
       <div style="float: right;" class="m-2">
-        <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;" [routerLink]="['/department', 'add']">Create New Department</button>
+        <button mat-raised-button 
+        
+    style=" background-color: #354f52; color: #ffff;"
+        (click)="openDialog()">Create New Department</button>
     </div>
 
 
@@ -17,7 +20,7 @@
         </thead>    
     
     <tbody>
-        <tr *ngFor="let dep of getDepartmetns(); let i = index;" class="text-center">
+        <tr *ngFor="let dep of departments; let i = index;" class="text-center">
             <th scope="col"> {{ i + 1}} </th>
             <td> {{ dep.departmentName }} </td>
             <td> {{ dep.departmentDesc }} </td>
@@ -26,8 +29,11 @@
                     <a [matMenuTriggerFor]="menu1">
                       <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
                       <mat-menu #menu1="matMenu">
-                        <button mat-menu-item [routerLink]="['/department', 'edit', dep.id]" >
+                        <button mat-menu-item (click)="updateDialog(dep.id ?? -1)">
                           <mat-icon >create</mat-icon>Update
+                        </button>
+                        <button mat-menu-item (click)="delete(dep.id ?? -1)">
+                          <mat-icon >delete</mat-icon>Delete
                         </button>
                         <button mat-menu-item>
                           <mat-icon >info</mat-icon>Details

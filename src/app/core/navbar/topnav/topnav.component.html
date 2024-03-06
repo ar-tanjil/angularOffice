@@ -25,7 +25,13 @@
   </div>
   
   <div>
-    <mat-icon aria-hidden="false" aria-label="Example icon button with a menu icon"  [matBadge]="notification" matBadgeColor="warn">notifications</mat-icon>
+    <mat-icon aria-hidden="false"
+     aria-label="Example icon button with a menu icon"  
+     [matBadge]="notification" 
+     matBadgeColor="warn"
+     (click)="openDialog()"
+     class="mx-2 notiBtn"
+     >notifications</mat-icon>
  
   </div>
   <div>

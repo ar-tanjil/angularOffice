@@ -9,6 +9,9 @@ import { DesigModel } from "./designation/designation.model";
 import { FormMessage } from "./from.message.service";
 import { ApplicationDatasource } from "./application/application.datsource";
 import { ApplicationModel } from "./application/application.model";
+import { RefreshService } from "./msgService/refereshService";
+import { PayrollDatasource } from "./payroll/payroll.datasouce";
+import { NotificationService } from "./notification/notifiaction.data";
 
 @NgModule({
     declarations: [],
@@ -21,7 +24,10 @@ import { ApplicationModel } from "./application/application.model";
         DesigModel,
         FormMessage,
         ApplicationDatasource,
-        ApplicationModel
+        ApplicationModel,
+        RefreshService,
+        PayrollDatasource,
+        NotificationService
     ],
     imports: [HttpClientModule]
 })

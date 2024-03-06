@@ -10,8 +10,9 @@
   }
  
   .sideNav-container{
-    background: #421820;
-    color: #ffffff;
+    background: #3c6e71;
+    color: #F3EDC8;
+    height: 100vh;
   }
   
   li a {
@@ -27,8 +28,8 @@
   }
 
   li a:hover {
-    background-color: #ffffff;
-    color: #91171F;  
+    background-color: #F3EDC8;
+    color: #353535;  
   }
 
   li .active {
@@ -36,4 +37,13 @@
     size: 1.3rem;
     color: #e2eff1;
     font-weight: bolder;
+  }
+
+  .red-bg{
+   background-color: #52796f;  
+   color: #EAD196;
+  }
+
+  .example::-webkit-scrollbar {
+    display: none;
   }

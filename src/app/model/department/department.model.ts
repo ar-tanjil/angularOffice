@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Department } from "./deparment";
+import { Department, DepartmentChart } from "./deparment";
 import { Observable, ReplaySubject } from "rxjs";
 import { DepDatasource } from "./dep.datasource";
 
@@ -10,6 +10,9 @@ export class DepModel {
     private departments: Department[];
     private locator = (employee: Department, id?: number) => employee.id == id;
     private replaySubject: ReplaySubject<Department[]>;
+    private replaySubject2: ReplaySubject<DepartmentChart[]>;
+
+    chartData: DepartmentChart[];
 
     constructor(private datasouce: DepDatasource) {
         this.departments = new Array<Department>();
@@ -19,7 +22,23 @@ export class DepModel {
             this.replaySubject.next(emp);
             this.replaySubject.complete();
         })
+
+        this.chartData = new Array<DepartmentChart>();
+        this.replaySubject2 = new ReplaySubject<DepartmentChart[]>(1);
+        this.datasouce.getChatData().subscribe(data => {
+            this.chartData = data;
+            this.replaySubject2.next(data);
+            this.replaySubject2.complete();
+            console.log(data);
+            
+        })
+
     }
+
+
+ getChartData():DepartmentChart[]{
+    return this.chartData;
+ }
 
     getDepartments(): Department[] {
         return this.departments;

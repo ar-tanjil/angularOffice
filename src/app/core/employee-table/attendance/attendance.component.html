@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <!-- Breadcrumb -->
+  <h3 class="fw-bold"><i class="fa-solid fa-users fs-3 m-2"></i>Attendance</h3>
+  <!-- /Breadcrumb -->
+  <mat-divider class="m-2"></mat-divider>
+
+  <div class="table-responsive">
+  <div class="text-center">
+    <h3 class="fw-bolder">Attendance Sheet Of {{titleMonth}}</h3>
+  </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th *ngFor="let month of getMonths; let i = index">{{ i + 1 }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let att of attendance">
+          <td>{{ att.firstName }}</td>
+          <td *ngFor="let pr of att.present">
+            <i *ngIf="pr" class="fa-solid fa-check text-primary fs-4 fw-bolder"></i>
+            <i *ngIf="!pr" class="fa-solid fa-xmark text-danger fs-4 fw-bolder"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

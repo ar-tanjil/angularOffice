@@ -205,7 +205,7 @@
             
             <div class="row">
                 <div class="col-sm-12 ">
-                  <h1 class="fs-3 fw-bolder">Address </h1></div>
+                  <h1 class="fs-3 fw-bolder">Job Details </h1></div>
               </div>
               <mat-divider class="mb-3"></mat-divider>
 
@@ -250,6 +250,11 @@
                   class="btn btn-danger"
                   (click)="terminate(app.id ?? 0)"
                   > <i class="fa-solid fa-rectangle-xmark text-light"></i> Terminate</a
+                >
+                <a *ngIf="emp"
+                  class="btn btn-secondary mx-2"
+                  [routerLink]="['/employee']"
+                  > Back</a
                 >
               </div>
             </div>

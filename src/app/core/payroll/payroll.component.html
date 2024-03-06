@@ -1,3 +1,72 @@
-<h1 class="fw-bold"><i class="fa-solid fa-wallet fs-1 m-2"></i>Payroll</h1>
-<!-- /Breadcrumb -->
-<mat-divider class="m-2"></mat-divider>
+<div class="container-fluid">
+  <h3 class="fw-bold d-inline-block">
+    <i class="fa-solid fa-wallet fs-3 m-2"></i>Employee Salary
+  </h3>
+  <!-- /Breadcrumb -->
+  <mat-divider class="m-2"></mat-divider>
+
+  <div style="float: right" class="m-2">
+    <button
+      mat-raised-button
+      style=" background-color: #354f52; color: #ffff;"
+      (click)="openDialog()"
+    >
+      Add Salary
+    </button>
+  </div>
+
+  <!-- upore chodon -->
+
+  <table class="table table-hover table-striped w-100">
+    <thead>
+      <tr class="text-center">
+        <th scope="row">#</th>
+        <th scope="row">First Name</th>
+        <th scope="row">Designation</th>
+        <th scope="row">Deparment</th>
+        <th scope="row">Basic</th>
+        <!-- <th scope="row">Designation</th>
+            <th scope="row">Department</th> -->
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let sal of salaryTable; let i = index" class="text-center">
+        <th scope="col">{{ i + 1 }}</th>
+        <td>{{ sal.firstName }}</td>
+        <td>{{ sal.jobTitle }}</td>
+        <td>{{ sal.departmentName }}</td>
+        <td>{{ sal.basic | currency : "BDT " }}</td>
+        <!-- <td> {{emp.jobTitle}} </td>
+        <td> {{emp.departmentName}} </td> -->
+        <td>
+          <!-- <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i> -->
+          <a [matMenuTriggerFor]="menu1">
+            <i
+              class="fa-solid fa-bars fs-4 textColor"
+              style="cursor: pointer; margin: 0"
+            ></i>
+            <mat-menu #menu1="matMenu">
+              <button
+                mat-menu-item
+                (click)="salaryDetails(sal.employeeId ?? -1)"
+              >
+                <i class="fa-solid fa-file textColor"></i>
+                Salary Details
+              </button>
+              <button mat-menu-item (click)="updateDialog(sal.employeeId ?? -1)">
+                <i class="fa-solid fa-pen-to-square textColor"></i>
+                Update
+              </button>
+              <button mat-menu-item (click)="generatePayslip(sal.employeeId ?? -1)">
+                <i class="fa-solid fa-file-invoice-dollar textColor"></i>
+                Generate Payslip
+              </button>
+            </mat-menu>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

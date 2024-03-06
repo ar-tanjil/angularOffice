@@ -14,6 +14,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import {MatMenuModule} from '@angular/material/menu';
         MatSelectModule,
         MatRadioModule,
         MatToolbarModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDialogModule,
+        MatAutocompleteModule
     ]
 })
 export class MaterialModule{

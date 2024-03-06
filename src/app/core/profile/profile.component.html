@@ -14,35 +14,43 @@
                       <h4> {{(emp.firstName ?? "" |titlecase) + " "+(emp.lastName ?? ""|titlecase)}} </h4>
                       <p class="text-secondary mb-1"> {{emp.jobTitle ?? "" | titlecase}} </p>
                       <!-- <p class="text-muted font-size-sm"> {{(emp.city ?? "" | titlecase) + ", "+ (emp.country ?? ""|titlecase)}} </p> -->
-                      <button class="btn btn-primary mx-2">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <button mat-raised-button 
+                      style="background-color: #84a98c; color: #ffffff;"
+                      class="mx-2">Message</button>
+                      <button mat-raised-button 
+                      style="background-color: #353535; color: #ffffff;"
+                      (click)="openDialog()">Leave Request</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card mt-3">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-solid fa-globe fs-4"></i> Website</h4>
-                    <!-- <span class="text-secondary">https://bootdey.com</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-github fs-4"></i> Github</h4> 
-                   <!-- <span class="text-secondary">bootdey</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-square-x-twitter fs-4"></i> X-Twitter</h4> 
-                    <!-- <span class="text-secondary">@bootdey</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-square-instagram fs-4"></i> Instagram</h4> 
-                    <!-- <span class="text-secondary">bootdey</span> -->
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h4 class="mb-0 fw-bolder"><i class="fa-brands fa-square-facebook fs-4"></i> Facebook</h4> 
-                    <!-- <span class="text-secondary">bootdey</span> -->
-                  </li>
-                </ul>
+              <div class="card mt-3" style="height:200px;">
+                  <div class="text-center">
+                    <p class="fs-4 fw-light p-2">{{time | date : 'MMM d, y, h:mm:ss a'}}</p>
+                    <div>
+                      <button mat-raised-button 
+                      class="d-block mx-auto rounded-5 border-1 shadow" 
+                      style="height: 100px; width: 100px; background-color: #800f2f; color: #ffffff;"
+                      (click)="giveAttendance(emp.id ?? 0)" [disabled]="holiday"
+                      >{{checkInButton}} </button>
+                    </div>
+                    <div>
+
+                      <table class="table table-striped text-start mt-1">
+                        <thead></thead>  
+                        <tbody>
+                          <tr>
+                            <th>Check In</th>
+                            <td> {{checkInTime}} </td>
+                          </tr>
+                          <tr>
+                            <th>Check Out</th>
+                            <td> {{checkOutTime}} </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
               </div>
             </div>
             <div class="col-md-8">
@@ -125,9 +133,14 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                       <a class="btn btn-info " [routerLink]="['/register', 'edit', emp.id]">Edit</a>
                     </div>
+                    
+
+                    <!-- <div class="col-sm-6">
+                      <a class="btn btn-info " [routerLink]="['/salary', 'add', emp.id]">Add Salary</a>
+                    </div> -->
                   </div>
                   
                 </div>

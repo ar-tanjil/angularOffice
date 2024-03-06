@@ -1,0 +1,24 @@
+<mat-card class="mat-card">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Add {{title}} </mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="holidayForm" (ngSubmit)="submitForm()">
+        
+  
+        <!-- Department Form-->
+        
+          <mat-form-field class="form-field">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Holiday" formControlName="reason" />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Date</mat-label>
+            <input matInput type="date" formControlName="day" />
+          </mat-form-field>
+        
+  
+        <input type="submit" class="btn btn-primary d-block mx-auto" value="submit">
+      </form>
+    </mat-card-content>
+  </mat-card>

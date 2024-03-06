@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError } from "rxjs";
-import { Department } from "./deparment";
+import { Department, DepartmentChart } from "./deparment";
 import { HttpMessage } from "../httpMessage.model";
 
 @Injectable()
@@ -30,6 +30,13 @@ export class DepDatasource{
     delete(id: number): Observable<HttpMessage>{
       return this.sendRequest<HttpMessage>("DELETE", `${this.url}/${id}`);
     }
+
+
+
+    getChatData(): Observable<DepartmentChart[]>{
+        return this.sendRequest<DepartmentChart[]>("GET", `${this.url}/chart/dep`);
+      }
+    
 
 
     private sendRequest<T>(verb: string, url: string, body?: Department): Observable<T>{

@@ -1,23 +1,109 @@
-<div class="sideNav-container h-100">
-    <div>
-      <img
+<div class="sideNav-container">
+  <div>
+    <!-- <img
         src="../assets/logo.webp"
         alt=""
         width="100px"
         style="display: block; margin: auto;"
-      />
-    </div>
-    <ul>
-      <li><a  routerLink="/dashboard"><i class="fa-solid fa-house fs-4 m-2"></i> Dashboard</a></li>
-      <li><a routerLink="/employee"><i class="fa-solid fa-users fs-4 m-2"></i> Employee</a></li>
-      <li><a routerLink="/profile" ><i class="fa-solid fa-user-tie fs-4 m-2"></i> Profile &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a routerLink="/department">	<i class="fa-solid fa-building-user fs-4 m-2"></i> Departments &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a  routerLink="/designation">	<i class="fa-solid fa-users-line fs-4 m-2"></i> Jobs &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a routerLink="/payroll">	<i class="fa-solid fa-wallet fs-4 m-2 "></i> Payroll &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a routerLink="/payroll">	<i class="fa-solid fa-calendar-days fs-4 m-2 "></i> Attendence &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a routerLink="/application">	<i class="fa-solid fa-user-plus fs-4 m-2"></i> Vacancies &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a routerLink="">	<i class="fa-solid fa-clipboard fs-4 m-2"></i> Reports &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a routerLink="">	<i class="fa-solid fa-file-powerpoint fs-4 m-2"></i> Policies &nbsp;&nbsp;&nbsp;</a></li>
-      <li ><a routerLink="">	<i class="fa-solid fa-gear fs-4 m-2"></i> Settings &nbsp;&nbsp;&nbsp;</a></li>
-    </ul>
+      /> -->
   </div>
+  <ul>
+    <li>
+      <a routerLink="/dashboard"><i class="fa-solid fa-house fs-6 m-2"></i> Dashboard &nbsp;</a>
+    </li>
+    <li>
+      <a (click)="toggleEmployee()"><i class="fa-solid fa-users fs-6 m-2"></i> Employee &nbsp;
+        <i *ngIf="!employee" class="fa-solid fa-caret-right px-2"></i>
+        <i *ngIf="employee" class="fa-solid fa-caret-down px-2"></i>
+      </a>
+      <ul *ngIf="employee" class="red-bg">
+
+        <li>
+          <a routerLink="/employee" class="ps-2">
+            <i class="fa-solid fa-users m-2"></i> Employee List &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/attendance" class="ps-2">
+            <i class="fa-solid fa-calendar-days m-2"></i> Attendance &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/leave" class="ps-2">
+            <i class="fa-solid  fa-person-walking-arrow-right m-2"></i> Leaves &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/holiday" class="ps-2">
+            <i class="fa-solid fa-umbrella-beach m-2"></i> Holidays &nbsp;
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="/profile"><i class="fa-solid fa-user-tie fs-6 m-2"></i> Profile &nbsp;
+      </a>
+    </li>
+    <li>
+      <a routerLink="/department">
+        <i class="fa-solid fa-building-user fs-6 m-2"></i> Departments
+      </a>
+    </li>
+    <li>
+      <a routerLink="/designation">
+        <i class="fa-solid fa-users-line fs-6 m-2"></i> Jobs &nbsp;
+      </a>
+    </li>
+    <li>
+      <a (click)="togglePayroll()">
+        <i class="fa-solid fa-wallet fs-6 m-2"></i> Payroll &nbsp;
+        <i *ngIf="!payroll" class="fa-solid fa-caret-right px-2"></i>
+        <i *ngIf="payroll" class="fa-solid fa-caret-down px-2"></i>
+      </a>
+      <ul *ngIf="payroll" class="red-bg">
+
+        <li>
+          <a routerLink="/payroll" class="ps-2">
+            <i class="fa-solid fa-money-bills m-2"></i> Employee Salary &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/tax" class="ps-2">
+            <i class="fa-solid fa-coins m-2"></i> Tax &nbsp;
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="/application">
+        <i class="fa-solid fa-user-plus fs-6 m-2"></i> Vacancies &nbsp;
+      </a>
+    </li>
+    <li>
+      <a routerLink="">
+        <i class="fa-solid fa-clipboard fs-6 m-2"></i> Reports &nbsp;
+      </a>
+    </li>
+    <li>
+      <a routerLink="">
+        <i class="fa-solid fa-file-powerpoint fs-6 m-2"></i> Policies &nbsp;
+      </a>
+    </li>
+    <li>
+      <a routerLink=""> <i class="fa-solid fa-gear fs-6 m-2"></i> Settings &nbsp;</a>
+    </li>
+  </ul>
+</div>
+
+<mat-menu #animals="matMenu" class="bg-primary" xPosition="after">
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+  <button mat-menu-item>Invertebrates</button>
+</mat-menu>
+
+<mat-menu #vertebrates="matMenu">
+  <button mat-menu-item>Fishes</button>
+  <button mat-menu-item>Amphibians</button>
+  <button mat-menu-item>Reptiles</button>
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
+</mat-menu>

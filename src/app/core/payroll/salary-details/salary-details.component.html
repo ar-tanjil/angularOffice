@@ -1,0 +1,44 @@
+
+<mat-dialog-content class="mat-typography">
+  <h1 class="text-center">Salary Policy</h1>
+
+  <table class="table p-5">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Basic</th>
+        
+        <td> {{salary.basic | currency : "BDT "}} </td>
+      </tr>
+      <tr>
+        <th>Medical Allowance  ({{salary.medicalAllowance+"%"}})</th>
+        
+        <td> {{salary.medical | currency: "BDT "}} </td>
+      </tr>
+      <tr>
+        <th>Provident Fund  ({{salary.providentFund+"%"}})</th>
+      
+      <td> {{salary.provident | currency: "BDT "}} </td>
+    </tr>
+    <tr>
+      <th>Travel Allowance  ({{salary.providentFund+"%"}})</th>
+    
+    <td> {{salary.provident | currency: "BDT "}} </td>
+  </tr>
+  <tr>
+    <th>Bonus</th>
+  
+  <td> {{salary.bonus }} per year </td>
+</tr>
+<tr>
+  <th>Current Loan</th>
+
+<td> {{salary.loan | currency: "BDT " }} </td>
+</tr>
+    </tbody>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

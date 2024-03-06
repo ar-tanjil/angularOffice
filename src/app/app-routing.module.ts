@@ -13,6 +13,12 @@ import { ApplicationComponent } from './core/application/application.component';
 import { ApplicationFormComponent } from './core/application/form-application/application-form.component';
 import { ApplicationListComponent } from './core/application/list-application/application-list.component';
 import { DetailsApplicationComponent } from './core/application/details-application/details-application.component';
+import { AddSalaryComponent } from './core/payroll/add-salary/add-salary.component';
+import { SalaryDetailsComponent } from './core/payroll/salary-details/salary-details.component';
+import { TaxComponent } from './core/payroll/tax/tax.component';
+import { AttendanceComponent } from './core/employee-table/attendance/attendance.component';
+import { LeavesComponent } from './core/employee-table/leaves/leaves.component';
+import { HolidayComponent } from './core/employee-table/holiday/holiday.component';
 
 const routes: Routes = [
   {path:"dashboard", component:DashbordComponent},
@@ -33,6 +39,12 @@ const routes: Routes = [
   {path:"department", component: DepartmentsComponent},
   {path:"designation", component:DesignationsComponent},
   {path:"payroll", component: PayrollComponent},
+  {path:"salary/:mode/:id", component: AddSalaryComponent},
+  {path:"salaryDetails/:id", component: SalaryDetailsComponent},
+  {path:"attendance", component: AttendanceComponent},
+  {path:"tax", component: TaxComponent},
+  {path:"leave", component: LeavesComponent},
+  {path:"holiday", component: HolidayComponent},
   {path: "", redirectTo:"/dashboard", pathMatch:"full"}
 ];
 

@@ -11,7 +11,7 @@ export class NavbarComponent {
   notification: number = 10;
 
 
-  shouldRun = false;
+  shouldRun = true;
   toggleSidenav(value: boolean) {
     this.shouldRun = value ? false : true;
   }

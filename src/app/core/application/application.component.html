@@ -5,7 +5,10 @@
     <!-- /Breadcrumb -->
     <mat-divider class="m-2"></mat-divider>
       <div style="float: right;" class="m-2">
-        <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;" [routerLink]="['/applicationList']">Applicants List</button>
+        <button mat-raised-button 
+        
+    style=" background-color: #354f52; color: #ffff;"
+        [routerLink]="['/applicationList']">Applicants List</button>
     </div>
   <!-- /Breadcrumb -->
   <!-- <button class="btn btn-danger" routerLink="/apply">Application</button> -->
@@ -14,12 +17,12 @@
   <div class="container">
     <div class="row g-3">
       <div class="col-6" *ngFor="let job of vacantJobs">
-        <mat-card style="background-color: #780000; color:#ffffff">
+        <mat-card style="background-color: #81b29a; color:#ffffff" class="shadow">
           <mat-card-header>
-            <mat-card-title class="fs-2 m-2"> {{ job.jobTitle }} </mat-card-title>
-            <mat-card-subtitle class="fs-4" style="color: #ffffff;">{{ job.departmentName }} </mat-card-subtitle>
+            <mat-card-title class="fs-4 m-2"> {{ job.jobTitle }} </mat-card-title>
+            <mat-card-subtitle class="fs-5" style="color: #ffffff;">{{ job.departmentName }} </mat-card-subtitle>
           </mat-card-header>
-          <mat-divider style="background-color: #ffffff; padding: 1px; margin: 2px;"></mat-divider>
+          <mat-divider style="background-color: #284b63; padding: 1px; margin: 2px;"></mat-divider>
           <div>
             <span
               class="fw-bolder fs-6 m-4"><i class="fa-solid fa-money-check-dollar"></i> {{ job.minSalary | currency : "USD" }} - {{
@@ -28,7 +31,7 @@
             >
             <div style="float: right;">            <!-- <button mat-button>DETAILS</button> -->
             
-            <button mat-raised-button class="m-2" style="background-color: #ffffff; color: #780000;" [routerLink]="['/apply', 'add', job.id]">
+            <button mat-raised-button class="m-2" style="background-color: #284b63; color: #ffff;" [routerLink]="['/apply', 'add', job.id]">
               APPLY
             </button>
           </div>

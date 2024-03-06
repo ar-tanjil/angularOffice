@@ -20,6 +20,21 @@ import { ApplicationComponent } from './application/application.component';
 import { ApplicationFormComponent } from './application/form-application/application-form.component';
 import { ApplicationListComponent } from './application/list-application/application-list.component';
 import { DetailsApplicationComponent } from './application/details-application/details-application.component';
+import { AddSalaryComponent } from './payroll/add-salary/add-salary.component';
+import { DeductionsComponent } from './payroll/deductions/deductions.component';
+import { AdditionsComponent } from './payroll/additions/additions.component';
+import { TaxComponent } from './payroll/tax/tax.component';
+import { SalaryDetailsComponent } from './payroll/salary-details/salary-details.component';
+import { AddTaxComponent } from './payroll/tax/add-tax/add-tax.component';
+import { AttendanceComponent } from "./employee-table/attendance/attendance.component";
+import { CanvasJSAngularChartsModule } from "@canvasjs/angular-charts";
+import { EmpDepChartComponent } from "./dashbord/emp-dep-chart/emp-dep-chart.component";
+import { LeavesComponent } from './employee-table/leaves/leaves.component';
+import { HolidayComponent } from './employee-table/holiday/holiday.component';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
+import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holiday-form.component';
+import { NotificationComponent } from './navbar/notification/notification.component';
+import { LeaveRequestComponent } from './profile/leave-request/leave-request.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +53,21 @@ import { DetailsApplicationComponent } from './application/details-application/d
         ApplicationComponent,
         ApplicationFormComponent,
         ApplicationListComponent,
-        DetailsApplicationComponent
+        DetailsApplicationComponent,
+        AddSalaryComponent,
+        DeductionsComponent,
+        AdditionsComponent,
+        TaxComponent,
+        SalaryDetailsComponent,
+        AddTaxComponent,
+        AttendanceComponent,
+        EmpDepChartComponent,
+        LeavesComponent,
+        HolidayComponent,
+        PayslipComponent,
+        HolidayFormComponent,
+        NotificationComponent,
+        LeaveRequestComponent
     ],
     exports: [
         NavbarComponent,
@@ -54,7 +83,10 @@ import { DetailsApplicationComponent } from './application/details-application/d
         DepartmentFormComponent,
         DesigFormComponent,
         ApplicationComponent,
-        ApplicationFormComponent
+        ApplicationFormComponent,
+        AddSalaryComponent,
+        AttendanceComponent,
+        LeaveRequestComponent
     ],
     imports: [
         MaterialModule,
@@ -62,7 +94,8 @@ import { DetailsApplicationComponent } from './application/details-application/d
         ModelModule,
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CanvasJSAngularChartsModule
     ]
 })
 export class CoreModule {

@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Add Salary</h2>
+<mat-dialog-content class="mat-typography">
+    <div>
+        <div class="row">
+            <form [formGroup]="salaryForm" (ngSubmit)="submit()">
+
+                <mat-form-field class="form-field" *ngIf="!editing">
+                    <mat-label>Employee Id</mat-label>
+                    <input type="text"
+                           matInput
+                           formControlName="employeeId"
+                           required
+                           placeholder="Select Employee Id"
+                           [matAutocomplete]="autoGroup">
+                      <mat-autocomplete #autoGroup="matAutocomplete">
+                          <mat-option *ngFor="let emp of employee" [value]="emp.id">
+                            {{emp.firstName}}
+                          </mat-option>
+                      
+                    </mat-autocomplete>
+                  </mat-form-field>
+
+
+
+                <mat-form-field class="form-field">
+                    <mat-label>Basic</mat-label>
+                    <input matInput placeholder="Basic Salary" formControlName="basic" />
+                </mat-form-field>
+                <mat-form-field class="form-field">
+                    <mat-label>Medical Allowance</mat-label>
+                    <input matInput placeholder="0%" formControlName="medicalAllowance" />
+                </mat-form-field>
+                <mat-form-field class="form-field">
+                    <mat-label>Provident Fund</mat-label>
+                    <input matInput placeholder="0%" formControlName="providentFund" />
+                </mat-form-field>
+
+                <mat-dialog-actions align="end">
+                    <button mat-button mat-dialog-close class="bg-secondary">Cancel</button>
+                    <!-- [mat-dialog-close]="true" -->
+                    <button mat-button type="submit" class="colorMain"  >Add</button>
+                </mat-dialog-actions>
+            </form>
+
+        </div>
+
+    </div>
+</mat-dialog-content>
+
+<!-- 
+      <mat-dialog-actions align="end">
+                <button mat-button mat-dialog-close>Cancel</button>
+                <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+              </mat-dialog-actions>
+ -->

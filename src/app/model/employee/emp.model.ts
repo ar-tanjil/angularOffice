@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Employee, EmployeeTable } from "./employee";
 import { EmpDatasource } from "./emp.datasource";
-import { Observable, ReplaySubject } from "rxjs";
+import { Observable, Observer, ReplaySubject, Subject } from "rxjs";
 import { DepModel } from "../department/department.model";
 import { DesigModel } from "../designation/designation.model";
 import { Department } from "../department/deparment";
 import { Designation } from "../designation/designation";
+import { Refreash, RefreshService } from "../msgService/refereshService";
 
 @Injectable()
 export class EmpModel {
@@ -15,12 +16,24 @@ export class EmpModel {
     private replaySubject: ReplaySubject<EmployeeTable[]>;
 
     constructor(
-        private datasouce: EmpDatasource, 
+        private datasouce: EmpDatasource,
         private depModel: DepModel,
-        private desigModel: DesigModel
-        ) {
+        private desigModel: DesigModel,
+        private refreash: RefreshService
+    ) {
         this.employees = new Array<EmployeeTable>();
         this.replaySubject = new ReplaySubject<EmployeeTable[]>(1);
+        this.loadData();
+
+        this.refreash.messages.subscribe(val => {
+            if (val == Refreash.EMP_TABLE) {
+            this.replaySubject = new ReplaySubject<EmployeeTable[]>(1);
+            this.loadData();
+            }
+        })
+    }
+
+    private loadData() {
         this.datasouce.getAll().subscribe(emp => {
             this.employees = emp;
             this.replaySubject.next(emp);
@@ -28,15 +41,14 @@ export class EmpModel {
         })
     }
 
+
+
     getEmployees(): EmployeeTable[] {
         return this.employees;
     }
 
-    // getEmployee(id: number): Employee | undefined {
-    //     return this.employees.find((emp) => this.locator(emp, id));
-    // }
 
-    getEmployeeObservable(id: number): Observable<EmployeeTable | undefined>{
+    getEmployeeObservable(id: number): Observable<EmployeeTable | undefined> {
         let subject = new ReplaySubject<EmployeeTable | undefined>(1);
         this.replaySubject.subscribe(emp => {
             subject.next(emp.find(e => this.locator(e, id)));
@@ -58,7 +70,6 @@ export class EmpModel {
         if (employee.id == undefined || employee.id == null) {
             this.datasouce.save(employee)
                 .subscribe(emp => {
-
                     let employee = new EmployeeTable();
                     Object.assign(employee, emp);
                     this.employees.push(employee)
@@ -69,27 +80,24 @@ export class EmpModel {
                     let index = this.employees.findIndex(item => {
                         this.locator(item, emp.id);
                     });
-                    
                     let employee = new EmployeeTable();
                     Object.assign(employee, emp);
-                    
-
                     this.employees.splice(index, 1, employee);
                 })
         }
     }
     // All my new Method 
 
-    getOrgEmployee(id: number):Observable<Employee>{
-       return this.datasouce.getById(id);
+    getOrgEmployee(id: number): Observable<Employee> {
+        return this.datasouce.getById(id);
     }
 
 
-    getDeprtmentList():Department[]{
+    getDeprtmentList(): Department[] {
         return this.depModel.getDepartments();
     }
 
-    getDesignationList(): Designation[]{
+    getDesignationList(): Designation[] {
         return this.desigModel.getDesignations();
     }
 

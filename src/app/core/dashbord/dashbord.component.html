@@ -4,3 +4,135 @@
 <mat-divider class="m-2"></mat-divider>
   <!-- /Breadcrumb -->
 </div>
+
+
+<div class="row">
+  <div class="col">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-subtitle class="card-text1 text-center">
+          <i class="fa-solid fa-users fs-1"></i>
+          <span class="fs-3 fw-bold ms-3">{{totalEmployee}}</span></mat-card-subtitle>
+        <mat-card-title>Total Employee</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-raised-button>View List</button>
+       
+      </mat-card-actions>
+      <mat-card-footer class="card-div1">
+       
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-subtitle class="card-text2 text-center">
+          <i class="fa-solid fa-people-roof fs-1"></i>
+          <span class="fs-3 fw-bold ms-3">{{todayPresent}}</span></mat-card-subtitle>
+        <mat-card-title>Attendence</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-raised-button >View List</button>
+       
+      </mat-card-actions>
+      <mat-card-footer class="card-div2">
+       
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-subtitle class="card-text3 text-center">
+          <i class="fa-solid fa-money-bill fs-1">
+          </i><span class="fs-3 fw-bold ms-3">{{totalSalary}}</span></mat-card-subtitle>
+        <mat-card-title>Total Salary</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions  align="end">
+        <button mat-raised-button>View List</button>
+       
+      </mat-card-actions>
+      <mat-card-footer class="card-div3">
+       
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="example-card">
+      <mat-card-header >
+        <mat-card-subtitle class="card-text4 text-center">
+          <i class="fa-solid fa-user-tie fs-1 ">
+          </i><span class="fs-3 fw-bolder  ms-2">{{totalEmployee}}</span></mat-card-subtitle>
+        <mat-card-title>Total Employee</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-raised-button>View List</button>
+       
+      </mat-card-actions>
+      <mat-card-footer class="card-div4">
+       
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+<div class="row mt-2 g-5">
+  <div class="col">
+    <div >
+      <app-emp-dep-chart></app-emp-dep-chart>
+      <div class="card-div1"></div>
+    </div>
+    
+  </div>
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr><th colspan="5" class="fs-4">Task List</th></tr>
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Title</th>
+          <th>Status</th>
+          <th> <button mat-raised-button><i class="fa-solid fa-plus"></i> </button></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card-div1"></div>
+  </div>
+  <div class="col">
+
+    <table class="table">
+      <thead>
+        
+        <tr><th colspan="3" class="fs-4">Arival Time</th></tr>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Check In</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card-div1"></div>
+
+  </div>
+</div>
+
+
+
+

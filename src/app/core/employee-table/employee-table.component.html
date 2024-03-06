@@ -2,11 +2,13 @@
 <div class="container-fluid">
 
    <!-- Breadcrumb -->
-   <h1 class="fw-bold"><i class="fa-solid fa-users fs-1 m-2"></i>Employee</h1>
+   <h3 class="fw-bold"><i class="fa-solid fa-users fs-3 m-2"></i>Employee</h3>
   <!-- /Breadcrumb -->
   <mat-divider class="m-2"></mat-divider>
     <div style="float: right;" class="m-2">
-    <button mat-raised-button style="background-color: #421820; color:#faf9f7 ;"  [routerLink]="['/register']">Add Employee</button>
+    <button mat-raised-button 
+        style=" background-color: #354f52; color: #ffff;"
+    [routerLink]="['/register']">Add Employee</button>
   </div>
    
     <table class="table table-hover table-striped w-100 "  >
@@ -22,7 +24,7 @@
     </thead>    
 
 <tbody>
-    <tr *ngFor="let emp of employTable; let i = index;" class="text-center">
+    <tr *ngFor="let emp of employeeTable; let i = index;" class="text-center">
         <th scope="col"> {{ i + 1}} </th>
         <td> {{emp.firstName}} </td>
         <td> {{emp.lastName}} </td>

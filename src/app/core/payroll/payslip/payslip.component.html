@@ -1,0 +1,101 @@
+
+
+<mat-dialog-content class="mat-typography example">
+  <div class="card">
+    <div class="card-body" style="color: #555273; background-color: #fcfcfc">
+      <p class="text-center fs-3 fw-medium">
+      {{payroll.period | date: "MMMM - YYYY"}} Payslip
+      </p>
+      <div class="d-flex flex-row">
+       
+        <div style="flex: auto"></div>
+        <div>
+          <p>PAYSLIP #</p>
+        </div>
+      </div>
+      <div>
+        <p style="margin: 0">Name: {{employee.firstName}} {{employee.lastName}}</p>
+        <p style="margin: 0">Designation: {{employee.jobTitle}}</p>
+        <p style="margin: 0">TIN: </p>
+        <p>Joning Date: {{employee.hireDate | date: 'longDate'	}} </p>
+      </div>
+      <div class="row gap-4">
+        <div class="col">
+          <table class="table table-hover">
+            <thead>
+              <h1 style="margin: 0">Earnings</h1>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="row">Basic</th>
+                <td>{{payroll.basicSalary | currency : "BDT "}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Medical Allowance</th>
+                <td>{{payroll.medicalAllowance  | currency : "BDT "}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Travel Allowance</th>
+                <td>{{payroll.travelAllowance  | currency : "BDT "}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Bonus</th>
+                <td>{{payroll.bonusAmount  | currency : "BDT "}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Other</th>
+                <td>{{payroll.otherEarning  | currency : "BDT "}} </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        <div class="col">
+          <table class="table table-hover">
+            <thead>
+              <h1 style="margin: 0">Deductions</h1>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="row">Provident Fund</th>
+                <td> {{payroll.providentFund  | currency : "BDT "}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Leave Deduction</th>
+                <td> {{payroll.unpaidLeave  | currency : "BDT "}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Tax</th>
+                <td>{{payroll.tax  | currency : "BDT "}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Loan Payment</th>
+                <td>{{payroll.loanPayment  | currency : "BDT "}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Others</th>
+                <td>{{payroll.otherDeduction  | currency : "BDT "}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <h4 class="fw-bold text-center">
+        Gross Salary: {{payroll.grossSalary  | currency : "BDT "}}
+      </h4>
+      <h4 class="fw-bold text-center">
+        Net Salary: {{payroll.netSalary  | currency : "BDT "}}
+      </h4>
+    </div>
+  </div>
+</mat-dialog-content>
+<!-- </div> -->
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="btn btn-sm" color="primary">Print</button>
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+
+

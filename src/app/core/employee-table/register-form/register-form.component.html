@@ -1,7 +1,7 @@
 <mat-card class="mat-card">
   <mat-card-content>
     <mat-card-header>
-      <mat-card-title> {{title}} </mat-card-title>
+      <mat-card-title> {{ title }} </mat-card-title>
     </mat-card-header>
     <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
       <!--Employee Form-->
@@ -176,7 +176,12 @@
           <mat-form-field>
             <mat-label>Select Designation</mat-label>
             <mat-select formControlName="jobId">
-              <mat-option *ngFor="let job of designationList" value= {{job.id}} > {{job.jobTitle}} </mat-option>
+              <mat-option
+                *ngFor="let job of designationList"
+                [value]="job.id"
+              >
+                {{ job.jobTitle }}
+              </mat-option>
             </mat-select>
             <!-- <mat-hint>Here's the dropdown arrow ^</mat-hint> -->
           </mat-form-field>
@@ -185,17 +190,32 @@
           <mat-form-field>
             <mat-label>Select Department</mat-label>
             <mat-select formControlName="departmentId">
-              <mat-option *ngFor="let dep of departmentList"  value= {{dep.id}} > {{dep.departmentName}} </mat-option>
+              <mat-option
+                *ngFor="let dep of departmentList"
+                [value]="dep.id"
+              >
+                {{ dep.departmentName }}
+              </mat-option>
             </mat-select>
             <!-- <mat-hint>Here's the dropdown arrow ^</mat-hint> -->
           </mat-form-field>
         </div>
       </div>
-      <input
-        type="submit"
-        class="btn btn-primary d-block mx-auto"
-        value="submit"
-      />
+      <div class="text-center">
+        <input type="submit" class="btn btn-primary mx-2" value="submit" />
+        <input *ngIf="editing"
+          type="button"
+          [routerLink]="['/profile', employee.id]"
+          value="Back"
+          class="btn bg-body-secondary mx-2"
+        />
+        <input *ngIf="!editing"
+          type="button"
+          [routerLink]="['/employee']"
+          value="Back"
+          class="btn bg-body-secondary mx-2"
+        />
+      </div>
       <!--
               <mat-form-field class="form-field">
                   <mat-label>Password</mat-label>
