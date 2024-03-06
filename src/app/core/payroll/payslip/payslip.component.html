@@ -29,23 +29,23 @@
             <tbody>
               <tr>
                 <th scope="row">Basic</th>
-                <td>{{payroll.basicSalary}} </td>
+                <td>{{payroll.basicSalary | currency : "BDT "}} </td>
               </tr>
               <tr>
                 <th scope="row">Medical Allowance</th>
-                <td>{{payroll.medicalAllowance}}</td>
+                <td>{{payroll.medicalAllowance  | currency : "BDT "}}</td>
               </tr>
               <tr>
                 <th scope="row">Travel Allowance</th>
-                <td>{{payroll.travelAllowance}} </td>
+                <td>{{payroll.travelAllowance  | currency : "BDT "}} </td>
               </tr>
               <tr>
                 <th scope="row">Bonus</th>
-                <td>{{payroll.bonusAmount}} </td>
+                <td>{{payroll.bonusAmount  | currency : "BDT "}} </td>
               </tr>
               <tr>
                 <th scope="row">Other</th>
-                <td>{{payroll.otherEarning}} </td>
+                <td>{{payroll.otherEarning  | currency : "BDT "}} </td>
               </tr>
               
             </tbody>
@@ -60,33 +60,33 @@
             <tbody>
               <tr>
                 <th scope="row">Provident Fund</th>
-                <td> {{payroll.providentFund}} </td>
+                <td> {{payroll.providentFund  | currency : "BDT "}} </td>
               </tr>
               <tr>
                 <th scope="row">Leave Deduction</th>
-                <td> {{payroll.unpaidLeave}} </td>
+                <td> {{payroll.unpaidLeave  | currency : "BDT "}} </td>
               </tr>
               <tr>
                 <th scope="row">Tax</th>
-                <td>{{payroll.tax}} </td>
+                <td>{{payroll.tax  | currency : "BDT "}} </td>
               </tr>
               <tr>
                 <th scope="row">Loan Payment</th>
-                <td>{{payroll.loanPayment}} </td>
+                <td>{{payroll.loanPayment  | currency : "BDT "}} </td>
               </tr>
               <tr>
                 <th scope="row">Others</th>
-                <td>{{payroll.otherDeduction}} </td>
+                <td>{{payroll.otherDeduction  | currency : "BDT "}} </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       <h4 class="fw-bold text-center">
-        Gross Salary: {{payroll.grossSalary}}
+        Gross Salary: {{payroll.grossSalary  | currency : "BDT "}}
       </h4>
       <h4 class="fw-bold text-center">
-        Net Salary: {{payroll.netSalary}}
+        Net Salary: {{payroll.netSalary  | currency : "BDT "}}
       </h4>
     </div>
   </div>

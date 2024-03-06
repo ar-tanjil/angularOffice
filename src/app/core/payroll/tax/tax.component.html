@@ -34,11 +34,12 @@
       </thead>
   
       <tbody>
-        <tr *ngFor="let tax of taxTable; let i = index" class="text-center">
+        <tr *ngFor="let tax of taxTable; let i = index; let l = last" class="text-center">
           <th scope="col">{{ i + 1 }}</th>
-          <td>{{ tax.minRange | currency : " BDT" }}</td>
-          <td>{{ tax.maxRange | currency: " BDT"}}</td>
-          <td>{{ tax.percentage+"%" }}</td>
+          <td *ngIf="!l">{{ tax.minRange | currency : "BDT " }}</td>
+          <td *ngIf="l" colspan="2">More Than That</td>
+          <td *ngIf="!l">{{ tax.maxRange | currency: "BDT "}}</td>
+          <td >{{ tax.percentage+"%" }}</td>
           <!-- <td> {{emp.jobTitle}} </td>
           <td> {{emp.departmentName}} </td> -->
           <td>
