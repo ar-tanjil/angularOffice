@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { DepDatasource } from 'src/app/model/department/dep.datasource';
-import { Department, DepartmentChart } from 'src/app/model/department/deparment';
-import { DepModel } from 'src/app/model/department/department.model';
+import { Department, DepartmentChart } from 'src/app/model/department/deparment.model';
+import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
+
 
 
 @Component({
@@ -12,21 +12,35 @@ import { DepModel } from 'src/app/model/department/department.model';
 })
 export class EmpDepChartComponent implements OnInit {
 
-  
+  departmentChart: DepartmentChart[] = new Array<DepartmentChart>();
+  replaySubject: ReplaySubject<DepartmentChart[]>;
 
 
-    constructor(private depData: DepDatasource,
-      private model: DepModel){
-        
-    }
-ngOnInit(): void {
-  
-}
+  constructor(
+    private depData: DepartmentDatasource,
+  ) {
+      this.departmentChart = new Array<DepartmentChart>();
+      this.replaySubject = new ReplaySubject<DepartmentChart[]>(1);
+  }
+
+
+  ngOnInit(): void {
+
+
+  }
+
+
+  getChartData(){
+    this.depData.getChartData().subscribe(data => {
+      this.departmentChart = data;
+      this.replaySubject.next(data);
+      this.replaySubject.complete();
+    })
+  }
 
 
 
-
-chartOptions = {
+  chartOptions = {
     animationEnabled: true,
     title: {
       text: "Employee By Department"
@@ -36,14 +50,15 @@ chartOptions = {
       startAngle: -90,
       indexLabel: "{name}: {y}",
       yValueFormatString: "#,###.##'%'",
-      dataPoints: this.model.getChartData()
+      dataPoints: this.departmentChart
     }]
   }
 
 
 
- 
+
 }
 
 // https://canvasjs.com/angular-charts/pie-chart-index-data-label/
 // https://code-projects.org/hr-management-system-in-java-with-source-code/
+// chartjs

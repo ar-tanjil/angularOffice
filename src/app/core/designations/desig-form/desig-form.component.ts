@@ -1,13 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DepDatasource } from 'src/app/model/department/dep.datasource';
-import { Department } from 'src/app/model/department/deparment';
-import { DepModel } from 'src/app/model/department/department.model';
-import { DesinationDatasource } from 'src/app/model/designation/desig.datasource';
-import { Designation } from 'src/app/model/designation/designation';
-import { DesigModel } from 'src/app/model/designation/designation.model';
+import { Department } from 'src/app/model/department/deparment.model';
+import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
+import { JobDatasource } from 'src/app/model/designation/job.datasource';
+import { Job } from 'src/app/model/designation/job.model';
+
 
 @Component({
   selector: 'app-desig-form',
@@ -17,20 +15,24 @@ import { DesigModel } from 'src/app/model/designation/designation.model';
 export class DesigFormComponent {
 
   title: string = "";
-  designation: Designation = new Designation();
-  departmentList: Department[] = new Array<Department>();
+  designation: Job;
+  departmentList: Department[];
   editing: boolean = false;
 
-  constructor(private jobData: DesinationDatasource,
-    private depData: DepDatasource,
+  constructor(private jobData: JobDatasource,
+    private depData: DepartmentDatasource,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
     public dialogRef: MatDialogRef<DesigFormComponent>
   ) {
-      this.getData(data.id);
-      this.getDepartmentList();
+
+    this.designation = new Job();
+    this.departmentList  = new Array<Department>()
   }
 
   ngOnInit() {
+    
+    this.getData(this.data.id);
+    this.getDepartmentList();
   }
 
 
@@ -69,13 +71,13 @@ export class DesigFormComponent {
   submitForm() {
     if (this.designationForm.valid) {
       Object.assign(this.designation, this.designationForm.value);
-      this.designationForm.reset();
       if(!this.designation.id){
         this.jobData.save(this.designation).subscribe(job => {
           
           if(job){
               this.dialogRef.close(job);
             }
+            this.dialogRef.close();
           }   
         )
       } else{
@@ -83,7 +85,7 @@ export class DesigFormComponent {
             this.dialogRef.close(job);
           })
       }
-
+      this.designationForm.reset();
     }
   }
 

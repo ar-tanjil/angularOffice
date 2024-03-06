@@ -2,8 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { loadTranslations } from '@angular/localize';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
-import { Employee, EmployeeTable } from 'src/app/model/employee/employee';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
+import { Employee, EmployeeTable } from 'src/app/model/employee/employee.model';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { Salary } from 'src/app/model/payroll/payroll.model';
 
@@ -23,7 +23,7 @@ export class AddSalaryComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddSalaryComponent>,
     private payData: PayrollDatasource,
-    private empData: EmpDatasource,
+    private empData: EmployeeDatasource,
     @Inject(MAT_DIALOG_DATA) private data: { id: number }
     ) {
     this.salary = new Salary();

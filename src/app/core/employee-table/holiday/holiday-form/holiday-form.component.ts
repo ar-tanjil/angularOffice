@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { Holiday } from 'src/app/model/attendance/attendance.model';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { Holiday } from 'src/app/model/payroll/payroll.model';
+
 
 @Component({
   selector: 'app-holiday-form',
@@ -17,7 +19,7 @@ export class HolidayFormComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<HolidayFormComponent>,
-    private payData: PayrollDatasource,
+    private attenData: AttendanceDatasource,
     @Inject(MAT_DIALOG_DATA) private data: { id: number }
   ) {
     this.holiday = new Holiday();
@@ -43,11 +45,11 @@ export class HolidayFormComponent implements OnInit {
     if(this.holidayForm.valid){
       Object.assign(this.holiday, this.holidayForm.value);
       if(this.editing){
-        this.payData.updateHoliday(this.holiday).subscribe(holy => {
+        this.attenData.updateHoliday(this.holiday).subscribe(holy => {
           this.dialogRef.close(holy);
         })
       } else{
-        this.payData.saveHoliday(this.holiday).subscribe(holy => {
+        this.attenData.saveHoliday(this.holiday).subscribe(holy => {
           this.dialogRef.close(holy);
         })
       }
@@ -60,7 +62,7 @@ export class HolidayFormComponent implements OnInit {
     if (id < 0) {
       return;
     }
-    this.payData.getHolidayById(id).subscribe(holy => {
+    this.attenData.getHolidayById(id).subscribe(holy => {
       this.holiday = holy;
       this.holidayForm.patchValue(this.holiday);
     })

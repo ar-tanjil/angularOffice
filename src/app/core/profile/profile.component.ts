@@ -1,16 +1,14 @@
-import { Holiday } from './../../model/payroll/payroll.model';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
-import { Employee } from 'src/app/model/employee/employee';
-import { AddSalaryComponent } from '../payroll/add-salary/add-salary.component';
-import { Subscription, retry } from 'rxjs';
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { Employee } from 'src/app/model/employee/employee.model';
+import { Subscription} from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { Attendance } from 'src/app/model/payroll/payroll.model';
 import { LeaveRequestComponent } from './leave-request/leave-request.component';
 import { auto } from '@popperjs/core';
+import { Attendance } from 'src/app/model/attendance/attendance.model';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
+import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
 
 @Component({
   selector: 'app-profile',
@@ -30,8 +28,9 @@ export class ProfileComponent {
   checkOutTime!: string;
   holiday: boolean = false;
 
-  constructor(private empData: EmpDatasource,
+  constructor(private empData: EmployeeDatasource,
     private payData: PayrollDatasource,
+    private attenData: AttendanceDatasource,
     private activerRoute: ActivatedRoute,
     private dialog: MatDialog) {
     let day = new Date();
@@ -61,7 +60,7 @@ export class ProfileComponent {
 
 
   checkHoliday(day: string){
-    this.payData.checkHoliday(day).subscribe(check => {
+    this.attenData.checkHoliday(day).subscribe(check => {
       this.holiday = check;
       this.getCheckInOut(this.attendance);
     })
@@ -88,7 +87,7 @@ export class ProfileComponent {
 
   giveAttendance(id: number) {
     if (id > 0) {
-      this.payData.giveAttendance(id).subscribe(e => {
+      this.attenData.giveAttendance(id).subscribe(e => {
         this.getAttendanc(id, this.date);
       })
     }
@@ -97,7 +96,7 @@ export class ProfileComponent {
 
 
   getAttendanc(id: number, day: string) {
-    this.payData.getAttendanceByDay(id, day).subscribe(att => {
+    this.attenData.getAttendanceByDay(id, day).subscribe(att => {
       this.attendance = att ?? new Attendance();
      
       this.checkHoliday(this.date);
@@ -122,15 +121,6 @@ export class ProfileComponent {
       
     })
   }
-
-
-
-
-  // getPerid(date: Date) {
-  //   this.sartDate = new Date(date.getFullYear(), date.getMonth(), 1, 6)
-  //     .toISOString().split("T")[0];
-  // }
-
 
 
   ngOnDestroy() {

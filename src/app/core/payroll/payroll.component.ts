@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReplaySubject, retry } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { PayrollTable, Salary } from 'src/app/model/payroll/payroll.model';
 import { AddSalaryComponent } from './add-salary/add-salary.component';
@@ -35,12 +35,15 @@ export class PayrollComponent implements OnInit {
   }
 
 
+  refresh(){
+    this.model.deleteAllPayroll().subscribe(() => {
 
-
+    })
+}
 
   lastMonth() {
     let date: Date = new Date();
-    let month: number = date.getMonth() - 1;
+    let month: number = date.getMonth();
     let year: number = date.getFullYear();
     if (month < 0) {
       month += 12;

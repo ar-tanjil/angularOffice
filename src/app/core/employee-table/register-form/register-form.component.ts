@@ -1,15 +1,13 @@
-import { DepModel } from '../../../model/department/department.model';
-import { Department } from 'src/app/model/department/deparment';
+import { Department } from 'src/app/model/department/deparment.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { EmpModel } from 'src/app/model/employee/emp.model';
-import { Employee } from 'src/app/model/employee/employee';
-import { FormMessage, FormOwner } from 'src/app/model/from.message.service';
-import { Designation } from 'src/app/model/designation/designation';
-import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
-import { DepDatasource } from 'src/app/model/department/dep.datasource';
-import { DesinationDatasource } from 'src/app/model/designation/desig.datasource';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Employee } from 'src/app/model/employee/employee.model';
+import { JobDatasource } from 'src/app/model/designation/job.datasource';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
+import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
+import { Job } from 'src/app/model/designation/job.model';
+
 
 @Component({
   selector: 'app-register-form',
@@ -20,18 +18,18 @@ export class RegisterFormComponent implements OnInit {
 
   employee: Employee = new Employee();
   departmentList!: Department[];
-  designationList!: Designation[];
+  designationList!: Job[];
 
   editing!: boolean;
   title: string = "Add New Employee";
 
 
   constructor(
-    private empData: EmpDatasource,
+    private empData: EmployeeDatasource,
     private activeRoute: ActivatedRoute,
     private route: Router,
-    private depData: DepDatasource,
-    private jobData: DesinationDatasource
+    private depData: DepartmentDatasource,
+    private jobData: JobDatasource
   ) {
 
 
@@ -75,7 +73,7 @@ export class RegisterFormComponent implements OnInit {
 
   getDesignation(): void {
     this.jobData.getAll().subscribe(job => {
-      this.designationList = new Array<Designation>();
+      this.designationList = new Array<Job>();
       this.designationList = job;
     })
   }

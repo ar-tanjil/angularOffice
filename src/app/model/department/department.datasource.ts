@@ -1,11 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError } from "rxjs";
-import { Department, DepartmentChart } from "./deparment";
+import { Department, DepartmentChart } from "./deparment.model";
 import { HttpMessage } from "../httpMessage.model";
 
 @Injectable()
-export class DepDatasource{
+export class DepartmentDatasource{
 
     private url: string = "http://localhost:8080/departments";
 
@@ -33,7 +33,7 @@ export class DepDatasource{
 
 
 
-    getChatData(): Observable<DepartmentChart[]>{
+    getChartData(): Observable<DepartmentChart[]>{
         return this.sendRequest<DepartmentChart[]>("GET", `${this.url}/chart/dep`);
       }
     

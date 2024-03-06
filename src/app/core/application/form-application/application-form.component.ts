@@ -1,32 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Application } from 'src/app/model/application/application';
+import { Application } from 'src/app/model/application/application.model';
 import { ApplicationDatasource } from 'src/app/model/application/application.datsource';
-import { ApplicationModel } from 'src/app/model/application/application.model';
-import { Designation } from 'src/app/model/designation/designation';
+import { Job } from 'src/app/model/designation/job.model';
+
 
 @Component({
   selector: 'app-application-form',
   templateUrl: './application-form.component.html',
   styleUrls: ['./application-form.component.scss']
 })
-export class ApplicationFormComponent {
+export class ApplicationFormComponent implements OnInit {
 
   title!: string;
 
-  application: Application = new Application();
+  application: Application;
   editing: boolean = false;
-  job: Designation = new Designation();
+  job: Job;
 
-  constructor(private appModel: ApplicationDatasource, private activeRoute: ActivatedRoute,
-    private appData: ApplicationDatasource, private router: Router) {
-
-    activeRoute.params.subscribe(params => {
+  constructor(
+    private appModel: ApplicationDatasource, 
+    private activeRoute: ActivatedRoute,
+    private appData: ApplicationDatasource, 
+    private router: Router) {
+      this.application = new Application();
+      this.job = new Job();
+    
+      activeRoute.params.subscribe(params => {
       this.editing = params["mode"] == 'edit';
       let id = params["id"];
         this.getApplicationForUpdate(id);
     })
+  }
+
+
+
+  ngOnInit(): void {
+ 
   }
 
 

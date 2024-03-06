@@ -1,6 +1,6 @@
 import { publishFacade } from "@angular/compiler";
 
-export class Designation{
+export class Job{
     constructor(
        public id?: number,
        public jobTitle?: string,

@@ -1,25 +1,39 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { Application, ApplicationTable } from 'src/app/model/application/application';
 import { ApplicationDatasource } from 'src/app/model/application/application.datsource';
-import { ApplicationModel } from 'src/app/model/application/application.model';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Application, ApplicationTable } from 'src/app/model/application/application.model';
+import { ReplaySubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-application-list',
   templateUrl: './application-list.component.html',
   styleUrls: ['./application-list.component.scss']
 })
-export class ApplicationListComponent{
+export class ApplicationListComponent implements OnInit{
 
-  constructor(private appModel: ApplicationModel){
+  applicationList: ApplicationTable[];
+  replaySubject: ReplaySubject<ApplicationTable[]>;
+
+  constructor(private appData: ApplicationDatasource){
     
-    
+    this.applicationList = new Array<ApplicationTable>();
+    this.replaySubject = new ReplaySubject<ApplicationTable[]>(1);
+
+  }
+
+
+  ngOnInit(): void {
+      this.getApplicationList();
   }
 
   
-  get applicants(){
-    return this.appModel.getApplications(); 
+  getApplicationList(){
+    this.appData.getAll().subscribe(app => {
+      this.applicationList = app;
+      this.replaySubject.next(app);
+      this.replaySubject.complete();
+    })
   }
-
 
 
   

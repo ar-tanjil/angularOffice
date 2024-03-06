@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReplaySubject } from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { Holiday } from 'src/app/model/payroll/payroll.model';
 import { HolidayFormComponent } from './holiday-form/holiday-form.component';
 import { auto } from '@popperjs/core';
 import Swal from 'sweetalert2';
+import { Holiday } from 'src/app/model/attendance/attendance.model';
+import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
 
 @Component({
   selector: 'app-holiday',
@@ -18,7 +19,7 @@ export class HolidayComponent {
   replaySubject: ReplaySubject<Holiday[]>;
 
   constructor(
-    private payData: PayrollDatasource,
+    private attenData: AttendanceDatasource,
     private dialog: MatDialog
   ) {
     this.holiday = new Array<Holiday>();
@@ -29,7 +30,7 @@ export class HolidayComponent {
 
 
   getAllHoliday() {
-    this.payData.getAllHoliday().subscribe(holy => {
+    this.attenData.getAllHoliday().subscribe(holy => {
       this.holiday = holy;
       this.replaySubject.next(holy);
       this.replaySubject.complete();
@@ -93,7 +94,7 @@ export class HolidayComponent {
     }).then((result) => {
 
       if (result.value) {
-          this.payData.deleteHoliday(id).subscribe(tax => {
+          this.attenData.deleteHoliday(id).subscribe(tax => {
             this.getAllHoliday();
           })
 

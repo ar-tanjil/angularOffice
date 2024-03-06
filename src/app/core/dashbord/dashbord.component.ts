@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
+import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 
 @Component({
@@ -17,7 +18,8 @@ export class DashbordComponent implements OnInit {
 
   constructor(
     private payData: PayrollDatasource,
-    private empData: EmpDatasource
+    private empData: EmployeeDatasource,
+    private attenData: AttendanceDatasource
   ) { }
 
 
@@ -41,7 +43,7 @@ export class DashbordComponent implements OnInit {
   }
 
   getTodayPresentNumber(){
-    this.payData.countTodayAttendance().subscribe(total => {
+    this.attenData.countTodayAttendance().subscribe(total => {
       this.todayPresent = total;
     })
   }

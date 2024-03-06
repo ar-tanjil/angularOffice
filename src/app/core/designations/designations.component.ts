@@ -1,13 +1,13 @@
-import { DesinationDatasource } from './../../model/designation/desig.datasource';
+import {JobDatasource } from '../../model/designation/job.datasource';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Designation } from 'src/app/model/designation/designation';
-import { DesigModel } from 'src/app/model/designation/designation.model';
+
 import { DesigFormComponent } from './desig-form/desig-form.component';
 import { auto } from '@popperjs/core';
 import { ReplaySubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { Job } from 'src/app/model/designation/job.model';
 
 @Component({
   selector: 'app-designations',
@@ -16,17 +16,17 @@ import Swal from 'sweetalert2';
 })
 export class DesignationsComponent {
 
-  designations: Designation[];
-  private locator = (designation: Designation, id?: number) => designation.id == id;
-  private replaySubject: ReplaySubject<Designation[]>;
+  designations: Job[];
+  private locator = (designation: Job, id?: number) => designation.id == id;
+  private replaySubject: ReplaySubject<Job[]>;
 
   constructor(
-    private jobData: DesinationDatasource,
+    private jobData: JobDatasource,
     private dialog: MatDialog,
     private toaster: ToastrService
   ) {
-    this.designations = new Array<Designation>();
-    this.replaySubject = new ReplaySubject<Designation[]>();
+    this.designations = new Array<Job>();
+    this.replaySubject = new ReplaySubject<Job[]>();
     this.getAllJobs();
   }
 
@@ -57,6 +57,7 @@ export class DesignationsComponent {
         this.getAllJobs();
         this.toaster.success("Add New Job");
       }
+      this.getAllJobs();
 
     })
   }
@@ -80,6 +81,7 @@ export class DesignationsComponent {
         this.getAllJobs();
         this.toaster.success("Updated")
       }
+      this.getAllJobs();
     })
 
   }

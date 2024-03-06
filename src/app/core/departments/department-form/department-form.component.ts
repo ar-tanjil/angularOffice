@@ -2,9 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { DepDatasource } from 'src/app/model/department/dep.datasource';
-import { Department } from 'src/app/model/department/deparment';
-import { DepModel } from 'src/app/model/department/department.model';
+import { Department } from 'src/app/model/department/deparment.model';
+import { JobDatasource } from 'src/app/model/designation/job.datasource';
 
 @Component({
   selector: 'app-department-form',
@@ -17,7 +16,7 @@ export class DepartmentFormComponent {
   department: Department = new Department();
   editing: boolean = false;
   constructor(
-    private depData: DepDatasource,
+    private depData: JobDatasource,
     private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
     public dialogRef: MatDialogRef<DepartmentFormComponent>

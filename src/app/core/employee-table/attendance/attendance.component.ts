@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ignoreElements } from 'rxjs';
+import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { AttendanceSheet } from 'src/app/model/attendance/attendance.model';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { AttendanceSheet, AttendanceDemo } from 'src/app/model/payroll/payroll.model';
+
 
 @Component({
   selector: 'app-attendance',
@@ -17,7 +18,10 @@ export class AttendanceComponent implements OnInit {
   endDate!: string;
   titleMonth!: string;
 
-  constructor(private payData: PayrollDatasource) {
+  constructor(
+    private payData: PayrollDatasource,
+    private attnData: AttendanceDatasource
+    ) {
     let date = new Date();
     this.getPerid(date);
     this.titleMonth = this.getMonthsString(date);
@@ -72,8 +76,11 @@ export class AttendanceComponent implements OnInit {
 
 
   getAttendanceSheet(start: string, end: string) {
-    this.payData.getAttendanceSheet(start, end).subscribe(sheet => {
+    this.attnData.getCurrentMonthSheet().subscribe(sheet => {
       this.attendance = sheet;
+      console.log(this.attendance);
+      
+
     })
   }
 

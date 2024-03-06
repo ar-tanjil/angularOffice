@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { NotificationService } from 'src/app/model/notification/notifiaction.data';
-import { NotifyModel } from 'src/app/model/notification/notification.model';
+import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { Leave } from 'src/app/model/attendance/attendance.model';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { Leave } from 'src/app/model/payroll/payroll.model';
+
 
 @Component({
   selector: 'app-leave-request',
@@ -16,7 +16,7 @@ export class LeaveRequestComponent {
   leave: Leave;
 
   constructor(
-    private payData: PayrollDatasource,
+    private attenData: AttendanceDatasource,
     private dialogRef: MatDialogRef<LeaveRequestComponent>
     ){
       this.leave = new Leave();
@@ -41,7 +41,7 @@ export class LeaveRequestComponent {
     this.leave.status = false;
     console.log(this.leave);
     
-    this.payData.saveLeave(this.leave).subscribe(l => {
+    this.attenData.saveLeave(this.leave).subscribe(l => {
       console.log(l);
       
     // this.dialogRef.close()

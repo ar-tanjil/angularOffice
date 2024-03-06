@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Employee, EmployeeTable } from "./employee";
+import { Employee, EmployeeTable } from "./employee.model";
 import { HttpClient } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
 
 @Injectable()
-export class EmpDatasource{
+export class EmployeeDatasource{
 
     private url: string = "http://localhost:8080/employees";
 
@@ -47,10 +47,5 @@ export class EmpDatasource{
             throw(`Network Error: ${error.statusText} (${error.status})`)
         }));
     }
-
-    // Direct method 
-    // getDirAll(): Observable<EmployeeTable[]>{
-    //     return this.sendRequest<EmployeeTable[]>("GET", this.url);
-    // }
 
 }

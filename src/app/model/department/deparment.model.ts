@@ -10,7 +10,6 @@ export class Department{
 
 export class DepartmentChart{
     constructor(
-        
         public name: string,
         public y: number
     ){}

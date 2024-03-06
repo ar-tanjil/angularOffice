@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Department } from 'src/app/model/department/deparment';
-import { DepModel } from 'src/app/model/department/department.model';
+import { Department } from 'src/app/model/department/deparment.model';
 import { FormMessage, FormOwner } from 'src/app/model/from.message.service';
 import { DepartmentFormComponent } from './department-form/department-form.component';
 import { auto } from '@popperjs/core';
 import { ReplaySubject } from 'rxjs';
-import { DepDatasource } from 'src/app/model/department/dep.datasource';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+import { JobDatasource } from 'src/app/model/designation/job.datasource';
 
 @Component({
   selector: 'app-departments',
@@ -25,7 +24,7 @@ export class DepartmentsComponent {
 
 
   constructor(
-    private depData: DepDatasource, 
+    private depData: JobDatasource, 
     private dialog: MatDialog,
     private toster: ToastrService
     ) {
