@@ -26,8 +26,6 @@ export class RegisterFormComponent implements OnInit {
 
   constructor(
     private empData: EmployeeDatasource,
-    private activeRoute: ActivatedRoute,
-    private route: Router,
     private depData: DepartmentDatasource,
     private jobData: JobDatasource,    
     public dialogRef: MatDialogRef<RegisterFormComponent>,
@@ -54,9 +52,7 @@ export class RegisterFormComponent implements OnInit {
   getDesignation(): void {
     this.jobData.getAll().subscribe(job => {
       this.designationList = new Array<Job>();
-      this.designationList = job;
-      console.log(this.designationList);
-      
+      this.designationList = job;      
     })
   }
 
@@ -87,9 +83,10 @@ export class RegisterFormComponent implements OnInit {
   )
 
   submitForm() {
-    if (!this.employeeForm.valid) {
+    if (this.employeeForm.valid) {
       Object.assign(this.employee, this.employeeForm.value);
-
+      console.log(this.employee);
+      
       if(this.data.id){
         this.empData.update(this.employee).subscribe(emp => {
           if(emp){

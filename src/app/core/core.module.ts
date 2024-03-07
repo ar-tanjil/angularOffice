@@ -36,6 +36,7 @@ import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holi
 import { NotificationComponent } from './navbar/notification/notification.component';
 import { LeaveRequestComponent } from './profile/leave-request/leave-request.component';
 import { DemoFormComponent } from './demo/demo-form/demo-form.component';
+import { LoginComponent } from "./login/login.component";
 
 @NgModule({
     declarations: [
@@ -69,7 +70,8 @@ import { DemoFormComponent } from './demo/demo-form/demo-form.component';
         HolidayFormComponent,
         NotificationComponent,
         LeaveRequestComponent,
-        DemoFormComponent
+        DemoFormComponent,
+        LoginComponent
     ],
     exports: [
         NavbarComponent,
@@ -88,7 +90,10 @@ import { DemoFormComponent } from './demo/demo-form/demo-form.component';
         ApplicationFormComponent,
         AddSalaryComponent,
         AttendanceComponent,
-        LeaveRequestComponent
+        LeaveRequestComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        LoginComponent
     ],
     imports: [
         MaterialModule,

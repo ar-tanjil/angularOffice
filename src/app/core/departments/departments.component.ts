@@ -55,8 +55,8 @@ export class DepartmentsComponent {
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
       if (ob) {
-        let index = this.departments.push(ob);
-        this.toster.success("Add New Department");
+          this.departments.push(ob);
+          this.toster.success("Add New Department");  
       }
 
     })

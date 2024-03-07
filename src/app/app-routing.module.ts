@@ -19,33 +19,80 @@ import { TaxComponent } from './core/payroll/tax/tax.component';
 import { AttendanceComponent } from './core/employee-table/attendance/attendance.component';
 import { LeavesComponent } from './core/employee-table/leaves/leaves.component';
 import { HolidayComponent } from './core/employee-table/holiday/holiday.component';
+import { LoginComponent } from './core/login/login.component';
+import { AuthGuard } from './model/authentication/authGurd';
 
 const routes: Routes = [
-  {path:"dashboard", component:DashbordComponent},
-  {path: "employee", component:EmployeeTableComponent},
-  {path:"application", component:ApplicationComponent},
-  {path:"applicationList", component:ApplicationListComponent},
-  {path:"details/:mode/:id", component:DetailsApplicationComponent},
-  {path: "register/:mode/:id", component: RegisterFormComponent},
-  {path: "register", component: RegisterFormComponent},
-  {path: "department/:mode", component: DepartmentFormComponent},
-  {path: "department/:mode/:id", component: DepartmentFormComponent},
-  {path: "designation/:mode", component: DesigFormComponent},
-  {path: "designation/:mode/:id", component: DesigFormComponent},
-  {path:"apply", component:ApplicationFormComponent},
-  {path:"apply/:mode/:id", component:ApplicationFormComponent},
-  {path:"profile", component: ProfileComponent},
-  {path:"profile/:id", component: ProfileComponent},
-  {path:"department", component: DepartmentsComponent},
-  {path:"designation", component:DesignationsComponent},
-  {path:"payroll", component: PayrollComponent},
-  {path:"salary/:mode/:id", component: AddSalaryComponent},
-  {path:"salaryDetails/:id", component: SalaryDetailsComponent},
-  {path:"attendance", component: AttendanceComponent},
-  {path:"tax", component: TaxComponent},
-  {path:"leave", component: LeavesComponent},
-  {path:"holiday", component: HolidayComponent},
-  {path: "", redirectTo:"/dashboard", pathMatch:"full"}
+  {
+    path: "dashboard",
+    component: DashbordComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "employee",
+    component: EmployeeTableComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "application",
+    component: ApplicationComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "applicationList",
+    component: ApplicationListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "details/:mode/:id",
+    component: DetailsApplicationComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "register/:mode/:id",
+    component: RegisterFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "register",
+    component: RegisterFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "department/:mode",
+    component: DepartmentFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "department/:mode/:id",
+    component: DepartmentFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "designation/:mode",
+    component: DesigFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "designation/:mode/:id",
+    component: DesigFormComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: "apply", component: ApplicationFormComponent },
+  { path: "apply/:mode/:id", component: ApplicationFormComponent },
+  { path: "profile", component: ProfileComponent },
+  { path: "profile/:id", component: ProfileComponent },
+  { path: "department", component: DepartmentsComponent },
+  { path: "designation", component: DesignationsComponent },
+  { path: "payroll", component: PayrollComponent },
+  { path: "salary/:mode/:id", component: AddSalaryComponent },
+  { path: "salaryDetails/:id", component: SalaryDetailsComponent },
+  { path: "attendance", component: AttendanceComponent },
+  { path: "tax", component: TaxComponent },
+  { path: "leave", component: LeavesComponent },
+  { path: "holiday", component: HolidayComponent },
+  { path: "login", component: LoginComponent },
+  { path: "", redirectTo: "/login", pathMatch: "full" }
 ];
 
 @NgModule({

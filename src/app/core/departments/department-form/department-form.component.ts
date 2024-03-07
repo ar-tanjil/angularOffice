@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Department } from 'src/app/model/department/deparment.model';
+import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
 import { JobDatasource } from 'src/app/model/designation/job.datasource';
 
 @Component({
@@ -16,7 +17,7 @@ export class DepartmentFormComponent {
   department: Department = new Department();
   editing: boolean = false;
   constructor(
-    private depData: JobDatasource,
+    private depData: DepartmentDatasource,
     private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
     public dialogRef: MatDialogRef<DepartmentFormComponent>
@@ -26,6 +27,7 @@ export class DepartmentFormComponent {
         this.depData.getById(this.data.id).subscribe(dep => {
           this.department = dep;
           this.departmentForm.patchValue(this.department);
+          this.editing = true;
         })
       }
   }
@@ -42,15 +44,14 @@ export class DepartmentFormComponent {
   submitForm() {
     if (this.departmentForm.valid) {
       Object.assign(this.department, this.departmentForm.value);
-      this.departmentForm.reset();
-      if (this.department.id) {
+      if (this.editing) {
         this.depData.update(this.department).subscribe(dep => {
           this.dialogRef.close(dep);
 
         })
       } else {
         this.depData.save(this.department).subscribe(dep => {
-          this.dialogRef.close(dep);
+            this.dialogRef.close(dep);
         })
       }
 
