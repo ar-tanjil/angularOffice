@@ -46,7 +46,6 @@ export class EmployeeTableComponent {
           );
           addEmployeeDialog.afterClosed().subscribe(ob => {
           if(ob){
-            console.log(ob);
             this.getEmployTable();
           }
           })

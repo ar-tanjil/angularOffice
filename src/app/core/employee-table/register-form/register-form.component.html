@@ -38,7 +38,7 @@
             
           <mat-form-field class="form-field"  appearance="outline" >
             <mat-label>Select Department</mat-label>
-            <mat-select formControlName="departmentId">
+            <mat-select formControlName="departmentId" (closed)="getDesignation(dep.value)" #dep>
               <mat-option *ngFor="let dep of departmentList;" [value]="dep.id">
                 {{dep.departmentName}}
                  </mat-option>
@@ -47,7 +47,7 @@
 
           <mat-form-field class="form-field"  appearance="outline">
             <mat-label>Select Designation</mat-label>
-            <mat-select formControlName="jobId">
+            <mat-select formControlName="jobId" >
               <mat-option *ngFor="let job of designationList" [value]="job.id">
                 {{job.jobTitle}}
               </mat-option>

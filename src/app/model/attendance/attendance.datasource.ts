@@ -6,26 +6,26 @@ import { Attendance, AttendanceSheet, Holiday, Leave } from "./attendance.model"
 
 
 @Injectable()
-export class AttendanceDatasource{
+export class AttendanceDatasource {
 
     private holidayUrl: string = "http://localhost:8080/holidays";
     private leaveUrl: string = "http://localhost:8080/emp_leaves";
     private attendanceUrl: string = "http://localhost:8080/attendances";
 
-    constructor(private http: HttpClient){ };
+    constructor(private http: HttpClient) { };
 
 
     // Attendance ---------------------------------------------------
 
- countTodayAttendance():Observable<number>{
-        return this.sendRequest<number>("GET", `${this.attendanceUrl}/count/present`);    
+    countTodayAttendance(): Observable<number> {
+        return this.sendRequest<number>("GET", `${this.attendanceUrl}/count/present`);
     }
 
     getAttendanceSheet(start: string, end: string): Observable<AttendanceSheet[]> {
         return this.sendRequest<AttendanceSheet[]>("GET", `${this.attendanceUrl}/${start}/${end}`);
     }
 
-    getCurrentMonthSheet():Observable<|AttendanceSheet[]>{
+    getCurrentMonthSheet(): Observable<| AttendanceSheet[]> {
         return this.sendRequest<AttendanceSheet[]>("GET", `${this.attendanceUrl}/sheet/current_month`)
     }
 
@@ -40,20 +40,30 @@ export class AttendanceDatasource{
 
 
     // Leave --------------------------------------------
-    saveLeave(leave: Leave): Observable<Leave>{
+    saveLeave(leave: Leave): Observable<Leave> {
         return this.sendRequest<Leave>("POST", `${this.leaveUrl}`, leave);
     }
 
-    grantLeave():Observable<Leave>{
-        return this.sendRequest<Leave>("PUT", `${this.leaveUrl}`);    
+    grantLeave(id: number): Observable<Leave> {
+        return this.sendRequest<Leave>("GET", `${this.leaveUrl}/grant/${id}`);
     }
+
+
+    rejectLeave(id: number): Observable<Leave> {
+        return this.sendRequest<Leave>("GET", `${this.leaveUrl}/reject/${id}`);
+    }
+
+    getAllLeave(): Observable<Leave[]> {
+        return this.sendRequest<Leave[]>("GET", `${this.leaveUrl}`);
+    }
+
 
 
 
     // Holiday ----------------------------------------------
 
 
-    getAllHoliday():Observable<Holiday[]>{
+    getAllHoliday(): Observable<Holiday[]> {
         return this.sendRequest<Holiday[]>("GET", this.holidayUrl);
     }
 
@@ -61,28 +71,28 @@ export class AttendanceDatasource{
         return this.sendRequest<Holiday>("GET", `${this.holidayUrl}/${id}`);
     }
 
-    saveHoliday(holiday: Holiday): Observable<Holiday>{
+    saveHoliday(holiday: Holiday): Observable<Holiday> {
         return this.sendRequest<Holiday>("POST", this.holidayUrl, holiday);
     }
 
-    updateHoliday(holiday: Holiday): Observable<Holiday>{
+    updateHoliday(holiday: Holiday): Observable<Holiday> {
         return this.sendRequest<Holiday>("PUT", this.holidayUrl, holiday);
     }
 
-    deleteHoliday(id: number): Observable<Holiday>{
+    deleteHoliday(id: number): Observable<Holiday> {
         return this.sendRequest<Holiday>("DELETE", `${this.holidayUrl}/${id}`);
     }
 
-    checkHoliday(day: string): Observable<boolean>{
+    checkHoliday(day: string): Observable<boolean> {
         return this.sendRequest<boolean>("GET", `${this.holidayUrl}/check/${day}`);
     }
 
 
-    private sendRequest<T>(verb: string, url: string, body?: T): Observable<T>{
+    private sendRequest<T>(verb: string, url: string, body?: T): Observable<T> {
         return this.http.request<T>(verb, url, {
             body: body
         }).pipe(catchError((error: Response) => {
-            throw(`Network Error: ${error.statusText} (${error.status})`)
+            throw (`Network Error: ${error.statusText} (${error.status})`)
         }));
     }
 

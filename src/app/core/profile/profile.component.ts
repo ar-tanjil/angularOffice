@@ -9,6 +9,7 @@ import { auto } from '@popperjs/core';
 import { Attendance } from 'src/app/model/attendance/attendance.model';
 import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-profile',
@@ -27,9 +28,10 @@ export class ProfileComponent {
   checkInTime!: string;
   checkOutTime!: string;
   holiday: boolean = false;
+  otheProfile: boolean = false;
 
   constructor(private empData: EmployeeDatasource,
-    private payData: PayrollDatasource,
+    private jwtService: JWTTokenService,
     private attenData: AttendanceDatasource,
     private activerRoute: ActivatedRoute,
     private dialog: MatDialog) {
@@ -43,7 +45,19 @@ export class ProfileComponent {
   ngOnInit() {
 
     this.activerRoute.params.subscribe(params => {
-      let id = params["id"] ?? 1
+
+      let profileId = this.jwtService.getId();
+
+      let id = params["id"] ?? this.jwtService.getId()
+      console.log(profileId);
+      console.log(id);
+      
+      
+
+      if(profileId != id){
+        this.otheProfile = true;
+      }
+
       this.empData.getById(id).subscribe(e => {
         this.emp = e ?? new Employee();
         this.getAttendanc(id, this.date);
@@ -112,7 +126,7 @@ export class ProfileComponent {
       height: auto,
       width: '45%',
       data: {
-        id: null
+        id: this.emp.id
       }
     }
     );

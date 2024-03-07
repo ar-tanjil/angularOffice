@@ -5,6 +5,7 @@ import { auto } from '@popperjs/core';
 import { LocalStorageService } from 'src/app/model/authentication/storageService';
 import { Router } from '@angular/router';
 import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
+import { NotificationService } from 'src/app/model/notification/notification.service';
 
 @Component({
   selector: 'app-topnav',
@@ -13,14 +14,15 @@ import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 })
 export class TopnavComponent implements OnInit {
 
-  notification: number = 0;
+  
   date: Date = new Date();
 
   constructor(
     private dialog: MatDialog, 
     private jwtService: JWTTokenService,
     private store: LocalStorageService,
-    private route: Router
+    private route: Router,
+    private notifyService: NotificationService
     ){
 
 
@@ -31,6 +33,9 @@ export class TopnavComponent implements OnInit {
       this.getRoleAndUser();
   }
 
+  get notification(): number{
+    return this.notifyService.notification.length;
+  }
 
   user: string = "";
   role: string = "";
@@ -66,7 +71,7 @@ export class TopnavComponent implements OnInit {
   openDialog() {
     let addSalaryDialog = this.dialog.open(NotificationComponent, {
       height: auto,
-      width: '45%',
+      width: auto,
       data: {
         id: null
       }

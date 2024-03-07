@@ -41,16 +41,37 @@
 
   <table class="table table-striped mt-5">
     <thead><tr>
+      <th>#</th>
         <th>Employee Name</th>
         <th>Leave Type</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Number Of Days</th>
+        <th>Day</th>
         <th>Status</th>
-        <th>Aproved By</th>
+        <th></th>
+        <!-- <th>Aproved By</th> -->
     </tr></thead>
     <tbody>
-        <tr></tr>
+        <tr *ngFor="let leave of leaves; let i = index">
+          <td> {{i + 1}} </td>
+          <td> {{leave.employeeName}} </td>
+          <td> {{leave.type | titlecase}} Leave </td>
+          <td> {{leave.day | date : 'fullDate'}} </td>
+          <td> {{leave.status | titlecase}} </td>
+          <td>
+            <a  [matMenuTriggerFor]="menu1">
+                <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
+                <mat-menu #menu1="matMenu">
+                  <button mat-menu-item (click)="grantLeave(leave.id ?? -1)">
+                    <i class="fa-solid fa-file textColor"></i>
+                   Grant
+                  </button>
+                  <button mat-menu-item (click)="rejectLeave(leave.id ?? -1)">
+                    <i class="fa-solid fa-user-tie textColor" ></i>
+                   Reject
+                  </button>
+                </mat-menu>
+              </a>
+            </td>
+        </tr>
     </tbody>
   </table>
 

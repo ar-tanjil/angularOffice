@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
 import { Leave } from 'src/app/model/attendance/attendance.model';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
@@ -17,7 +17,8 @@ export class LeaveRequestComponent {
 
   constructor(
     private attenData: AttendanceDatasource,
-    private dialogRef: MatDialogRef<LeaveRequestComponent>
+    private dialogRef: MatDialogRef<LeaveRequestComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { id: number },
     ){
       this.leave = new Leave();
   }
@@ -37,14 +38,9 @@ export class LeaveRequestComponent {
 
   submit(){
     Object.assign(this.leave, this.leaveForm.value);
-    this.leave.employeeId = 1;
-    this.leave.status = false;
-    console.log(this.leave);
-    
-    this.attenData.saveLeave(this.leave).subscribe(l => {
-      console.log(l);
-      
-    // this.dialogRef.close()
+    this.leave.employeeId = this.data.id;
+    this.attenData.saveLeave(this.leave).subscribe(l => { 
+    this.dialogRef.close()
     });
   }
 }

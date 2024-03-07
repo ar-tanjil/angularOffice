@@ -8,6 +8,7 @@ import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
 import { Job } from 'src/app/model/designation/job.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ReplaySubject } from 'rxjs';
 
 
 @Component({
@@ -32,7 +33,6 @@ export class RegisterFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: { id: number }
   ) {
       this.getDepartment();
-      this.getDesignation();
 
   }
 
@@ -49,10 +49,16 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  getDesignation(): void {
-    this.jobData.getAll().subscribe(job => {
+  getDesignation(dep: any): void {
+   console.log(dep);
+   
+    if(!dep){
+      return
+    }
+    
+    this.jobData.getAllByDeparment(dep).subscribe(job => {
       this.designationList = new Array<Job>();
-      this.designationList = job;      
+      this.designationList = job;
     })
   }
 
@@ -85,7 +91,7 @@ export class RegisterFormComponent implements OnInit {
   submitForm() {
     if (this.employeeForm.valid) {
       Object.assign(this.employee, this.employeeForm.value);
-      console.log(this.employee);
+   
       
       if(this.data.id){
         this.empData.update(this.employee).subscribe(emp => {
@@ -94,8 +100,6 @@ export class RegisterFormComponent implements OnInit {
           }
         })
       } else{
-        console.log(this.employee);
-        
         this.empData.save(this.employee).subscribe(emp => {
           console.log(emp);
 

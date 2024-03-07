@@ -44,7 +44,7 @@ export class TaxComponent {
   openDialog(){
     let addSalaryDialog = this.dialog.open(AddTaxComponent, {
       height: auto,
-      width: '30%',
+      width: auto,
       data: {
         id: null
       }

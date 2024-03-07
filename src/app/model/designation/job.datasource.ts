@@ -36,6 +36,11 @@ export class JobDatasource{
         return this.sendRequest<Job[]>("GET",`${this.url}/vacancy`);
     }
 
+
+    getAllByDeparment(id: number):Observable<Job[]>{
+        return this.sendRequest<Job[]>("GET",`${this.url}/departments/${id}`);
+    }
+
     private sendRequest<T>(verb: string, url: string, body?: Job): Observable<T>{
         return this.http.request<T>(verb, url, {
             body: body

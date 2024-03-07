@@ -1,17 +1,17 @@
 <div class=" m-2 d-flex align-items-center justify-content-center h-100" style="background-color: #e2eff1" >
     <div class="card">
-        <div class="card-body" style="background-color: #555273">
-          <h1 class="card-title text-center fw-bolder" style="color: #b6d5e1;">Log in</h1>
+        <div class="card-body" style="background-color: #ffffff">
+          <h1 class="card-title text-center fw-bolder" style="color: #353535;">Log in</h1>
           <form
             class="example-form"
             [formGroup]="loginForm"
             (ngSubmit)="proceedLogin()"
           >
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>User Name</mat-label>
               <input matInput placeholder="Enter User Name" formControlName="username" />
             </mat-form-field>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Password</mat-label>
               <input matInput placeholder="Password" formControlName="password" />
             </mat-form-field>  
@@ -19,7 +19,7 @@
               <button mat-raised-button class="m-2 bg-success" type="submit" >
                Log In
               </button>
-              <a routerLink="/form/add" class="m-2 bg-info" mat-raised-button>Register</a>
+              <a  class="m-2 bg-info" mat-raised-button>Register</a>
             </div>
           </form>
         </div>

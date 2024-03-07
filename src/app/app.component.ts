@@ -15,6 +15,8 @@ export class AppComponent {
    private jwtService: JWTTokenService
     ){
       jwtService.loginCheck()
+      console.log(this.login);
+      
   }
 
   get login(): boolean{

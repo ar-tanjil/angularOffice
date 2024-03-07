@@ -75,7 +75,7 @@ export class PayrollComponent implements OnInit {
 
     let addSalaryDialog = this.dialog.open(AddSalaryComponent, {
       height: auto,
-      width: '45%',
+      width: auto,
       data: {
         id: id
       }
@@ -93,7 +93,7 @@ export class PayrollComponent implements OnInit {
 
     let addSalaryDialog = this.dialog.open(SalaryDetailsComponent, {
       height: auto,
-      width: '45%',
+      width: auto,
       data: {
         id: id
       }

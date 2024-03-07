@@ -17,14 +17,14 @@
                       <button mat-raised-button 
                       style="background-color: #84a98c; color: #ffffff;"
                       class="mx-2">Message</button>
-                      <button mat-raised-button 
+                      <button mat-raised-button *ngIf="!otheProfile"
                       style="background-color: #353535; color: #ffffff;"
                       (click)="openDialog()">Leave Request</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card mt-3" style="height:200px;">
+              <div class="card mt-3" style="height:200px;" *ngIf="!otheProfile">
                   <div class="text-center">
                     <p class="fs-4 fw-light p-2">{{time | date : 'MMM d, y, h:mm:ss a'}}</p>
                     <div>

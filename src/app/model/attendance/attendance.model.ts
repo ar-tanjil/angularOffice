@@ -31,8 +31,9 @@ export class Leave{
         public day?: Date,
         public type?: string,
         public reason?: string,
-        public status?: boolean,
-        public employeeId?: number
+        public status?: string,
+        public employeeId?: number,
+        public employeeName?: string
     ){
 
     }

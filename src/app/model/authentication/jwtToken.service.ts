@@ -50,9 +50,9 @@ export class JWTTokenService {
         return this.decodedToken ? this.decodedToken['role']: null;
     }
 
-    getEmailId() {
+    getId() {
       this.decodeToken();
-      return this.decodedToken ? this.decodedToken['email'] : null;
+      return this.decodedToken ? this.decodedToken['id'] : null;
     }
 
     getExpiryTime() {
@@ -60,10 +60,10 @@ export class JWTTokenService {
       return this.decodedToken ? this.decodedToken['exp'] : null;
     }
 
-    isTokenExpired(): boolean {
+    isTokenNonExpired(): boolean {
       const expiryTime: string | null = this.getExpiryTime();
       if (expiryTime) {
-        return ((1000 * Number(expiryTime)) - (new Date()).getTime()) < 5;
+        return ((1000 * Number(expiryTime)) - (new Date()).getTime()) > 5000;
       } else {
         return false;
       }
@@ -71,11 +71,11 @@ export class JWTTokenService {
 
     loginCheck(token?: string){
         if(token == null){
-            this.isLoggedIn = !this.isTokenExpired();
+            this.isLoggedIn = this.isTokenNonExpired();
             return;
         }
         this.setToken(token);
-        this.isLoggedIn = !this.isTokenExpired()
+        this.isLoggedIn = this.isTokenNonExpired()
       }
 
 
