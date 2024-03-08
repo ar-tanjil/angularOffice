@@ -9,20 +9,80 @@
   </div>
   <ul>
     <li>
-      <a routerLink="/dashboard"><i class="fa-solid fa-house fs-6 m-2"></i> Dashboard &nbsp;</a>
+      <a routerLink="/dashboard"
+        ><i class="fa-solid fa-house fs-6 m-2"></i> Dashboard &nbsp;</a
+      >
     </li>
+
     <li>
-      <a (click)="toggleEmployee()"><i class="fa-solid fa-users fs-6 m-2"></i> Employee &nbsp;
+      <a (click)="toggleOrganization()">
+        <i class="fa-solid fa-building fs-6 m-2"></i> Organizations &nbsp;
+        <i *ngIf="!organization" class="fa-solid fa-caret-right px-2"></i>
+        <i *ngIf="organization" class="fa-solid fa-caret-down px-2"></i>
+      </a>
+      <ul *ngIf="organization" class="red-bg">
+        <li>
+          <a routerLink="/department">
+            <i class="fa-solid fa-building-user fs-6 m-2"></i> Departments
+          </a>
+        </li>
+        <li>
+          <a routerLink="/designation">
+            <i class="fa-solid fa-users-line fs-6 m-2"></i> Jobs &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/designation">
+            <i class="fa-solid fa-scroll fs-6 m-2"></i> Anouncements &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard">
+            <i class="fa-solid fa-file-powerpoint fs-6 m-2"></i> Policies &nbsp;
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a (click)="toggleEmployee()"
+        ><i class="fa-solid fa-users fs-6 m-2"></i> Employee &nbsp;
         <i *ngIf="!employee" class="fa-solid fa-caret-right px-2"></i>
         <i *ngIf="employee" class="fa-solid fa-caret-down px-2"></i>
       </a>
       <ul *ngIf="employee" class="red-bg">
-
         <li>
           <a routerLink="/employee" class="ps-2">
             <i class="fa-solid fa-users m-2"></i> Employee List &nbsp;
           </a>
         </li>
+
+        <li>
+          <a routerLink="/employee" class="ps-2">
+            <i class="fa-solid fa-users-gear m-2"></i> Roles &nbsp;
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/employee" class="ps-2">
+            <i class="fa-solid fa-user-slash m-2"></i> Resigantion &nbsp;
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="/profile"
+        ><i class="fa-solid fa-user-tie fs-6 m-2"></i> Profile &nbsp;
+      </a>
+    </li>
+
+    <li>
+      <a (click)="toggleTimesheet()">
+        <i class="fa-solid fa-clock fs-6 m-2"></i> Timesheet &nbsp;
+        <i *ngIf="!timesheet" class="fa-solid fa-caret-right px-2"></i>
+        <i *ngIf="timesheet" class="fa-solid fa-caret-down px-2"></i>
+      </a>
+      <ul *ngIf="timesheet" class="red-bg">
         <li>
           <a routerLink="/attendance" class="ps-2">
             <i class="fa-solid fa-calendar-days m-2"></i> Attendance &nbsp;
@@ -30,7 +90,13 @@
         </li>
         <li>
           <a routerLink="/leave" class="ps-2">
-            <i class="fa-solid  fa-person-walking-arrow-right m-2"></i> Leaves &nbsp;
+            <i class="fa-solid fa-person-walking-arrow-right m-2"></i> Leaves
+            &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/holiday" class="ps-2">
+            <i class="fa-regular fa-hourglass-half m-2"></i> Office Shift &nbsp;
           </a>
         </li>
         <li>
@@ -41,30 +107,25 @@
       </ul>
     </li>
     <li>
-      <a routerLink="/profile"><i class="fa-solid fa-user-tie fs-6 m-2"></i> Profile &nbsp;
-      </a>
-    </li>
-    <li>
-      <a routerLink="/department">
-        <i class="fa-solid fa-building-user fs-6 m-2"></i> Departments
-      </a>
-    </li>
-    <li>
-      <a routerLink="/designation">
-        <i class="fa-solid fa-users-line fs-6 m-2"></i> Jobs &nbsp;
-      </a>
-    </li>
-    <li>
       <a (click)="togglePayroll()">
         <i class="fa-solid fa-wallet fs-6 m-2"></i> Payroll &nbsp;
         <i *ngIf="!payroll" class="fa-solid fa-caret-right px-2"></i>
         <i *ngIf="payroll" class="fa-solid fa-caret-down px-2"></i>
       </a>
       <ul *ngIf="payroll" class="red-bg">
-
         <li>
           <a routerLink="/payroll" class="ps-2">
-            <i class="fa-solid fa-money-bills m-2"></i> Employee Salary &nbsp;
+            <i class="fa-solid fa-bangladeshi-taka-sign m-2"></i> Salary &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/process" class="ps-2">
+            <i class="fa-solid fa-file-invoice m-2"></i> Payroll Process &nbsp;
+          </a>
+        </li>
+        <li>
+          <a routerLink="/payroll" class="ps-2">
+            <i class="fa-solid fa-file-invoice-dollar m-2"></i> Payslip &nbsp;
           </a>
         </li>
         <li>
@@ -84,13 +145,11 @@
         <i class="fa-solid fa-clipboard fs-6 m-2"></i> Reports &nbsp;
       </a>
     </li>
+
     <li>
       <a routerLink="/dashboard">
-        <i class="fa-solid fa-file-powerpoint fs-6 m-2"></i> Policies &nbsp;
-      </a>
-    </li>
-    <li>
-      <a routerLink="/dashboard"> <i class="fa-solid fa-gear fs-6 m-2"></i> Settings &nbsp;</a>
+        <i class="fa-solid fa-gear fs-6 m-2"></i> Settings &nbsp;</a
+      >
     </li>
   </ul>
 </div>

@@ -1,0 +1,97 @@
+<mat-dialog-content class="mat-typography example" >
+    <table class="table table-bordered">
+        <h1>Employee Informaiton</h1>    
+        <tr >
+                <th>Name</th>
+                <td>{{payroll.employeeName}} </td>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td> {{payroll.departmentName}} </td>
+            </tr>
+            <tr>
+                <th>Desigantion</th>
+                <td> {{payroll.jobTitle}} </td>
+            </tr>
+            <tr>
+                <th>Pay Period</th>
+                <td> {{payroll.period}} </td>
+            </tr>
+            <tr>
+                <th>Work Days</th>
+                <td> {{payroll.workingDays}} </td>
+            </tr>
+            <tr>
+                <th>Total Leave Days</th>
+                <td> {{payroll.totalLeaveDays}} </td>
+            </tr>
+            <tr>
+                <th>Unpaid Leave Days</th>
+                <td> {{payroll.unpaidLeaveDays}} </td>
+            </tr>
+    </table>    
+
+    <table class="table table-bordered">
+       <h1>Earnings</h1>
+        <tr>
+            <th colspan="2">Basic</th>
+            <td> {{payroll.basicSalary | currency}} </td>
+        </tr>
+        <tr>
+            <th >Medical Allowance</th>
+            <td> {{payroll.medicalInformation}}% </td>
+            <td>{{payroll.medicalAllowance | currency}} </td>
+        </tr>
+        <tr>
+            <th>Travel Allowance</th>
+            <td> {{payroll.travelInformation}}% </td>
+            <td> {{payroll.travelAllowance | currency}} </td>
+        </tr>
+        <tr>
+            <th colspan="2">Bonus</th>
+            <td> {{payroll.bonusAmount | currency}} </td>
+        </tr>
+        <tr>
+            <th colspan="2">Other</th>
+            <td> {{payroll.otherEarning | currency}} </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered">
+        <h1>Deducitons</h1>
+         <tr>
+             <th colspan="2">Unpaid Leave</th>
+             <td> {{payroll.unpaidLeave | currency}} </td>
+         </tr>
+         <tr>
+             <th>Provident Fund</th>
+             <td> {{payroll.providentInformation}}% </td>
+             <td> {{payroll.providentFund | currency}} </td>
+         </tr>
+         <tr>
+             <th>Tax</th>
+             <td> {{payroll.taxInformaion}}% </td>
+             <td> {{payroll.tax | currency}} </td>
+         </tr>
+         <tr>
+             <th colspan="2">Loan Payment</th>
+             <td>{{payroll.loanPayment | currency}} </td>
+         </tr>
+         <tr>
+             <th colspan="2">Other</th>
+             <td> {{payroll.otherDeduction | currency}} </td>
+         </tr>
+     </table>
+
+     <table class="table table-bordered">
+        <tr>
+            <th colspan="2">Net Pay</th>
+            <td> {{payroll.netSalary | currency}} </td>
+        </tr>
+     </table>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

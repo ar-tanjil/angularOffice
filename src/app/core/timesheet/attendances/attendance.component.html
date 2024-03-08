@@ -1,0 +1,131 @@
+<div class="container-fluid">
+  <!-- Breadcrumb -->
+  <h3 class="fw-bold"><i class="fa-solid fa-users fs-3 m-2"></i>Attendance</h3>
+  <!-- /Breadcrumb -->
+  <mat-divider class="m-2"></mat-divider>
+
+  <mat-tab-group>
+    <mat-tab label="Attendance Sheet">
+      <div class="table-responsive">
+        <div class="text-center">
+          <h3 class="fw-bolder">Attendance Sheet Of {{ titleMonth | date : "MMMM - YYYY" }}</h3>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th *ngFor="let month of getMonths; let i = index">
+                {{ i + 1 }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let att of attendance">
+              <td>{{ att.firstName }}</td>
+              <td *ngFor="let pr of att.present">
+                <i
+                  *ngIf="pr"
+                  class="fa-solid fa-check text-primary fs-4 fw-bolder"
+                ></i>
+                <i
+                  *ngIf="!pr"
+                  class="fa-solid fa-xmark text-danger fs-4 fw-bolder"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Attendance Log">
+      <div>
+        <form [formGroup]="attendanceLogForm" (ngSubmit)="searchAttendanceLog()">
+           <div style="width: 200px; display: inline-block">
+          <div class="form-group">
+            <label>From</label>
+            <input type="date" class="form-control" formControlName="startDate" />
+          </div>
+        </div>
+        <div
+          style="
+            width: 200px;
+            display: inline-block;
+            margin-left: 2px;
+            margin-right: 2px;
+          "
+        >
+          <div class="form-group">
+            <label>To</label>
+            <input type="date" class="form-control" formControlName="endDate" />
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+
+      </div>
+
+      <div>
+        <table class="table table-striped-columns text-center">
+          <thead>
+            <tr>
+              <th>SL</th>
+              <th>Name</th>
+              <th>Check In Time</th>
+              <th>Check Out Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let log of attendanceLog; let i = index">
+            <td> {{i + 1}} </td>
+            <td> {{log.employeeName}} </td>
+            <td> {{log.entryTime}} </td>
+            <td> {{log.leaveTime}} </td>
+            <td></td>
+          </tr>  
+         </tbody>
+        </table>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Search"> 
+      <div>
+        <form [formGroup]="attendanceLogForm" (ngSubmit)="searchAttendanceLog()">
+          
+          <!-- <div style="width: 200px; display: inline-block">
+        
+            <label>Select Employee</label>
+            <select class="form-select" formControlName="employeeId">
+                <option value="-1" >All</option>
+                <option *ngFor="let emp of employeeList;" [value]="emp.id">
+                {{emp.firstName}}</option>
+                
+              </select></div> -->
+          
+          <div style="width: 200px; display: inline-block">
+          <div class="form-group">
+            <label>From</label>
+            <input type="date" class="form-control" formControlName="startDate" />
+          </div>
+        </div>
+        <div
+          style="
+            width: 200px;
+            display: inline-block;
+            margin-left: 2px;
+            margin-right: 2px;
+          "
+        >
+          <div class="form-group">
+            <label>To</label>
+            <input type="date" class="form-control" formControlName="endDate" />
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+
+      </div>
+    
+    </mat-tab>
+  </mat-tab-group>
+</div>

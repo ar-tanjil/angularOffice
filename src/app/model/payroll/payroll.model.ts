@@ -8,7 +8,8 @@ export class PayrollTable {
         public netSalary?: number,
         public period?: Date,
         public grossSalary?: number,
-        public jobTitle?: string
+        public jobTitle?: string,
+        public departmentName?: string
     ) { }
 }
 
@@ -28,7 +29,18 @@ export class Payroll {
         public grossSalary?: number,
         public otherEarning?: number,
         public otherDeduction?: number,
-        public employeeId?: number
+        public taxInformaion?: number,
+        public workingDays?: number,
+        public unpaidLeaveDays?: number,
+        public jobTitle?: string,
+        public departmentName?: string,
+        public employeeId?: number,
+        public employeeName?: string,
+        public medicalInformation?: number,
+        public travelInformation?: number,
+        public providentInformation?: number,
+        public taxInformation?: number,
+        public totalLeaveDays?: number
     ) { }
 }
 

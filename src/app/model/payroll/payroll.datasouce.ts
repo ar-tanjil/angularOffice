@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { Payroll, PayrollTable, Salary, Tax } from "./payroll.model";
 
@@ -25,9 +25,12 @@ export class PayrollDatasource {
     }
 
     getPayrollByEmpAndPeriod(empId: number, year: number, month: number): Observable<Payroll> {
-        return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/${empId}/${year}/${month}`);
+        return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/employee/${empId}/${year}/${month}`);
     }
 
+    getPayrollById(id: number): Observable<Payroll> {
+        return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/${id}`);
+    }
 
     // Salary---------------------------------------
 
@@ -79,9 +82,11 @@ export class PayrollDatasource {
    
     
 
-    private sendRequest<T>(verb: string, url: string, body?: T): Observable<T> {
+    private sendRequest<T>(verb: string, url: string,body?: T, params?:HttpParams): Observable<T> {
+
         return this.http.request<T>(verb, url, {
-            body: body
+            body: body,
+            params: params
         }).pipe(catchError((error: Response) => {
             throw (`Network Error: ${error.statusText} (${error.status})`)
         }));

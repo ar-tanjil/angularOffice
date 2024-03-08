@@ -51,6 +51,8 @@ export class DepartmentFormComponent {
         })
       } else {
         this.depData.save(this.department).subscribe(dep => {
+          console.log(dep);
+          
             this.dialogRef.close(dep);
         })
       }

@@ -8,6 +8,7 @@ import { ReplaySubject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { JobDatasource } from 'src/app/model/designation/job.datasource';
+import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
 
 @Component({
   selector: 'app-departments',
@@ -24,7 +25,7 @@ export class DepartmentsComponent {
 
 
   constructor(
-    private depData: JobDatasource, 
+    private depData: DepartmentDatasource, 
     private dialog: MatDialog,
     private toster: ToastrService
     ) {
@@ -38,6 +39,8 @@ export class DepartmentsComponent {
   getDepartments() {
     this.depData.getAll().subscribe(emp => {
       this.departments = emp;
+      console.log(emp);
+      
       this.replaySubject.next(emp);
       this.replaySubject.complete();
     })

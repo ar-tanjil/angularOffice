@@ -10,9 +10,10 @@ export class Attendance {
     constructor(
         public id?: number,
         public day?: string,
-        public entryTime?: string,
-        public leaveTime?: string,
-        public employeeId?: string
+        public entryTime?: Date,
+        public leaveTime?: Date,
+        public employeeId?: string,
+        public employeeName?: string,
     ) { }
 }
 
@@ -34,6 +35,15 @@ export class Leave{
         public status?: string,
         public employeeId?: number,
         public employeeName?: string
+    ){
+
+    }
+}
+
+export class TimePeriod{
+    constructor(
+        public startDate?: Date,
+        public endDate?:Date
     ){
 
     }

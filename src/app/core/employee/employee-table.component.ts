@@ -5,7 +5,7 @@ import {  EmployeeDatasource } from 'src/app/model/employee/employee.datasource'
 import {  EmployeeTable } from 'src/app/model/employee/employee.model';
 import { DemoFormComponent } from '../demo/demo-form/demo-form.component';
 import { auto } from '@popperjs/core';
-import { RegisterFormComponent } from './register-form/register-form.component';
+import { RegisterFormComponent } from './emploee-from/register-form.component';
 
 @Component({
   selector: 'app-employee-table',

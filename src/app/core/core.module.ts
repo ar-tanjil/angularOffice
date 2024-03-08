@@ -2,20 +2,20 @@ import { NgModule } from "@angular/core";
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from "src/material.module";
 import { BrowserModule } from "@angular/platform-browser";
-import { EmployeeTableComponent } from './employee-table/employee-table.component';
+import { EmployeeTableComponent } from './employee/employee-table.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { ModelModule } from "../model/model.module";
 import { AppRoutingModule } from "../app-routing.module";
-import { RegisterFormComponent } from './employee-table/register-form/register-form.component';
+import { RegisterFormComponent } from './employee/emploee-from/register-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TopnavComponent } from "./navbar/topnav/topnav.component";
 import { SidenavComponent } from "./navbar/sidenav/sidenav.component";
-import { DepartmentsComponent } from './departments/departments.component';
-import { DesignationsComponent } from './designations/designations.component';
+import { DepartmentsComponent } from './organization/departments/departments.component';
+import { DesignationsComponent } from './organization/desigantaions/designations.component';
 import { PayrollComponent } from './payroll/payroll.component';
-import { DepartmentFormComponent } from './departments/department-form/department-form.component';
-import { DesigFormComponent } from './designations/desig-form/desig-form.component';
+import { DepartmentFormComponent } from './organization/departments/department-form/department-form.component';
+import { DesigFormComponent } from './organization/desigantaions/designation-from/desig-form.component';
 import { ApplicationComponent } from './application/application.component';
 import { ApplicationFormComponent } from './application/form-application/application-form.component';
 import { ApplicationListComponent } from './application/list-application/application-list.component';
@@ -26,17 +26,22 @@ import { AdditionsComponent } from './payroll/additions/additions.component';
 import { TaxComponent } from './payroll/tax/tax.component';
 import { SalaryDetailsComponent } from './payroll/salary-details/salary-details.component';
 import { AddTaxComponent } from './payroll/tax/add-tax/add-tax.component';
-import { AttendanceComponent } from "./employee-table/attendance/attendance.component";
+import { AttendanceComponent } from "./timesheet/attendances/attendance.component";
 import { CanvasJSAngularChartsModule } from "@canvasjs/angular-charts";
 import { EmpDepChartComponent } from "./dashbord/emp-dep-chart/emp-dep-chart.component";
-import { LeavesComponent } from './employee-table/leaves/leaves.component';
-import { HolidayComponent } from './employee-table/holiday/holiday.component';
+import { LeavesComponent } from './timesheet/leaves/leaves.component';
+import { HolidayComponent } from './timesheet/holidays/holiday.component';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
-import { HolidayFormComponent } from './employee-table/holiday/holiday-form/holiday-form.component';
+import { HolidayFormComponent } from './timesheet/holidays/holiday-form/holiday-form.component';
 import { NotificationComponent } from './navbar/notification/notification.component';
-import { LeaveRequestComponent } from './profile/leave-request/leave-request.component';
+import { LeaveRequestComponent } from './timesheet/leaves/leave-form/leave-request.component';
 import { DemoFormComponent } from './demo/demo-form/demo-form.component';
 import { LoginComponent } from "./login/login.component";
+import { AnnouncementsComponent } from './organization/announcements/announcements.component';
+import { PlociesComponent } from './organization/plocies/plocies.component';
+import { RolesComponent } from './employee/roles/roles.component';
+import { ProcessPayrollComponent } from './payroll/process-payroll/process-payroll.component';
+import { DetailsPayrollComponent } from './payroll/details-payroll/details-payroll.component';
 
 @NgModule({
     declarations: [
@@ -71,7 +76,12 @@ import { LoginComponent } from "./login/login.component";
         NotificationComponent,
         LeaveRequestComponent,
         DemoFormComponent,
-        LoginComponent
+        LoginComponent,
+        AnnouncementsComponent,
+        PlociesComponent,
+        RolesComponent,
+        ProcessPayrollComponent,
+        DetailsPayrollComponent
     ],
     exports: [
         NavbarComponent,

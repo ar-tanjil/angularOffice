@@ -1,8 +1,8 @@
-import {JobDatasource } from '../../model/designation/job.datasource';
+import {JobDatasource } from '../../../model/designation/job.datasource';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { DesigFormComponent } from './desig-form/desig-form.component';
+import { DesigFormComponent } from './designation-from/desig-form.component';
 import { auto } from '@popperjs/core';
 import { ReplaySubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
-import { Attendance, AttendanceSheet, Holiday, Leave } from "./attendance.model";
+import { Attendance, AttendanceSheet, Holiday, Leave, TimePeriod } from "./attendance.model";
 
 
 
@@ -22,11 +22,14 @@ export class AttendanceDatasource {
     }
 
     getAttendanceSheet(start: string, end: string): Observable<AttendanceSheet[]> {
-        return this.sendRequest<AttendanceSheet[]>("GET", `${this.attendanceUrl}/${start}/${end}`);
+        return this.sendRequest<AttendanceSheet[]>("GET", `${this.attendanceUrl}/sheet/${start}/${end}`);
     }
 
-    getCurrentMonthSheet(): Observable<| AttendanceSheet[]> {
-        return this.sendRequest<AttendanceSheet[]>("GET", `${this.attendanceUrl}/sheet/current_month`)
+
+    
+    getAttendanceLog(period: TimePeriod): Observable<Attendance[]> {
+
+        return this.sendRequest<Attendance[]>("POST", `${this.attendanceUrl}/table`, period);
     }
 
     getAttendanceByDay(id: number, day: string): Observable<Attendance> {
@@ -88,7 +91,7 @@ export class AttendanceDatasource {
     }
 
 
-    private sendRequest<T>(verb: string, url: string, body?: T): Observable<T> {
+    private sendRequest<T>(verb: string, url: string, body?: T | TimePeriod): Observable<T> {
         return this.http.request<T>(verb, url, {
             body: body
         }).pipe(catchError((error: Response) => {

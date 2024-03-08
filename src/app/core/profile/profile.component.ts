@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Employee } from 'src/app/model/employee/employee.model';
 import { Subscription} from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { LeaveRequestComponent } from './leave-request/leave-request.component';
+import { LeaveRequestComponent } from '../timesheet/leaves/leave-form/leave-request.component';
 import { auto } from '@popperjs/core';
 import { Attendance } from 'src/app/model/attendance/attendance.model';
 import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
@@ -25,8 +25,8 @@ export class ProfileComponent {
   checkInButton!: string;
   date!: string;
   attendance: Attendance = new Attendance();
-  checkInTime!: string;
-  checkOutTime!: string;
+  checkInTime!: string | Date;
+  checkOutTime!: string | Date;
   holiday: boolean = false;
   otheProfile: boolean = false;
 
@@ -49,10 +49,6 @@ export class ProfileComponent {
       let profileId = this.jwtService.getId();
 
       let id = params["id"] ?? this.jwtService.getId()
-      console.log(profileId);
-      console.log(id);
-      
-      
 
       if(profileId != id){
         this.otheProfile = true;
@@ -75,7 +71,7 @@ export class ProfileComponent {
 
   checkHoliday(day: string){
     this.attenData.checkHoliday(day).subscribe(check => {
-      this.holiday = check;
+      this.holiday = false;
       this.getCheckInOut(this.attendance);
     })
   }
