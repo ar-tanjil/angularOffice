@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-2 mt-5">
+        <table class="table table-hover">
+            <thead><tr>
+                <th>Claim Category</th>
+                <th><button class="btn btn-primary" (click)="openCategoyrDialog()">Add</button></th>
+            </tr></thead>
+             <tbody>
+                <tr>
+                    <td colspan="2">hahaha</td>
+                </tr>
+             </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <div>
+            <form [formGroup]="searchForm" (ngSubmit)="search()">
+              <div style="width: 200px; display: inline-block">
+                  
+                  <label>Select Employee</label>
+                  <select class="form-select" formControlName="employeeId">
+                      <option value="-1">All</option>
+                      <option *ngFor="let emp of employeeList;" [value]="emp.id">
+                      {{emp.firstName}}</option>
+                      
+                    </select></div>
+              <div
+                style="
+                  width: 200px;
+                  display: inline-block;
+                  margin-left: 2px;
+                  margin-right: 2px;
+                "
+              >
+                <div class="form-group">
+                  <label>Select Period</label>
+                  <input
+                    type="month"
+                    matInput
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit">Show</button>
+            </form>
+            <button class="btn btn-primary float-end" type="submit"
+            (click)="openClaimDialog()"
+            >Add Claim</button>
+          </div>
+          <div class="mt-3">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>SL</th>
+                          <th>Employee Name</th>
+                          <th>Category</th>
+                          <th>Title</th>
+                          <th>Date</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let claim of claimList ; let i = index">
+                          <td> {{i + 1}} </td>
+                          <td> {{claim.employee?.firstName}} {{claim.employee?.lastName}} </td>
+                          <td> {{claim.claimCategory?.name}} </td>
+                          <td> {{claim.title}} </td>
+                          <td> {{claim.date}} </td>
+                          <td> {{claim.amount}} </td>
+                          <td> {{claim.claimStatus}} </td>
+                          <td>
+                              <button class="btn btn-sm btn-primary">Details</button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          
+
+    </div>
+</div>

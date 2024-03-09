@@ -2,13 +2,22 @@
 <mat-dialog-content class="mat-typography example">
     <div class="mt-2">
         <div class="row">
-            <form [formGroup]="salaryForm" (ngSubmit)="submit()">
+            <form [formGroup]="claimForm" (ngSubmit)="submit()">
 
-                <mat-form-field class="form-field" appearance="outline" *ngIf="!editing">
+                <mat-form-field class="form-field" appearance="outline" *ngIf="admin">
                     <mat-label>Employee Id</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let emp of employee" [value]="emp.id">
+                    <mat-select formControlName="employeeId">
+                        <mat-option *ngFor="let emp of employeeList" [value]="emp.id">
                           {{emp.firstName}} {{emp.lastName}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="categoryId">
+                        <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                          {{category.name}}
                         </mat-option>
                       </mat-select>
                   </mat-form-field>
@@ -16,16 +25,16 @@
 
 
                 <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>Basic</mat-label>
-                    <input matInput placeholder="Basic Salary" formControlName="basic" />
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Claim Title" formControlName="title" />
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>Medical Allowance</mat-label>
-                    <input matInput placeholder="0%" formControlName="medicalAllowance" />
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date" formControlName="date" />
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>Provident Fund</mat-label>
-                    <input matInput placeholder="0%" formControlName="providentFund" />
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" placeholder="0" formControlName="amount" />
                 </mat-form-field>
 
                 <mat-dialog-actions align="end">

@@ -44,6 +44,9 @@ import { ProcessPayrollComponent } from './payroll/process-payroll/process-payro
 import { DetailsPayrollComponent } from './payroll/details-payroll/details-payroll.component';
 import { LeavePolicyComponent } from './timesheet/leave-policy/leave-policy.component';
 import { PolicyFormComponent } from "./timesheet/leave-policy/policy-form/policy-form.component";
+import { ClaimComponent } from './payroll/claim/claim.component';
+import { CategoryFormComponent } from './payroll/claim/category-form/category-form.component';
+import { ClaimFormComponent } from './payroll/claim/claim-form/claim-form.component';
 
 @NgModule({
     declarations: [
@@ -85,7 +88,10 @@ import { PolicyFormComponent } from "./timesheet/leave-policy/policy-form/policy
         ProcessPayrollComponent,
         DetailsPayrollComponent,
         LeavePolicyComponent,
-        PolicyFormComponent
+        PolicyFormComponent,
+        ClaimComponent,
+        CategoryFormComponent,
+        ClaimFormComponent
     ],
     exports: [
         NavbarComponent,

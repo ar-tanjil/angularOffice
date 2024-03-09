@@ -45,7 +45,7 @@ export class LeavePolicyComponent implements OnInit {
     }
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
-     
+      this.getAllLeave();
     })
   }
 }

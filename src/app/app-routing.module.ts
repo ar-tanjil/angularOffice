@@ -23,6 +23,7 @@ import { LoginComponent } from './core/login/login.component';
 import { AuthGuard } from './model/authentication/authGurd';
 import { ProcessPayrollComponent } from './core/payroll/process-payroll/process-payroll.component';
 import { LeavePolicyComponent } from './core/timesheet/leave-policy/leave-policy.component';
+import { ClaimComponent } from './core/payroll/claim/claim.component';
 
 const routes: Routes = [
   {
@@ -148,6 +149,11 @@ const routes: Routes = [
   {
     path: "process",
     component: ProcessPayrollComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "claim",
+    component: ClaimComponent,
     canActivate: [AuthGuard]
   },
   {
