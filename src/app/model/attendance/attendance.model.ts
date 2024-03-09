@@ -1,3 +1,5 @@
+import { EmployeeTable } from "../employee/employee.model";
+
 export class AttendanceSheet {
     constructor(
         public present?: boolean[],
@@ -38,6 +40,19 @@ export class Leave{
     ){
 
     }
+}
+
+export class LeavePolicy{
+    constructor(
+        public id?: number,
+        public medical?: number,
+        public casual?: number,
+        public medicalSpent?: number,
+        public casualSpent?: number,
+        public unpaidSpent?: number,
+        public employee?: EmployeeTable,
+        public employeeId?: number
+    ){}
 }
 
 export class TimePeriod{

@@ -6,7 +6,7 @@ import { Subscription} from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { LeaveRequestComponent } from '../timesheet/leaves/leave-form/leave-request.component';
 import { auto } from '@popperjs/core';
-import { Attendance } from 'src/app/model/attendance/attendance.model';
+import { Attendance, LeavePolicy } from 'src/app/model/attendance/attendance.model';
 import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
 import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
@@ -29,6 +29,8 @@ export class ProfileComponent {
   checkOutTime!: string | Date;
   holiday: boolean = false;
   otheProfile: boolean = false;
+  leavePolicy: LeavePolicy = new LeavePolicy();
+
 
   constructor(private empData: EmployeeDatasource,
     private jwtService: JWTTokenService,
@@ -38,7 +40,6 @@ export class ProfileComponent {
     let day = new Date();
     this.date = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 6)
       .toISOString().split("T")[0];
-
 
   }
 
@@ -53,6 +54,8 @@ export class ProfileComponent {
       if(profileId != id){
         this.otheProfile = true;
       }
+
+      this.getLeavePolicy(id);
 
       this.empData.getById(id).subscribe(e => {
         this.emp = e ?? new Employee();
@@ -71,7 +74,7 @@ export class ProfileComponent {
 
   checkHoliday(day: string){
     this.attenData.checkHoliday(day).subscribe(check => {
-      this.holiday = false;
+      this.holiday = true;
       this.getCheckInOut(this.attendance);
     })
   }
@@ -114,6 +117,13 @@ export class ProfileComponent {
     })
   }
 
+  getLeavePolicy(id: number){
+    this.attenData.getPolicyByEmployee(id).subscribe( policy => {
+      console.log(policy);
+      
+      this.leavePolicy = policy;
+    })
+  }
 
 
   

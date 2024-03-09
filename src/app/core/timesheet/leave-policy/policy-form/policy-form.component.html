@@ -2,30 +2,27 @@
 <mat-dialog-content class="mat-typography">
     <div class="mt-2">
         <div class="row">
-            <form [formGroup]="salaryForm" (ngSubmit)="submit()">
+            <form [formGroup]="policyForm" (ngSubmit)="submit()">
 
                 <mat-form-field class="form-field" appearance="outline" *ngIf="!editing">
                     <mat-label>Employee Id</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let emp of employee" [value]="emp.id">
-                          {{emp.firstName}} {{emp.lastName}}
-                        </mat-option>
-                      </mat-select>
+                    <mat-select formControlName="employeeId">
+                          <mat-option *ngFor="let emp of employee" [value]="emp.id">
+                            {{emp.firstName}} {{emp.lastName}}
+                          </mat-option>
+                        </mat-select>
+                 
                   </mat-form-field>
 
 
 
                 <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>Basic</mat-label>
-                    <input matInput placeholder="Basic Salary" formControlName="basic" />
+                    <mat-label>Medical Leave</mat-label>
+                    <input matInput placeholder="Medical Leave" formControlName="medical" />
                 </mat-form-field>
                 <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>Medical Allowance</mat-label>
-                    <input matInput placeholder="0%" formControlName="medicalAllowance" />
-                </mat-form-field>
-                <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>Provident Fund</mat-label>
-                    <input matInput placeholder="0%" formControlName="providentFund" />
+                    <mat-label>Casual Leave</mat-label>
+                    <input matInput placeholder="Casual Leave" formControlName="casual" />
                 </mat-form-field>
 
                 <mat-dialog-actions align="end">

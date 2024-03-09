@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
-import { Attendance, AttendanceSheet, Holiday, Leave, TimePeriod } from "./attendance.model";
+import { Attendance, AttendanceSheet, Holiday, Leave, LeavePolicy, TimePeriod } from "./attendance.model";
 
 
 
@@ -11,6 +11,7 @@ export class AttendanceDatasource {
     private holidayUrl: string = "http://localhost:8080/holidays";
     private leaveUrl: string = "http://localhost:8080/emp_leaves";
     private attendanceUrl: string = "http://localhost:8080/attendances";
+    private leavePolicyUrl: string = "http://localhost:8080/leavePolicies";
 
     constructor(private http: HttpClient) { };
 
@@ -88,6 +89,21 @@ export class AttendanceDatasource {
 
     checkHoliday(day: string): Observable<boolean> {
         return this.sendRequest<boolean>("GET", `${this.holidayUrl}/check/${day}`);
+    }
+
+// Leave Policy -------------------------------------------------
+
+    getPolicyByEmployee(id: number): Observable<LeavePolicy>{
+        return this.sendRequest<LeavePolicy>("GET", `${this.leavePolicyUrl}/${id}`);
+    }
+
+    saveLeavePolicy(leavePolicy: LeavePolicy): Observable<LeavePolicy> {
+        return this.sendRequest<LeavePolicy>("POST", this.leavePolicyUrl, leavePolicy);
+    }
+
+
+    getAllLeavePolicy():Observable<LeavePolicy[]>{
+        return this.sendRequest<LeavePolicy[]>("GET",`${this.leavePolicyUrl}`);
     }
 
 

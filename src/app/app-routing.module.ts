@@ -22,6 +22,7 @@ import { HolidayComponent } from './core/timesheet/holidays/holiday.component';
 import { LoginComponent } from './core/login/login.component';
 import { AuthGuard } from './model/authentication/authGurd';
 import { ProcessPayrollComponent } from './core/payroll/process-payroll/process-payroll.component';
+import { LeavePolicyComponent } from './core/timesheet/leave-policy/leave-policy.component';
 
 const routes: Routes = [
   {
@@ -147,6 +148,11 @@ const routes: Routes = [
   {
     path: "process",
     component: ProcessPayrollComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "leavePolicy",
+    component: LeavePolicyComponent,
     canActivate: [AuthGuard]
   },
   {

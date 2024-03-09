@@ -42,6 +42,8 @@ import { PlociesComponent } from './organization/plocies/plocies.component';
 import { RolesComponent } from './employee/roles/roles.component';
 import { ProcessPayrollComponent } from './payroll/process-payroll/process-payroll.component';
 import { DetailsPayrollComponent } from './payroll/details-payroll/details-payroll.component';
+import { LeavePolicyComponent } from './timesheet/leave-policy/leave-policy.component';
+import { PolicyFormComponent } from "./timesheet/leave-policy/policy-form/policy-form.component";
 
 @NgModule({
     declarations: [
@@ -81,7 +83,9 @@ import { DetailsPayrollComponent } from './payroll/details-payroll/details-payro
         PlociesComponent,
         RolesComponent,
         ProcessPayrollComponent,
-        DetailsPayrollComponent
+        DetailsPayrollComponent,
+        LeavePolicyComponent,
+        PolicyFormComponent
     ],
     exports: [
         NavbarComponent,

@@ -7,8 +7,9 @@
   <mat-divider class="m-2"></mat-divider>
   <div style="float: right" class="m-2">
     <button mat-raised-button 
+    [routerLink]="['/leavePolicy']"
     style=" background-color: #354f52; color: #ffff;">
-      Change Leave Policy
+      Leave Policy
     </button>
   </div>
 
@@ -46,7 +47,6 @@
         <th>Leave Type</th>
         <th>Day</th>
         <th>Status</th>
-        <th></th>
         <!-- <th>Aproved By</th> -->
     </tr></thead>
     <tbody>
@@ -55,21 +55,26 @@
           <td> {{leave.employeeName}} </td>
           <td> {{leave.type | titlecase}} Leave </td>
           <td> {{leave.day | date : 'fullDate'}} </td>
-          <td> {{leave.status | titlecase}} </td>
+          <!-- <td> {{leave.status | titlecase}} </td> -->
           <td>
+            <button class="btn btn-sm btn-success" disabled *ngIf="leave.status == 'APPROVED'">Approved</button>
+            <button class="btn btn-sm btn-danger" disabled *ngIf="leave.status == 'REJECTED'">Rejected</button>
+            <button *ngIf="leave.status == 'PENDING'" class="btn btn-sm btn-primary" (click)="grantLeave(leave.id ?? -1)">Approve</button>
+            <button *ngIf="leave.status == 'PENDING'" class="btn btn-sm ms-2 btn-warning" (click)="rejectLeave(leave.id ?? -1)">Reject</button>
+<!-- 
             <a  [matMenuTriggerFor]="menu1">
                 <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
                 <mat-menu #menu1="matMenu">
-                  <button mat-menu-item (click)="grantLeave(leave.id ?? -1)">
+                  <button mat-menu-item ">
                     <i class="fa-solid fa-file textColor"></i>
                    Grant
                   </button>
-                  <button mat-menu-item (click)="rejectLeave(leave.id ?? -1)">
+                  <button mat-menu-item >
                     <i class="fa-solid fa-user-tie textColor" ></i>
                    Reject
                   </button>
                 </mat-menu>
-              </a>
+              </a> -->
             </td>
         </tr>
     </tbody>

@@ -35,6 +35,10 @@ export class EmployeeDatasource{
         return this.sendRequest<EmployeeTable[]>("GET", `${this.url}/without_sal`);
     }
 
+    getEmpWithoutPolicy():Observable<EmployeeTable[]>{
+        return this.sendRequest<EmployeeTable[]>("GET", `${this.url}/without_leave`);
+    }
+
     countEmployee():Observable<number>{
         return this.sendRequest<number>("GET", `${this.url}/count/employee`);
         

@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <h3 class="fw-bold d-inline-block">
+      <i class="fa-solid fa-wallet fs-3 m-2"></i>Leave Policy
+    </h3>
+    <!-- /Breadcrumb -->
+    <mat-divider class="m-2"></mat-divider>
+  
+    <div style="float: right" class="m-2">
+      <button
+        mat-raised-button
+        style=" background-color: #354f52; color: #ffff;"
+        (click)="openDialog()"
+      >
+        Add Employee Policy
+      </button>
+    </div>
+
+<div>
+    <form>
+      <div style="width: 200px; display: inline-block">
+          
+          <label>Select Employee</label>
+          <select class="form-select" >
+              <option value="-1">All</option>
+              <option ></option>
+              
+            </select></div>
+      
+      <button class="btn btn-primary" type="submit">Show</button>
+    </form>
+  </div>
+  <div class="mt-3">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>SL</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Designation</th>
+                  <th>Casual Leave</th>
+                  <th>Medical Leave</th>
+                  <th>Unpaid Leave</th>
+                  <th>Details</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let leave of leavePolicy ; let i = index">
+                  <td> {{i + 1}} </td>
+                  <td> {{leave.employee?.firstName}} {{leave.employee?.lastName}} </td>
+                 <td> {{leave.employee?.departmentName}} </td>
+                 <td> {{leave.employee?.jobTitle}} </td>
+                  <td> {{leave.casualSpent}} ({{leave.casual}}) </td>
+                  <td> {{leave.medicalSpent}} ({{leave.medical}}) </td>
+                  <td> {{leave.unpaidSpent}} </td>
+                  <td>
+                      <button class="btn btn-sm btn-primary">Details</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
