@@ -24,6 +24,16 @@ export class ClaimDatasource{
         return this.sendRequest<Claim>("POST", this.claimUrl, claim);
     }
 
+
+    acceptClaim(id: number): Observable<boolean>{
+        return this.sendRequest<boolean>("GET", `${this.claimUrl}/approved/${id}`);
+    }
+
+    
+    rejectClaim(id: number): Observable<boolean>{
+        return this.sendRequest<boolean>("GET", `${this.claimUrl}/reject/${id}`);
+    }
+
     // updateClaim(claim: Claim): Observable<Claim>{
     //     return this.sendRequest<Claim>("PUT", `${this.claimUrl}/${claim.id}`, claim);
     // }

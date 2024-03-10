@@ -20,8 +20,17 @@ export class PayrollDatasource {
         return this.sendRequest<void>("GET", `${this.payrollUrl}/refresh`);
     }
 
-    getPayrollByPeriod(year: number, month: number): Observable<PayrollTable[]> {
-        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/${year}/${month}`);
+    deletePayrollById(id: number):Observable<void>{
+        return this.sendRequest<void>("DELETE", `${this.payrollUrl}/${id}`);    
+    }
+
+
+    processPayrollByPeriod(year: number, month: number): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/process/${year}/${month}`);
+    }
+
+    getPendingPayroll(): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/pending`);
     }
 
     getPayrollByEmpAndPeriod(empId: number, year: number, month: number): Observable<Payroll> {

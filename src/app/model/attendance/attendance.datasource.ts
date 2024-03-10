@@ -48,13 +48,13 @@ export class AttendanceDatasource {
         return this.sendRequest<Leave>("POST", `${this.leaveUrl}`, leave);
     }
 
-    grantLeave(id: number): Observable<Leave> {
-        return this.sendRequest<Leave>("GET", `${this.leaveUrl}/grant/${id}`);
+    grantLeave(id: number): Observable<boolean> {
+        return this.sendRequest<boolean>("GET", `${this.leaveUrl}/grant/${id}`);
     }
 
 
-    rejectLeave(id: number): Observable<Leave> {
-        return this.sendRequest<Leave>("GET", `${this.leaveUrl}/reject/${id}`);
+    rejectLeave(id: number): Observable<boolean> {
+        return this.sendRequest<boolean>("GET", `${this.leaveUrl}/reject/${id}`);
     }
 
     getAllLeave(): Observable<Leave[]> {

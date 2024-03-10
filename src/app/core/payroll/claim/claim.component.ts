@@ -90,4 +90,26 @@ getAllClaim(){
   }
 
 
+  acceptClaim(id: number){
+      if(id < 0){
+        return;
+      }
+      this.claimData.acceptClaim(id).subscribe(b => {
+        this.getAllClaim();
+      });
+  }
+
+  rejectClaim(id: number){
+    if(id < 0){
+      return;
+    }
+
+    this.claimData.rejectClaim(id).subscribe(b => {
+      this.getAllClaim();
+    })
+
+
+  }
+
+
 }

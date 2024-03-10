@@ -70,17 +70,19 @@
             <tr>
               <th>SL</th>
               <th>Name</th>
+              <th>Date</th>
               <th>Check In Time</th>
               <th>Check Out Time</th>
-              <th></th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
           <tr *ngFor="let log of attendanceLog; let i = index">
             <td> {{i + 1}} </td>
             <td> {{log.employeeName}} </td>
-            <td> {{log.entryTime}} </td>
-            <td> {{log.leaveTime}} </td>
+            <td>{{log.day | date : "longDate"}}</td>
+            <td> {{log.entryTime | date : 'shortTime'}} </td>
+            <td> {{log.leaveTime | date: 'shortTime'}} </td>
             <td></td>
           </tr>  
          </tbody>

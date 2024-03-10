@@ -7,7 +7,8 @@
             </tr></thead>
              <tbody>
                 <tr *ngFor="let category of categoryList">
-                    <td colspan="2">{{category.name}} </td>
+                    <td >{{category.name}} </td>
+                    <td> {{category.claimType}} </td>
                 </tr>
              </tbody>
         </table>
@@ -71,8 +72,21 @@
                           <td> {{claim.amount}} </td>
                           <td> {{claim.claimStatus}} </td>
                           <td>
-                              <button class="btn btn-sm btn-primary">Details</button>
-                          </td>
+
+                            <a  [matMenuTriggerFor]="menu1">
+                                 <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
+                                 <mat-menu #menu1="matMenu">
+                                   <button mat-menu-item (click)="acceptClaim(claim.id ?? -1)">
+                                     <i class="fa-solid fa-file textColor"></i>
+                                    Grant
+                                   </button>
+                                   <button mat-menu-item (click)="rejectClaim(claim.id ?? -1)">
+                                     <i class="fa-solid fa-user-tie textColor" ></i>
+                                    Reject
+                                   </button>
+                                 </mat-menu>
+                               </a>
+                             </td>
                       </tr>
                   </tbody>
               </table>

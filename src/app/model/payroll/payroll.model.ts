@@ -13,6 +13,10 @@ export class PayrollTable {
     ) { }
 }
 
+
+
+
+
 export class Payroll {
     constructor(
         public id?: number,
@@ -29,7 +33,6 @@ export class Payroll {
         public grossSalary?: number,
         public otherEarning?: number,
         public otherDeduction?: number,
-        public taxInformaion?: number,
         public workingDays?: number,
         public unpaidLeaveDays?: number,
         public jobTitle?: string,

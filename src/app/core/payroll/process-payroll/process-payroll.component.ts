@@ -29,14 +29,13 @@ export class ProcessPayrollComponent implements OnInit {
     this.payrollList = new Array<Payroll>();
     this.payroll = new Payroll();
 
-    this.payData.getPayrollByPeriod(2024, 3).subscribe(pay => {
-      this.payrollList  = pay;
-    })
+   
 
   }
 
   ngOnInit(): void {
     this.getAllEmployeeList();
+    this.getAllPendingPayroll();
   }
 
   processForm: FormGroup = new FormGroup({
@@ -52,6 +51,14 @@ export class ProcessPayrollComponent implements OnInit {
   }
 
 
+
+  getAllPendingPayroll(){
+    this.payData.getPendingPayroll().subscribe(p => {
+      this.payrollList =  p;
+    })
+  }
+
+
   processPayroll() {
 
     let id = this.processForm.value.employeeId;
@@ -60,13 +67,13 @@ export class ProcessPayrollComponent implements OnInit {
     let month = period[1];
     
     if (id == -1) {
-      this.payData.getPayrollByPeriod(year, month).subscribe(pay => {
-        this.payrollList = pay;
+      this.payData.processPayrollByPeriod(year, month).subscribe(pay => {
+        this.getAllPendingPayroll();
        
       });
     } else if (id) {
       this.payData.getPayrollByEmpAndPeriod(id, year, month).subscribe(pay => {
-        this.payroll = pay;
+        this.getAllPendingPayroll();
       })
     }
 
@@ -94,6 +101,14 @@ export class ProcessPayrollComponent implements OnInit {
   }
 
 
+  deletePayroll(id: number){
+    if(id < 0){
+      return;
+    }
+    this.payData.deletePayrollById(id).subscribe(b => {
+      this.getAllPendingPayroll();
+    })
+  }
 
 
 
