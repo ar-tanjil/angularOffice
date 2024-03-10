@@ -9,8 +9,9 @@ export class Claim{
    public amount?: number,
    public date?: Date,
    public  claimCategory?: ClaimCategory,
-   public employee?: EmployeeTable
-
+   public employee?: EmployeeTable,
+   public employeeId?: number,
+   public categoryId?: number
    ){
 
    }
@@ -20,8 +21,8 @@ export class ClaimCategory{
    
    constructor(
     public id?: number,
-   public name?: number,
-   public claimType?: number
+   public name?: string,
+   public claimType?: string
 
    ){}
 }

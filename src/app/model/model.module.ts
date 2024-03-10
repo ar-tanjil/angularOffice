@@ -11,6 +11,7 @@ import { AuthenticationDatasource } from "./authentication/auth.datasource";
 import { LocalStorageService } from "./authentication/storageService";
 import { NotificationService } from "./notification/notification.service";
 import { NotificationData } from "./notification/notifiaction.data";
+import { ClaimDatasource } from "./claim/claim.datasource";
 
 @NgModule({
     declarations: [],
@@ -25,6 +26,7 @@ import { NotificationData } from "./notification/notifiaction.data";
         NotificationData,
         AuthenticationDatasource,
         LocalStorageService,
+        ClaimDatasource,
         { provide: HTTP_INTERCEPTORS, useClass: UniversalAppInterceptor, multi: true },
     ],
     imports: [HttpClientModule]

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Claim, ClaimCategory } from 'src/app/model/claim/claim.model';
@@ -6,24 +6,46 @@ import { EmployeeTable } from 'src/app/model/employee/employee.model';
 import { ClaimFormComponent } from './claim-form/claim-form.component';
 import { auto } from '@popperjs/core';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { ClaimDatasource } from 'src/app/model/claim/claim.datasource';
 
 @Component({
   selector: 'app-claim',
   templateUrl: './claim.component.html',
   styleUrls: ['./claim.component.scss']
 })
-export class ClaimComponent {
+export class ClaimComponent implements OnInit {
 
 employeeList: EmployeeTable[];
 claimList: Claim[];
 categoryList: ClaimCategory[];
 
 constructor(
-  private dialog: MatDialog
+  private dialog: MatDialog,
+  private claimData: ClaimDatasource
 ) {
   this.employeeList = new Array<EmployeeTable>();
   this.claimList = new Array<Claim>();
   this.categoryList = new Array<ClaimCategory>();
+}
+
+
+
+ngOnInit(): void {
+    this.getAllCategory();
+    this.getAllClaim();
+}
+
+getAllCategory(){
+this.claimData.getAllClaimCategory().subscribe(c => {
+  this.categoryList = c;
+})
+}
+
+
+getAllClaim(){
+  this.claimData.getAllClaim().subscribe(c => {
+    this.claimList = c;
+  })
 }
 
 
@@ -49,7 +71,7 @@ constructor(
     }
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
-  
+      this.getAllClaim();
     })
   }
 
@@ -63,7 +85,7 @@ constructor(
     }
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
-  
+        this.getAllCategory()
     })
   }
 

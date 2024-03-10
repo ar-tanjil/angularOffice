@@ -6,8 +6,8 @@
                 <th><button class="btn btn-primary" (click)="openCategoyrDialog()">Add</button></th>
             </tr></thead>
              <tbody>
-                <tr>
-                    <td colspan="2">hahaha</td>
+                <tr *ngFor="let category of categoryList">
+                    <td colspan="2">{{category.name}} </td>
                 </tr>
              </tbody>
         </table>

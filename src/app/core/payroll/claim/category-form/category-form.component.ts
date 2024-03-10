@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ClaimDatasource } from 'src/app/model/claim/claim.datasource';
+import { ClaimCategory } from 'src/app/model/claim/claim.model';
 
 @Component({
   selector: 'app-category-form',
@@ -7,6 +10,16 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent {
+
+
+
+  constructor(
+    private claimData: ClaimDatasource,
+    public dialogRef: MatDialogRef<CategoryFormComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: { id: number }
+    ){
+
+  }
 
 
 
@@ -18,7 +31,13 @@ export class CategoryFormComponent {
 
   
   submit(){
-
+    let category = new ClaimCategory();
+    Object.assign(category, this.categoryForm.value);
+    console.log(category);
+    
+    this.claimData.saveClaimCategory(category).subscribe(c => {
+      this.dialogRef.close(c);
+    })
   }
 
 }

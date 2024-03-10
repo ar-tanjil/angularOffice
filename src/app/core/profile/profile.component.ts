@@ -74,7 +74,7 @@ export class ProfileComponent {
 
   checkHoliday(day: string){
     this.attenData.checkHoliday(day).subscribe(check => {
-      this.holiday = true;
+      this.holiday = check;
       this.getCheckInOut(this.attendance);
     })
   }
