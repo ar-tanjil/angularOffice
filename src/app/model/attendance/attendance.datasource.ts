@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
-import { Attendance, AttendanceSheet, Holiday, Leave, LeavePolicy, TimePeriod } from "./attendance.model";
+import { Attendance, AttendanceSheet, Holiday, Leave, LeavePolicy, OfficeDays, TimePeriod } from "./attendance.model";
 
 
 
@@ -12,6 +12,7 @@ export class AttendanceDatasource {
     private leaveUrl: string = "http://localhost:8080/emp_leaves";
     private attendanceUrl: string = "http://localhost:8080/attendances";
     private leavePolicyUrl: string = "http://localhost:8080/leavePolicies";
+    private officeDaysUrl: string = "http://localhost:8080/days";
 
     constructor(private http: HttpClient) { };
 
@@ -38,7 +39,7 @@ export class AttendanceDatasource {
     }
 
     giveAttendance(id: number): Observable<Attendance> {
-        return this.sendRequest<Attendance>("POST", `${this.attendanceUrl}/${id}`);
+        return this.sendRequest<Attendance>("GET", `${this.attendanceUrl}/${id}`);
 
     }
 
@@ -106,6 +107,20 @@ export class AttendanceDatasource {
         return this.sendRequest<LeavePolicy[]>("GET",`${this.leavePolicyUrl}`);
     }
 
+
+// Days -------------------------------------------
+
+    getAllDays():Observable<OfficeDays[]>{
+        return this.sendRequest<OfficeDays[]>("GET",`${this.officeDaysUrl}`);   
+    }
+
+    getDaysById(id: number):Observable<OfficeDays>{
+        return this.sendRequest<OfficeDays>("GET",`${this.officeDaysUrl}/${id}`);   
+    }
+
+    saveDays(day: OfficeDays): Observable<OfficeDays>{
+        return this.sendRequest<OfficeDays>("PUT",`${this.officeDaysUrl}/${day.id}`, day);       
+    }
 
     private sendRequest<T>(verb: string, url: string, body?: T | TimePeriod): Observable<T> {
         return this.http.request<T>(verb, url, {

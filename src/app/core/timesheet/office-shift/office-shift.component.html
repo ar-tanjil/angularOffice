@@ -1,0 +1,36 @@
+
+<div class="container-fluid">
+    <!-- Breadcrumb -->
+    <h3 class="fw-bold">
+      <i class="fa-solid fa-umbrella-beach fs-3 m-2"></i> Office Shift
+    </h3>
+    <!-- /Breadcrumb -->
+    <mat-divider class="m-2"></mat-divider>
+   
+  
+  
+    <table class="table w-50 table-striped mx-auto">
+     
+        <thead>
+            <tr>
+                <th>Days</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let day of days">
+            
+                    <td> {{day.day}} </td>
+                    <td colspan="2" class="text-center" *ngIf="day.status == 'WEEKEND'"> {{day.status}} </td>
+                    <td *ngIf="day.status != 'WEEKEND'"> {{day.startTime}} </td>
+                    <td *ngIf="day.status != 'WEEKEND'"> {{day.endTime}} </td>
+                    <td><button class="btn btn-sm btn-warning"   (click)="updateDialog(day.id ?? -1)">Change</button></td>
+            </tr>
+        </tbody>
+    </table>
+  
+  </div>
+  
+

@@ -31,7 +31,7 @@ export class Payroll {
         public providentFund?: number,
         public netSalary?: number,
         public grossSalary?: number,
-        public otherEarning?: number,
+        public reimbursement?: number,
         public otherDeduction?: number,
         public workingDays?: number,
         public unpaidLeaveDays?: number,

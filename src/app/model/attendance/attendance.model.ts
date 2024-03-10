@@ -1,3 +1,4 @@
+import { Time } from "@angular/common";
 import { EmployeeTable } from "../employee/employee.model";
 
 export class AttendanceSheet {
@@ -12,23 +13,25 @@ export class Attendance {
     constructor(
         public id?: number,
         public day?: string,
-        public entryTime?: Date,
-        public leaveTime?: Date,
+        public checkIn?: string,
+        public checkOut?: string,
         public employeeId?: string,
         public employeeName?: string,
+        public checkInStatus?: string,
+        public checkOutStatus?: string
     ) { }
 }
 
 
-export class Holiday{
+export class Holiday {
     constructor(
         public id?: number,
         public day?: Date,
         public reason?: string
-    ){}
+    ) { }
 }
 
-export class Leave{
+export class Leave {
     constructor(
         public id?: number,
         public day?: Date,
@@ -37,12 +40,12 @@ export class Leave{
         public status?: string,
         public employeeId?: number,
         public employeeName?: string
-    ){
+    ) {
 
     }
 }
 
-export class LeavePolicy{
+export class LeavePolicy {
     constructor(
         public id?: number,
         public medical?: number,
@@ -52,14 +55,24 @@ export class LeavePolicy{
         public unpaidSpent?: number,
         public employee?: EmployeeTable,
         public employeeId?: number
-    ){}
+    ) { }
 }
 
-export class TimePeriod{
+export class TimePeriod {
     constructor(
         public startDate?: Date,
-        public endDate?:Date
-    ){
+        public endDate?: Date
+    ) {
 
     }
+}
+
+export class OfficeDays {
+    constructor(
+        public id?: number,
+        public day?: string,
+        public startTime?: Time,
+        public endTime?: Time,
+        public status?: string
+    ) { }
 }

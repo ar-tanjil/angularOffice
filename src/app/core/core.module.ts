@@ -47,6 +47,8 @@ import { PolicyFormComponent } from "./timesheet/leave-policy/policy-form/policy
 import { ClaimComponent } from './payroll/claim/claim.component';
 import { CategoryFormComponent } from './payroll/claim/category-form/category-form.component';
 import { ClaimFormComponent } from './payroll/claim/claim-form/claim-form.component';
+import { OfficeShiftComponent } from './timesheet/office-shift/office-shift.component';
+import { ShiftFormComponent } from './timesheet/office-shift/shift-form/shift-form.component';
 
 @NgModule({
     declarations: [
@@ -91,7 +93,9 @@ import { ClaimFormComponent } from './payroll/claim/claim-form/claim-form.compon
         PolicyFormComponent,
         ClaimComponent,
         CategoryFormComponent,
-        ClaimFormComponent
+        ClaimFormComponent,
+        OfficeShiftComponent,
+        ShiftFormComponent
     ],
     exports: [
         NavbarComponent,

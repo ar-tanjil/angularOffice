@@ -81,9 +81,9 @@
             <td> {{i + 1}} </td>
             <td> {{log.employeeName}} </td>
             <td>{{log.day | date : "longDate"}}</td>
-            <td> {{log.entryTime | date : 'shortTime'}} </td>
-            <td> {{log.leaveTime | date: 'shortTime'}} </td>
-            <td></td>
+            <td> {{log.checkIn}} </td>
+            <td> {{log.checkOut}} </td>
+            <td> {{log.checkInStatus}} - {{log.checkOutStatus}} </td>
           </tr>  
          </tbody>
         </table>

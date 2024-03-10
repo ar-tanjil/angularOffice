@@ -24,6 +24,7 @@ import { AuthGuard } from './model/authentication/authGurd';
 import { ProcessPayrollComponent } from './core/payroll/process-payroll/process-payroll.component';
 import { LeavePolicyComponent } from './core/timesheet/leave-policy/leave-policy.component';
 import { ClaimComponent } from './core/payroll/claim/claim.component';
+import { OfficeShiftComponent } from './core/timesheet/office-shift/office-shift.component';
 
 const routes: Routes = [
   {
@@ -159,6 +160,11 @@ const routes: Routes = [
   {
     path: "leavePolicy",
     component: LeavePolicyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "officeShift",
+    component: OfficeShiftComponent,
     canActivate: [AuthGuard]
   },
   {

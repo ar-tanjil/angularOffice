@@ -10,6 +10,7 @@ import { Attendance, LeavePolicy } from 'src/app/model/attendance/attendance.mod
 import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
 import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -44,6 +45,7 @@ export class ProfileComponent {
   }
 
   ngOnInit() {
+
 
     this.activerRoute.params.subscribe(params => {
 
@@ -88,13 +90,13 @@ export class ProfileComponent {
     this.checkInButton = "Check In";
     }
 
-    if (att.entryTime) {
+    if (att.checkIn) {
       this.checkInButton = "Check Out"
     }
 
 
-    this.checkInTime = att.entryTime ?? "--/--/--";
-    this.checkOutTime = att.leaveTime ?? "--/--/--";
+    this.checkInTime = att.checkIn ?? "--/--/--";
+    this.checkOutTime = att.checkOut ?? "--/--/--";
   }
 
 
@@ -119,8 +121,6 @@ export class ProfileComponent {
 
   getLeavePolicy(id: number){
     this.attenData.getPolicyByEmployee(id).subscribe( policy => {
-      console.log(policy);
-      
       this.leavePolicy = policy;
     })
   }
@@ -149,6 +149,7 @@ export class ProfileComponent {
       this.subscription.unsubscribe();
     }
   }
+
 
 
 
