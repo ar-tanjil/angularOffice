@@ -1,17 +1,13 @@
-<div class="container-fluid">
-  <h3 class="fw-bold d-inline-block">
-    <i class="fa-solid fa-wallet fs-3 m-2"></i>Payroll Process
-  </h3>
-  <!-- /Breadcrumb -->
-  <mat-divider class="m-2"></mat-divider>
 
-  <div style="float: right" class="m-2">
-    <button mat-raised-button style=" background-color: #354f52; color: #ffff;">
-     
-    </button>
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold m-0"><i class="fa-solid fa-wallet fs-1 m-2"></i>Payroll Process</h1>
   </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
 
 
+<div class="container-fluid">
 
   <div class="ms-5">
     <form [formGroup]="processForm" (ngSubmit)="processPayroll()">

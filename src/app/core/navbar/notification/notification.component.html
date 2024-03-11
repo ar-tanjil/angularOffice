@@ -1,20 +1,36 @@
-<h2 mat-dialog-title class="">Notification</h2>
-<mat-dialog-content class="mat-typography ">
-  <table class="table table-borderless">
-    <thead></thead>
-    <tbody>
-        <tr *ngFor="let notify of notification; let o = odd"
-        [class.odd]="o" [class.even]="!o"
-        >
-            <td> {{notify.content}} </td>
-            <td>Mark</td>
-            
-        </tr>
-      
-    </tbody>
-  </table>
+<!-- <h2 mat-dialog-title class="">Notification</h2> -->
+<mat-dialog-content class="mat-typography example ">
+ <section class="section-50">
+  <div class="container">
+    <h3 class="m-b-50 heading-line">
+      Notifications <i class="fa fa-bell text-muted"></i>
+    </h3>
+
+    <div class="notification-ui_dd-content" *ngFor="let noti of notification">
+      <div class="notification-list notification-list--unread">
+        <div class="notification-list_content">
+          <div class="notification-list_img">
+            <img src="https://i.imgur.com/zYxDCQT.jpg" alt="user" />
+          </div>
+          <div class="notification-list_detail">
+            <p><b>John Doe</b> reacted to your post</p>
+            <p class="text-muted">
+             {{noti.content}}
+            </p>
+            <p class="text-muted"><small>10 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 
+     <div class="text-center">
+          <a href="#!" class="dark-link">Load more activity</a>
+      </div>  -->
+    </div>
+  </section>
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="">
   <button mat-button mat-dialog-close>Close</button>
-  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
-</mat-dialog-actions>
+</mat-dialog-actions> 
+
+

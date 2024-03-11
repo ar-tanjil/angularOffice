@@ -1,9 +1,9 @@
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 
-   <!-- Breadcrumb -->
+   Breadcrumb
    <h3 class="fw-bold"><i class="fa-solid fa-users fs-3 m-2"></i>Employee</h3>
-  <!-- /Breadcrumb -->
+  /Breadcrumb
   <mat-divider class="m-2"></mat-divider>
     <div style="float: right;" class="m-2">
     <button mat-raised-button 
@@ -32,7 +32,7 @@
         <td> {{emp.jobTitle}} </td>
         <td> {{emp.departmentName}} </td>
         <td>
-          <!-- <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i> -->
+          <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i>
             <a  [matMenuTriggerFor]="menu1">
               <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
               <mat-menu #menu1="matMenu">
@@ -52,4 +52,58 @@
 </tbody>
 
 </table>
+</div> -->
+
+
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold"><i class="fa-solid fa-users fs-1 m-2"></i>Employee</h1>
+  </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
+<div style="float: right;" class="m-2">
+<button mat-raised-button 
+    style=" background-color: #284b63; color: #ffff;"
+(click)="openDialog()">Add Employee</button>
+</div>
+
+<div class="container-custom">
+  <h2>Employee List</h2>
+  <ul class="responsive-table-custom">
+    <li class="table-header">
+      <div class="col col-1">Employee Id</div>
+      <div class="col col-2">First Name</div>
+      <div class="col col-3">Last Name</div>
+      <div class="col col-4">Department</div>
+      <div class="col col-5">Designation</div>
+      <div class="col col-6"></div>
+    </li>
+    <li class="table-row" *ngFor="let emp of employeeTable">
+      <div class="col col-1" data-label="Employee Id">{{emp.id}}</div>
+      <div class="col col-2" data-label="First Name">{{emp.firstName}}</div>
+      <div class="col col-3" data-label="Last Name">{{emp.lastName}}</div>
+      <div class="col col-4" data-label="Employee id">{{emp.departmentName}}</div>
+      <div class="col col-5" data-label="Department">{{emp.jobTitle}}</div>
+      <div class="col col-6" data-label="Department">
+    
+
+          <a  [matMenuTriggerFor]="menu1">
+            <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
+            <mat-menu #menu1="matMenu">
+              <button mat-menu-item [routerLink]="['/details','emp', emp.id]">
+                <i class="fa-solid fa-file textColor"></i>
+                Details
+              </button>
+              <button mat-menu-item 
+              [routerLink]="['/profile', emp.id]">
+                <i class="fa-solid fa-user-tie textColor"></i>
+                Profile
+              </button>
+            </mat-menu>
+          </a>
+
+       
+      </div>
+    </li>
+  </ul>
 </div>

@@ -1,14 +1,92 @@
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold"><i class="fa-solid fa-calendar-days fs-1 m-2"></i>Attendance</h1>
+  </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
 <div class="container-fluid">
-  <!-- Breadcrumb -->
-  <h3 class="fw-bold"><i class="fa-solid fa-users fs-3 m-2"></i>Attendance</h3>
-  <!-- /Breadcrumb -->
-  <mat-divider class="m-2"></mat-divider>
 
   <mat-tab-group>
+    <mat-tab label="Attendance Log">
+     
+        <div class="p-3">
+          <form
+            [formGroup]="attendanceLogForm"
+            (ngSubmit)="searchAttendanceLog()"
+          >
+            <div style="width: 200px; display: inline-block;  margin: 5px;">
+              <label>Select Employee</label>
+              <select class="form-select" formControlName="employeeId">
+                <option value="-1" selected >All</option>
+                <option *ngFor="let emp of employeeList" [value]="emp.id">
+                  {{ emp.firstName }} {{ emp.lastName }}
+                </option>
+              </select>
+            </div>
+
+            <div style="width: 200px; display: inline-block ;  margin: 5px;">
+              <div class="form-group">
+                <label>From</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="startDate"
+                />
+              </div>
+            </div>
+            <div
+              style="
+                width: 200px;
+                display: inline-block;
+              margin: 5px;
+              "
+            >
+              <div class="form-group">
+                <label>To</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="endDate"
+                />
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
+        </div>
+      
+
+      <div>
+        <table class="table table-striped text-center">
+          <thead>
+            <tr>
+              <th>SL</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Check In Time</th>
+              <th>Check Out Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let log of attendanceLog; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ log.employeeName }}</td>
+              <td>{{ log.day | date : "longDate" }}</td>
+              <td>{{ log.checkIn }}</td>
+              <td>{{ log.checkOut }}</td>
+              <td>{{ log.checkInStatus }} - {{ log.checkOutStatus }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+
     <mat-tab label="Attendance Sheet">
       <div class="table-responsive">
         <div class="text-center">
-          <h3 class="fw-bolder">Attendance Sheet Of {{ titleMonth | date : "MMMM - YYYY" }}</h3>
+          <h3 class="fw-bolder">
+            Attendance Sheet Of {{ titleMonth | date : "MMMM - YYYY" }}
+          </h3>
         </div>
         <table class="table table-bordered">
           <thead>
@@ -36,109 +114,6 @@
           </tbody>
         </table>
       </div>
-    </mat-tab>
-    <mat-tab label="Attendance Log">
-      <div>
-        <form [formGroup]="attendanceLogForm" (ngSubmit)="searchAttendanceLog()">
-
-          <div style="width: 200px; display: inline-block">
-        
-            <label>Select Employee</label>
-            <select class="form-select" formControlName="employeeId">
-                <option value="-1">All</option>
-                <option *ngFor="let emp of employeeList;" [value]="emp.id">
-                {{emp.firstName}} {{emp.lastName}}</option>
-                
-              </select></div>
-
-           <div style="width: 200px; display: inline-block">
-          <div class="form-group">
-            <label>From</label>
-            <input type="date" class="form-control" formControlName="startDate" />
-          </div>
-        </div>
-        <div
-          style="
-            width: 200px;
-            display: inline-block;
-            margin-left: 2px;
-            margin-right: 2px;
-          "
-        >
-          <div class="form-group">
-            <label>To</label>
-            <input type="date" class="form-control" formControlName="endDate" />
-          </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Search</button>
-      </form>
-
-      </div>
-
-      <div>
-        <table class="table table-striped-columns text-center">
-          <thead>
-            <tr>
-              <th>SL</th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Check In Time</th>
-              <th>Check Out Time</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let log of attendanceLog; let i = index">
-            <td> {{i + 1}} </td>
-            <td> {{log.employeeName}} </td>
-            <td>{{log.day | date : "longDate"}}</td>
-            <td> {{log.checkIn}} </td>
-            <td> {{log.checkOut}} </td>
-            <td> {{log.checkInStatus}} - {{log.checkOutStatus}} </td>
-          </tr>  
-         </tbody>
-        </table>
-      </div>
-    </mat-tab>
-
-    <mat-tab label="Search"> 
-      <div>
-        <form [formGroup]="attendanceLogForm" (ngSubmit)="searchAttendanceLog()">
-          
-          <!-- <div style="width: 200px; display: inline-block">
-        
-            <label>Select Employee</label>
-            <select class="form-select" formControlName="employeeId">
-                <option value="-1" >All</option>
-                <option *ngFor="let emp of employeeList;" [value]="emp.id">
-                {{emp.firstName}}</option>
-                
-              </select></div> -->
-          
-          <div style="width: 200px; display: inline-block">
-          <div class="form-group">
-            <label>From</label>
-            <input type="date" class="form-control" formControlName="startDate" />
-          </div>
-        </div>
-        <div
-          style="
-            width: 200px;
-            display: inline-block;
-            margin-left: 2px;
-            margin-right: 2px;
-          "
-        >
-          <div class="form-group">
-            <label>To</label>
-            <input type="date" class="form-control" formControlName="endDate" />
-          </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Search</button>
-      </form>
-
-      </div>
-    
     </mat-tab>
   </mat-tab-group>
 </div>

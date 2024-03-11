@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
    
 
     <h1 class="fw-bold"><i class="fa-solid fa-users-line fs-1 m-2"></i>Jobs</h1>
-    <!-- /Breadcrumb -->
+    /Breadcrumb
     <mat-divider class="m-2"></mat-divider>
       <div style="float: right;" class="m-2">
         <button mat-raised-button 
@@ -52,4 +52,60 @@
     </tbody>
     
     </table>
+</div> -->
+
+
+
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold"><i class="fa-solid fa-users-line fs-1 m-2"></i>Jobs</h1>
+  </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
+<div style="float: right;" class="m-2">
+  <button mat-raised-button 
+  style=" background-color: #354f52; color: #ffff;"
+  (click)="openDialog()">Create New Job</button>
+</div>
+
+<div class="container-custom">
+  <h2>Job List</h2>
+  <ul class="responsive-table-custom">
+    <li class="table-header text-center">
+      <div class="col col-1">SL</div>
+      <div class="col col-2">Job Title</div>
+      <div class="col col-3">Min Salary</div>
+      <div class="col col-4">Max Salary</div>
+      <div class="col col-5">Department</div>
+      <div class="col col-6">Total Post</div>
+      <div class="col col-7">Vacancy</div>
+      <div class="col col-8"></div>
+    </li>
+    <li class="table-row text-center"  *ngFor="let desig of designations; let i = index;">
+      <div class="col col-1" data-label="Employee Id">{{ i + 1}}</div>
+      <div class="col col-2" data-label="First Name">{{desig.jobTitle}}</div>
+      <div class="col col-3" data-label="Last Name">{{desig.minSalary}}</div>
+      <div class="col col-4" data-label="Employee id">{{desig.maxSalary}}</div>
+      <div class="col col-5" data-label="Employee id">{{desig.departmentName}}</div>
+      <div class="col col-6" data-label="Employee id">{{desig.totalPost}}</div>
+      <div class="col col-7" data-label="Employee id">{{desig.vacancy}}</div>
+      <div class="col col-8" data-label="Department">
+        <a  [matMenuTriggerFor]="menu1">
+          <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
+          <mat-menu #menu1="matMenu">
+            <button mat-menu-item (click)="updateDialog(desig.id ?? -1)" >
+              <mat-icon >create</mat-icon>Update
+            </button>
+            <button mat-menu-item>
+              <mat-icon >info</mat-icon>Details
+            </button>
+            <button mat-menu-item (click)="delete(desig.id ?? -1)">
+              <mat-icon>delete</mat-icon>Delete
+            </button>
+          </mat-menu>
+        </a>
+       
+      </div>
+    </li>
+  </ul>
 </div>
