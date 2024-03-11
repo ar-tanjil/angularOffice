@@ -43,7 +43,8 @@ export class AddSalaryComponent implements OnInit {
     employeeId: new FormControl(),
     basic: new FormControl("", Validators.pattern('^[1-9][0-9]+$')),
     medicalAllowance: new FormControl("", Validators.pattern('^[0-9]{0,2}$')),
-    providentFund: new FormControl("", Validators.pattern('^[0-9]{0,2}$'))
+    providentFund: new FormControl("", Validators.pattern('^[0-9]{0,2}$')),
+    travelAllowance: new FormControl("", Validators.pattern('^[0-9]{0,2}$'))
   });
 
 
@@ -60,6 +61,8 @@ export class AddSalaryComponent implements OnInit {
   getEmpWithoutSal(){
     this.empData.getEmpWithoutSal().subscribe(emp => {
       this.employee = emp;
+      console.log(emp);
+      
     })
   }
 
@@ -73,6 +76,8 @@ export class AddSalaryComponent implements OnInit {
       })
     } else if (this.salaryForm.valid) {
       Object.assign(this.salary, this.salaryForm.value);
+      console.log(this.salary);
+      
       this.payData.saveSalaryByEmployee(this.salary).subscribe(sal => {
         this.dialogRef.close();
       })

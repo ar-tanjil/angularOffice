@@ -40,6 +40,17 @@
     <mat-tab label="Attendance Log">
       <div>
         <form [formGroup]="attendanceLogForm" (ngSubmit)="searchAttendanceLog()">
+
+          <div style="width: 200px; display: inline-block">
+        
+            <label>Select Employee</label>
+            <select class="form-select" formControlName="employeeId">
+                <option value="-1">All</option>
+                <option *ngFor="let emp of employeeList;" [value]="emp.id">
+                {{emp.firstName}} {{emp.lastName}}</option>
+                
+              </select></div>
+
            <div style="width: 200px; display: inline-block">
           <div class="form-group">
             <label>From</label>

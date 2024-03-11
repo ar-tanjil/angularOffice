@@ -27,11 +27,13 @@ export class AttendanceDatasource {
         return this.sendRequest<AttendanceSheet[]>("GET", `${this.attendanceUrl}/sheet/${start}/${end}`);
     }
 
-
     
     getAttendanceLog(period: TimePeriod): Observable<Attendance[]> {
-
         return this.sendRequest<Attendance[]>("POST", `${this.attendanceUrl}/table`, period);
+    }
+
+    getAttendanceLogByEmp(period: TimePeriod, id: number): Observable<Attendance[]> {
+        return this.sendRequest<Attendance[]>("POST", `${this.attendanceUrl}/table/${id}`, period);
     }
 
     getAttendanceByDay(id: number, day: string): Observable<Attendance> {

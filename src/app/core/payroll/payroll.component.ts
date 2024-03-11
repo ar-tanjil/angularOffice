@@ -7,6 +7,7 @@ import { AddSalaryComponent } from './add-salary/add-salary.component';
 import { auto } from '@popperjs/core';
 import { SalaryDetailsComponent } from './salary-details/salary-details.component';
 import { PayslipComponent } from './payslip/payslip.component';
+import { loadTranslations } from '@angular/localize';
 
 @Component({
   selector: 'app-payroll',
@@ -107,6 +108,8 @@ export class PayrollComponent implements OnInit {
   getAllSalary() {
     this.model.getAllSalary().subscribe(emp => {
       this.salaryTable = emp;
+      console.log(emp);
+      
       this.replaySubject.next(emp);
       this.replaySubject.complete();
     })

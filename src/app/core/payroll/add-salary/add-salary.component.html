@@ -6,7 +6,7 @@
 
                 <mat-form-field class="form-field" appearance="outline" *ngIf="!editing">
                     <mat-label>Employee Id</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="employeeId">
                         <mat-option *ngFor="let emp of employee" [value]="emp.id">
                           {{emp.firstName}} {{emp.lastName}}
                         </mat-option>
@@ -26,6 +26,10 @@
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Provident Fund</mat-label>
                     <input matInput placeholder="0%" formControlName="providentFund" />
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Provident Fund</mat-label>
+                    <input matInput placeholder="0%" formControlName="travelAllowance" />
                 </mat-form-field>
 
                 <mat-dialog-actions align="end">

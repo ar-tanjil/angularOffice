@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -29,9 +30,28 @@ export class ShiftFormComponent implements OnInit {
       if(id){
         this.attenData.getDaysById(id).subscribe(d => {
           this.day = d; 
+          this.day.startTime = this.convertTime(d.startTime??"");
+          this.day.endTime = this.convertTime(d.endTime ?? "");
+          
           this.officeDayForm.patchValue(this.day);
         })
       }
+  }
+
+
+
+  convertTime(time : string){
+    let t = time.split("\u202F");
+    let z = t[0].split(":");
+    let hour = z[0];
+    let minute = z[1];
+    if(t[1] == "PM"){
+      hour = (Number(hour) + 12).toString();
+    } else if (hour.length < 1){
+      hour = "0"+ hour;
+    }
+
+    return `${hour}:${minute}`
   }
 
 

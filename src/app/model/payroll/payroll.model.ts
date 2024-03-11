@@ -1,3 +1,4 @@
+import { EmployeeTable } from './../employee/employee.model';
 import { NgModel } from "@angular/forms";
 
 export class PayrollTable {
@@ -52,16 +53,15 @@ export class Salary {
     constructor(
         public id?: number,
         public employeeId?: number,
-        public firstName?: string,
         public basic?: number,
         public medicalAllowance?: number,
         public providentFund?: number,
-        public jobTitle?: String,
-        public departmentName?: string,
+        public travelAllowance?: number,
         public provident?: number,
         public medical?: number,
-        public bonus?: number,
-        public loan?: number
+        public travel?: number,
+        public loan?: number,
+        public employeeTable?: EmployeeTable
     ) { }
 }
 

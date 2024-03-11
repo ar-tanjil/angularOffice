@@ -71,8 +71,8 @@ export class OfficeDays {
     constructor(
         public id?: number,
         public day?: string,
-        public startTime?: Time,
-        public endTime?: Time,
+        public startTime?: string,
+        public endTime?: string,
         public status?: string
     ) { }
 }
