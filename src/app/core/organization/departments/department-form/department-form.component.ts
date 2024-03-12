@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Department } from 'src/app/model/department/deparment.model';
 import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
 import { JobDatasource } from 'src/app/model/designation/job.datasource';
+import { EmployeeTable } from 'src/app/model/employee/employee.model';
 
 @Component({
   selector: 'app-department-form',
@@ -16,12 +17,16 @@ export class DepartmentFormComponent {
   title: string = ""
   department: Department = new Department();
   editing: boolean = false;
+  employee: EmployeeTable[];
+
   constructor(
     private depData: DepartmentDatasource,
     private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
     public dialogRef: MatDialogRef<DepartmentFormComponent>
   ) {
+
+      this.employee = new Array<EmployeeTable>();
 
       if (this.data.id) {
         this.depData.getById(this.data.id).subscribe(dep => {

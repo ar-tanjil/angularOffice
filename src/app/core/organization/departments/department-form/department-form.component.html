@@ -16,6 +16,14 @@
             <mat-label>Department Description</mat-label>
             <textarea matInput placeholder="Department Description" formControlName="departmentDesc"></textarea>
         </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline" *ngIf="!editing">
+          <mat-label>Employee Id</mat-label>
+          <mat-select formControlName="employeeId">
+              <mat-option *ngFor="let emp of employee" [value]="emp.id">
+                {{emp.firstName}} {{emp.lastName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
         
   
         <input type="submit" class="btn btn-primary d-block mx-auto" value="submit">
