@@ -49,6 +49,7 @@ import { CategoryFormComponent } from './payroll/claim/category-form/category-fo
 import { ClaimFormComponent } from './payroll/claim/claim-form/claim-form.component';
 import { OfficeShiftComponent } from './timesheet/office-shift/office-shift.component';
 import { ShiftFormComponent } from './timesheet/office-shift/shift-form/shift-form.component';
+import { PaymentListComponent } from './payroll/payment-list/payment-list.component';
 
 @NgModule({
     declarations: [
@@ -95,7 +96,8 @@ import { ShiftFormComponent } from './timesheet/office-shift/shift-form/shift-fo
         CategoryFormComponent,
         ClaimFormComponent,
         OfficeShiftComponent,
-        ShiftFormComponent
+        ShiftFormComponent,
+        PaymentListComponent
     ],
     exports: [
         NavbarComponent,

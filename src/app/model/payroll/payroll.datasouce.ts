@@ -33,12 +33,20 @@ export class PayrollDatasource {
         return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/pending`);
     }
 
+    getPaymentPayroll(): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/payment`);
+    }
+
     getPayrollByEmpAndPeriod(empId: number, year: number, month: number): Observable<Payroll> {
         return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/employee/${empId}/${year}/${month}`);
     }
 
     getPayrollById(id: number): Observable<Payroll> {
         return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/${id}`);
+    }
+
+    paymentPayroll(id:number){
+        return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/payment/${id}`);
     }
 
     // Salary---------------------------------------

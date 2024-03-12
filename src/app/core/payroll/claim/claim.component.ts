@@ -7,6 +7,7 @@ import { ClaimFormComponent } from './claim-form/claim-form.component';
 import { auto } from '@popperjs/core';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { ClaimDatasource } from 'src/app/model/claim/claim.datasource';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-claim',
@@ -15,38 +16,39 @@ import { ClaimDatasource } from 'src/app/model/claim/claim.datasource';
 })
 export class ClaimComponent implements OnInit {
 
-employeeList: EmployeeTable[];
-claimList: Claim[];
-categoryList: ClaimCategory[];
+  employeeList: EmployeeTable[];
+  claimList: Claim[];
+  categoryList: ClaimCategory[];
 
-constructor(
-  private dialog: MatDialog,
-  private claimData: ClaimDatasource
-) {
-  this.employeeList = new Array<EmployeeTable>();
-  this.claimList = new Array<Claim>();
-  this.categoryList = new Array<ClaimCategory>();
-}
+  constructor(
+    private dialog: MatDialog,
+    private claimData: ClaimDatasource,
+    private toaster: ToastrService
+  ) {
+    this.employeeList = new Array<EmployeeTable>();
+    this.claimList = new Array<Claim>();
+    this.categoryList = new Array<ClaimCategory>();
+  }
 
 
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.getAllCategory();
     this.getAllClaim();
-}
+  }
 
-getAllCategory(){
-this.claimData.getAllClaimCategory().subscribe(c => {
-  this.categoryList = c;
-})
-}
+  getAllCategory() {
+    this.claimData.getAllClaimCategory().subscribe(c => {
+      this.categoryList = c;
+    })
+  }
 
 
-getAllClaim(){
-  this.claimData.getAllClaim().subscribe(c => {
-    this.claimList = c;
-  })
-}
+  getAllClaim() {
+    this.claimData.getAllClaim().subscribe(c => {
+      this.claimList = c;
+    })
+  }
 
 
 
@@ -54,7 +56,7 @@ getAllClaim(){
     employeeId: new FormControl()
   })
 
-  search(){
+  search() {
 
   }
 
@@ -85,22 +87,22 @@ getAllClaim(){
     }
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
-        this.getAllCategory()
+      this.getAllCategory()
     })
   }
 
 
-  acceptClaim(id: number){
-      if(id < 0){
-        return;
-      }
-      this.claimData.acceptClaim(id).subscribe(b => {
-        this.getAllClaim();
-      });
+  acceptClaim(id: number) {
+    if (id < 0) {
+      return;
+    }
+    this.claimData.acceptClaim(id).subscribe(b => {
+      this.getAllClaim();
+    });
   }
 
-  rejectClaim(id: number){
-    if(id < 0){
+  rejectClaim(id: number) {
+    if (id < 0) {
       return;
     }
 
@@ -108,7 +110,13 @@ getAllClaim(){
       this.getAllClaim();
     })
 
+  }
 
+  buttonShow(claimStatus: string) {
+    if (claimStatus == 'ONPROCESS' || claimStatus == 'PAYMENT') {
+      return false;
+    }
+    return true;
   }
 
 

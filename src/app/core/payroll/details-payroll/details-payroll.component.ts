@@ -40,6 +40,42 @@ export class DetailsPayrollComponent implements OnInit {
   }
 
 
+toWord(num: number) {
+    if (num < 0)
+      return false;
+	 let single_digit = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine']
+	let  double_digit = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen']
+	let below_hundred = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']
+	if (num === 0) return 'Zero'
+	function translate(num: number) {
+	  let	word: string  = ""
+		if (num < 10) {
+			word = single_digit[num] + ' '
+		}
+		else if (num < 20) {
+			word = double_digit[num - 10] + ' '
+		}
+		else if (num < 100) {
+		let	rem = translate(num % 10)
+			word = below_hundred[(num - num % 10) / 10 - 2] + ' ' + rem
+		}
+		else if (num < 1000) {
+			word = single_digit[Math.trunc(num / 100)] + ' Hundred ' + translate(num % 100)
+		}
+		else if (num < 1000000) {
+			word = translate(num / 1000).trim() + ' Thousand ' + translate(num % 1000)
+		}
+		else if (num < 1000000000) {
+			word = translate(num / 1000000).trim() + ' Million ' + translate(num % 1000000)
+		}
+		else {
+			word = translate(num / 1000000000).trim() + ' Billion ' + translate(num % 1000000000)
+		}
+		return word
+	}
+	let result = translate(num) 
+	return result.trim()+' Taka'
+}
 
 
 }

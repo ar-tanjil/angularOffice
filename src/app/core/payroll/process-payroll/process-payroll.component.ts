@@ -79,6 +79,17 @@ export class ProcessPayrollComponent implements OnInit {
 
   }
 
+  paymentPayroll(id: number){
+    if(id == -1){
+      return;
+    }
+
+    this.payData.paymentPayroll(id).subscribe(a =>{
+      this.getAllPendingPayroll();
+    })
+
+
+  }
 
 
 

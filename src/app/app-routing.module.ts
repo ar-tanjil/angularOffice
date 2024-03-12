@@ -26,6 +26,7 @@ import { LeavePolicyComponent } from './core/timesheet/leave-policy/leave-policy
 import { ClaimComponent } from './core/payroll/claim/claim.component';
 import { OfficeShiftComponent } from './core/timesheet/office-shift/office-shift.component';
 import { AnnouncementsComponent } from './core/organization/announcements/announcements.component';
+import { PaymentListComponent } from './core/payroll/payment-list/payment-list.component';
 
 const routes: Routes = [
   {
@@ -171,6 +172,11 @@ const routes: Routes = [
   {
     path: "announcement",
     component: AnnouncementsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "payment",
+    component: PaymentListComponent,
     canActivate: [AuthGuard]
   },
   {

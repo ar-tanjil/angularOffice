@@ -10,7 +10,8 @@ export class PayrollTable {
         public period?: Date,
         public grossSalary?: number,
         public jobTitle?: string,
-        public departmentName?: string
+        public departmentName?: string,
+        public status?: string
     ) { }
 }
 
