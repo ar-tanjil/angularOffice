@@ -1,9 +1,11 @@
+import { EmployeeTable } from "../employee/employee.model";
+
 export class Department{
     constructor(
         public id?: number,
         public departmentName?: string,
         public managerId?: number,
-        public managerName?: string,
+        public manager?: EmployeeTable,
         public departmentDesc?: string
     ){}
 }

@@ -74,7 +74,7 @@ style=" background-color: #284b63; color: #ffff;"
     <li class="table-row text-center" *ngFor="let dep of departments; let i = index;">
       <div class="col col-1" data-label="Employee Id">{{ i + 1}}</div>
       <div class="col col-2" data-label="First Name">{{dep.departmentName}}</div>
-      <div class="col col-3" data-label="Last Name">{{dep.managerId}}</div>
+      <div class="col col-3" data-label="Last Name">{{dep.manager?.firstName}} {{dep.manager?.lastName}}</div>
       <div class="col col-4" data-label="Employee id">{{dep.departmentDesc}}</div>
       <div class="col col-5" data-label="Department">
     

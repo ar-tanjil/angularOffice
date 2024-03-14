@@ -1,4 +1,5 @@
-import { publishFacade } from "@angular/compiler";
+import { Department } from "../department/deparment.model";
+import { EmployeeTable } from "../employee/employee.model";
 
 export class Job{
     constructor(
@@ -6,9 +7,11 @@ export class Job{
        public jobTitle?: string,
        public minSalary?: number,
        public maxSalary?: number,
-       public departmentName?: string,
        public departmentId?: number,
        public totalPost?: number,
-       public vacancy?: number
+       public vacancy?: number,
+       public requirements?: string[],
+       public departmentDto?: Department,
+       public employeeTables?: EmployeeTable[]
     ){}
 }

@@ -24,8 +24,8 @@ export class JobDatasource{
         return this.sendRequest<Job>("POST", this.url, desi);
     }
 
-    update(dep: Job): Observable<Job>{
-        return this.sendRequest<Job>("PUT", `${this.url}/${dep.id}`, dep);
+    update(job: Job): Observable<Job>{
+        return this.sendRequest<Job>("PUT", `${this.url}/${job.id}`, job);
     }
 
     delete(id: number): Observable<HttpMessage>{

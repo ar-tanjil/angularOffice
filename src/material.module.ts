@@ -19,6 +19,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
         MatAutocompleteModule,
         MatStepperModule,
         MatTabsModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatListModule
     ]
 })
 export class MaterialModule{

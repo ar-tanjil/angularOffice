@@ -83,8 +83,9 @@ export class DepartmentsComponent {
     );
     addSalaryDialog.afterClosed().subscribe(ob => {
       if (ob) {
-        let index = this.departments.findIndex(dep => this.locator(dep, ob.id));
-        this.departments.splice(index, 1, ob);
+        // let index = this.departments.findIndex(dep => this.locator(dep, ob.id));
+        // this.departments.splice(index, 1, ob);
+        this.getDepartments()
         this.toster.success("Update Successfully")
 
       }

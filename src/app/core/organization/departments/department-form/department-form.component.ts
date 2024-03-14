@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Department } from 'src/app/model/department/deparment.model';
 import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
 import { JobDatasource } from 'src/app/model/designation/job.datasource';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { EmployeeTable } from 'src/app/model/employee/employee.model';
 
 @Component({
@@ -21,20 +22,18 @@ export class DepartmentFormComponent {
 
   constructor(
     private depData: DepartmentDatasource,
+    private empData: EmployeeDatasource,
     private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
     public dialogRef: MatDialogRef<DepartmentFormComponent>
   ) {
 
-      this.employee = new Array<EmployeeTable>();
+    this.employee = new Array<EmployeeTable>();
 
-      if (this.data.id) {
-        this.depData.getById(this.data.id).subscribe(dep => {
-          this.department = dep;
-          this.departmentForm.patchValue(this.department);
-          this.editing = true;
-        })
-      }
+    if (this.data.id) {
+      this.getDeparment(this.data.id)
+
+    }
   }
 
 
@@ -57,12 +56,32 @@ export class DepartmentFormComponent {
       } else {
         this.depData.save(this.department).subscribe(dep => {
           console.log(dep);
-          
-            this.dialogRef.close(dep);
+
+          this.dialogRef.close(dep);
         })
       }
 
     }
   }
 
+
+
+  getDeparment(id: number) {
+    this.depData.getById(this.data.id).subscribe(dep => {
+      this.department = dep;
+      this.departmentForm.patchValue(this.department);
+      this.editing = true;
+      this.getEmployeByDepartment(id);
+    })
+  }
+
+
+  getEmployeByDepartment(id: number){
+      this.empData.getEmployeeByDepartment(id).subscribe(e => {
+        this.employee = e;
+      });
+  }
+
+
 }
+

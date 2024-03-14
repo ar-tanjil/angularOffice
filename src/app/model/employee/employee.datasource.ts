@@ -44,6 +44,14 @@ export class EmployeeDatasource{
         
     }
 
+    getEmployeeByJob(jobId: number):Observable<EmployeeTable[]>{
+        return this.sendRequest<EmployeeTable[]>("GET", `${this.url}/job/${jobId}`);
+    }
+
+    getEmployeeByDepartment(departmentId: number):Observable<EmployeeTable[]>{
+        return this.sendRequest<EmployeeTable[]>("GET", `${this.url}/department/${departmentId}`);
+    }
+
     private sendRequest<T>(verb: string, url: string, body?: Employee): Observable<T>{
         return this.http.request<T>(verb, url, {
             body: body

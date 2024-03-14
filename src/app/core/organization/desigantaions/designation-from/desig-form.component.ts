@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Department } from 'src/app/model/department/deparment.model';
 import { DepartmentDatasource } from 'src/app/model/department/department.datasource';
@@ -33,8 +33,12 @@ export class DesigFormComponent {
     
     this.getData(this.data.id);
     this.getDepartmentList();
+
   }
 
+  keywordGroup = new FormArray([
+    this.createRequirementFormControl()
+  ])
 
 
   getData(id: number | null) {
@@ -43,7 +47,12 @@ export class DesigFormComponent {
         this.designation = desig;
         desig.totalPost = 0;
         this.editing = true;
+       this.keywordGroup.clear()
+        this.designation.requirements?.forEach(val => {
+          this.keywordGroup.push(this.createRequirementFormControl())
+        })
         this.designationForm.patchValue(desig);
+
         this.chooseTile(!this.editing);
       })
     }
@@ -64,15 +73,17 @@ export class DesigFormComponent {
       minSalary: new FormControl(),
       maxSalary: new FormControl(),
       totalPost: new FormControl(),
-      departmentId: new FormControl("", Validators.required)
+      departmentId: new FormControl("", Validators.required),
+      requirements: this.keywordGroup
     }
   )
 
   submitForm() {
     if (this.designationForm.valid) {
-      Object.assign(this.designation, this.designationForm.value);
-      if(!this.designation.id){
-        this.jobData.save(this.designation).subscribe(job => {
+      let newJob = new Job();
+      Object.assign(newJob, this.designationForm.value);
+      if(!this.editing){
+        this.jobData.save(newJob).subscribe(job => {
           
           if(job){
               this.dialogRef.close(job);
@@ -81,7 +92,7 @@ export class DesigFormComponent {
           }   
         )
       } else{
-          this.jobData.update(this.designation).subscribe(job => {
+          this.jobData.update(newJob).subscribe(job => {
             this.dialogRef.close(job);
           })
       }
@@ -93,9 +104,22 @@ export class DesigFormComponent {
     if (val) {
       this.title = `Create New Job`
     } else {
-      this.title = `Update ${this.designation.jobTitle} Post Details Of ${this.designation.departmentName}`
+      this.title = `Update ${this.designation.jobTitle} Post Details Of ${this.designation.departmentDto?.departmentName}`
     }
   }
 
+
+
+  createRequirementFormControl(): FormControl{
+    return new FormControl();
+  }
+
+  addRequirement(){
+    this.keywordGroup.push(this.createRequirementFormControl())
+  }
+
+  removeRequirement(index: number){
+    this.keywordGroup.removeAt(index)
+  }
 
 }

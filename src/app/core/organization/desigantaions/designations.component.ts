@@ -8,6 +8,7 @@ import { ReplaySubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { Job } from 'src/app/model/designation/job.model';
+import { JobDetailsComponent } from './job-details/job-details.component';
 
 @Component({
   selector: 'app-designations',
@@ -49,6 +50,26 @@ export class DesignationsComponent {
       width: '40%',
       data: {
         id: null
+      }
+    }
+    );
+    addSalaryDialog.afterClosed().subscribe(ob => {
+      if (ob) {
+        this.getAllJobs();
+        this.toaster.success("Add New Job");
+      }
+      this.getAllJobs();
+
+    })
+  }
+
+
+  detailsJob(id: number) {
+    let addSalaryDialog = this.dialog.open(JobDetailsComponent, {
+      height: auto,
+      width: '40%',
+      data: {
+        id: id
       }
     }
     );

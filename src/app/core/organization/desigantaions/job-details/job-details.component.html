@@ -1,0 +1,47 @@
+<div class="text-center">
+<h2 mat-dialog-title class="fs-3">{{designation.jobTitle}} <br>
+<span class="fs-5"> {{designation.departmentDto?.departmentName}} </span></h2>
+<!-- <span class="fs-4">{{designation.departmentDto?.departmentName}} </span></h2>
+<p class="ms-4">
+    <span class="fs-6">Total Post: {{designation.totalPost}}</span> <br>
+    <span class="fs-6">Vacancy: {{designation.vacancy}}</span>
+</p> -->
+<div class="seperator"></div>
+</div>
+<mat-dialog-content class="mat-typography example">
+
+    <p class="text-center bg-secondary">Requirements List</p>
+    <!-- <ol *ngFor="let req of designation.requirements">
+        <li> {{req}} </li>
+    </ol> -->
+
+    <mat-list role="list">
+        <mat-list-item role="listitem"
+        *ngFor="let req of designation.requirements"
+        ><i class="fa-solid fa-minus me-3"></i>{{req}}</mat-list-item>
+      </mat-list>
+
+<!-- 
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Emp Id</th>
+                <th>Name </th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of employeeList">
+                <td> {{emp.id}} </td>
+                <td> {{emp.firstName}} {{emp.lastName}} </td>
+                <td> {{emp.email}} </td>
+            </tr>
+        </tbody>
+        
+    </table>
+  -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close  cdkFocusInitial>Cancel</button>
+  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+</mat-dialog-actions>
