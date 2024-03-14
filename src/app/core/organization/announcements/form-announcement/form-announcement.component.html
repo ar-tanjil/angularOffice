@@ -1,0 +1,76 @@
+<mat-card class="mat-card">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Add {{title}} </mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="announcementForm" (ngSubmit)="submitForm()">
+        
+  
+        <!-- Department Form-->
+        
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Tile" formControlName="title" />
+          </mat-form-field>
+
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Target</mat-label>
+            <mat-select formControlName="target" (valueChange)="changeTarget(target.value ?? '')" #target>
+                <mat-option value="ALL" >All</mat-option>
+                <mat-option value="DEPARTMENT">Department</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form-field" appearance="outline" *ngIf="showDepartment">
+            <mat-label>Select Department</mat-label>
+            <mat-select formControlName="departmentId">
+                <mat-option *ngFor="let dep of departmentList" [value]="dep.id">
+                  {{dep.departmentName}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Subject</mat-label>
+            <input matInput placeholder="Tile" formControlName="subject" />
+          </mat-form-field>
+
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Date</mat-label>
+            <input matInput type="date" formControlName="date" />
+          </mat-form-field>
+
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+     
+        
+  
+        <input type="submit" class="btn btn-primary d-block mx-auto" value="submit">
+        <!--
+              <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password">
+              </mat-form-field>
+  
+             
+              
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Hire Date</mat-label>
+          <input matInput type="date" formControlName="hireDate" />
+        </mat-form-field>
+  
+              <mat-checkbox>Hide required marker</mat-checkbox>
+              <div>
+                  <label>Float label: </label>
+                  <mat-radio-group>
+                    <mat-radio-button value="auto">Auto</mat-radio-button>
+                    <mat-radio-button value="always">Always</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+  
+                -->
+      </form>
+    </mat-card-content>
+  </mat-card>

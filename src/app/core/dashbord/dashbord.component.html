@@ -105,61 +105,36 @@
           <div class="col-md-12">
             <div class="card card-white">
               <div class="card-body">
-                <form>
-                  <input
+                <form (ngSubmit)="saveTodo(task)">
+                  <input #task
                     type="text"
                     class="form-control add-task"
                     placeholder="New Task..."
                   />
                 </form>
                 <ul class="nav nav-pills todo-nav">
-                  <li role="presentation" class="nav-item all-task active">
-                    <a class="nav-link">All</a>
+                  <li  class="nav-item  all-task active">
+                    <a class="nav-link cursor mx-2" (click)="getAllToDo()">All</a>
                   </li>
-                  <li role="presentation" class="nav-item active-task">
-                    <a class="nav-link">Active</a>
+                  <li  class="nav-item  active-task">
+                    <a class="nav-link cursor mx-2" (click)="getActive()">Active</a>
                   </li>
-                  <li role="presentation" class="nav-item completed-task">
-                    <a class="nav-link">Completed</a>
+                  <li  class="nav-item  completed-task">
+                    <a class="nav-link cursor mx-2" (click)="getCompleted()">Completed</a>
                   </li>
                 </ul>
                 <div class="todo-list">
-                  <div class="todo-item">
+                  <div class="todo-item" *ngFor="let todo of allTodo">
                     <div class="checker">
-                      <span class=""><input type="checkbox" /></span>
+                      <span class=""><input type="checkbox"
+                        *ngIf="todo.status != 'COMPLETED'" (change)="changeTodo(todo.id ?? -1 ,box)" #box /></span>
                     </div>
-                    <span>Create theme</span>
-                    <a class="float-right remove-todo-item"
-                      ><i class="icon-close"></i
-                    ></a>
-                  </div>
-                  <div class="todo-item">
-                    <div class="checker">
-                      <span class=""><input type="checkbox" /></span>
-                    </div>
-                    <span>Work on wordpress</span>
-                    <a class="float-right remove-todo-item"
-                      ><i class="icon-close"></i
-                    ></a>
-                  </div>
-
-                  <div class="todo-item">
-                    <div class="checker">
-                      <span class=""><input type="checkbox" /></span>
-                    </div>
-                    <span>Organize office main department</span>
-                    <a class="float-right remove-todo-item"
-                      ><i class="icon-close"></i
-                    ></a>
-                  </div>
-                  <div class="todo-item">
-                    <div class="checker">
-                      <span><input type="checkbox" /></span>
-                    </div>
-                    <span>Error solve in HTML template</span>
-                    <a class="float-right remove-todo-item"
-                      ><i class="icon-close"></i
-                    ></a>
+                    <span class="ms-1" [class.completed]="todo.status == 'COMPLETED'">{{todo.description}}</span> 
+                    <a class="float-end"
+                    style="cursor: pointer;"
+                    *ngIf="todo.status != 'COMPLETED'"
+                    (click)="deleteTodo(todo.id ?? -1)"
+                    ><i class="fa-solid fa-xmark"></i></a>
                   </div>
                 </div>
               </div>
