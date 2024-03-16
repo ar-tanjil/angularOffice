@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
-import { Attendance, AttendanceSheet, Holiday, Leave, LeavePolicy, OfficeDays, TimePeriod } from "./attendance.model";
+import { Attendance, AttendanceSheet, Holiday, Leave, LeavePolicy, OfficeDays, Rule, TimePeriod } from "./attendance.model";
 
 
 
@@ -13,6 +13,7 @@ export class AttendanceDatasource {
     private attendanceUrl: string = "http://localhost:8080/attendances";
     private leavePolicyUrl: string = "http://localhost:8080/leavePolicies";
     private officeDaysUrl: string = "http://localhost:8080/days";
+    private officeRulesUrl: string = "http://localhost:8080/rules";
 
     constructor(private http: HttpClient) { };
 
@@ -64,7 +65,9 @@ export class AttendanceDatasource {
         return this.sendRequest<Leave[]>("GET", `${this.leaveUrl}`);
     }
 
-
+    countLeaveToday():Observable<number>{
+        return this.sendRequest<number>("GET", `${this.leaveUrl}/on_leave`);    
+    }
 
 
     // Holiday ----------------------------------------------
@@ -122,6 +125,21 @@ export class AttendanceDatasource {
 
     saveDays(day: OfficeDays): Observable<OfficeDays>{
         return this.sendRequest<OfficeDays>("PUT",`${this.officeDaysUrl}/${day.id}`, day);       
+    }
+
+
+    // ------------------------------- Attendance Rule
+
+    getAllRules():Observable<Rule[]>{
+        return this.sendRequest<Rule[]>("GET",`${this.officeRulesUrl}`);   
+    }
+
+    getRuleById(id: number):Observable<Rule>{
+        return this.sendRequest<Rule>("GET",`${this.officeRulesUrl}/${id}`);   
+    }
+
+    saveRule(rule: Rule): Observable<Rule>{
+        return this.sendRequest<Rule>("PUT",`${this.officeRulesUrl}/${rule.id}`, rule);       
     }
 
     private sendRequest<T>(verb: string, url: string, body?: T | TimePeriod): Observable<T> {

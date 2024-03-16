@@ -18,6 +18,7 @@ export class DashbordComponent implements OnInit {
   totalEmployee: number = 0;
   totalSalary: number = 0;
   todayPresent: number = 0;
+  todayOnLeave: number = 0;
   allTodo: ToDo[] = [];
 
 
@@ -39,6 +40,7 @@ export class DashbordComponent implements OnInit {
     this.getTotalEmployee();
     this.getTotalSalary();
     this.getAllToDo();
+    this.getOnLeave();
   }
 
 
@@ -62,6 +64,11 @@ export class DashbordComponent implements OnInit {
   }
 
 
+  getOnLeave(){
+    this.attenData.countLeaveToday().subscribe(n => {
+      this.todayOnLeave = n;
+    })
+  }
 
 
 

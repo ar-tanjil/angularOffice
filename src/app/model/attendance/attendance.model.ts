@@ -76,3 +76,15 @@ export class OfficeDays {
         public status?: string
     ) { }
 }
+
+export class Rule{
+    constructor(
+       public id?: number,
+       public name?: string,
+       public inTime?: string,
+       public outTime?: string,
+       public penalty?: number
+    ){
+
+    }
+}

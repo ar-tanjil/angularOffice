@@ -1,34 +1,74 @@
-
 <div class="card-custom">
-    <div class="card-body">
-      <h1 class="fw-bold"><i class="fa-regular fa-hourglass-half fs-1 m-2"></i> Office Shift</h1>
-    </div>
+  <div class="card-body">
+    <h1 class="fw-bold">
+      <i class="fa-regular fa-hourglass-half fs-1 m-2"></i> Office Shift
+    </h1>
   </div>
-  <mat-divider class="m-2"></mat-divider>
+</div>
+<mat-divider class="m-2"></mat-divider>
 
-<div class="container-fluid">
-    <h1 class="text-center m-0">Office Shift</h1>
-     <table class="table w-50 table-striped mx-auto">
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="text-center m-0">Office Shift</h1>
+      <table class="table w-75 table-striped mx-auto">
         <thead>
-            <tr>
-                <th>Days</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Change</th>
-            </tr>
+          <tr>
+            <th>Days</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Change</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let day of days">
-            
-                    <td> {{day.day}} </td>
-                    <td colspan="2" class="text-center" *ngIf="day.status == 'WEEKEND'"> {{day.status}} </td>
-                    <td *ngIf="day.status != 'WEEKEND'"> {{day.startTime}} </td>
-                    <td *ngIf="day.status != 'WEEKEND'"> {{day.endTime}} </td>
-                    <td><button class="btn btn-sm btn-warning"   (click)="updateDialog(day.id ?? -1)">Change</button></td>
-            </tr>
+          <tr *ngFor="let day of days">
+            <td>{{ day.day }}</td>
+            <td colspan="2" class="text-center" *ngIf="day.status == 'WEEKEND'">
+              {{ day.status }}
+            </td>
+            <td *ngIf="day.status != 'WEEKEND'">{{ day.startTime }}</td>
+            <td *ngIf="day.status != 'WEEKEND'">{{ day.endTime }}</td>
+            <td>
+              <button
+                class="btn btn-sm btn-warning"
+                (click)="updateDialog(day.id ?? -1)"
+              >
+                Change
+              </button>
+            </td>
+          </tr>
         </tbody>
-    </table>
-  
+      </table>
+    </div>
+    <div class="col-6">
+      <h1 class="text-center m-0">Rules</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Check In</th>
+            <th>Check Out</th>
+            <th>Penalty</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rule of rules">
+            <th> {{rule.name}} </th>
+            <td> {{  rule.name != 'EARLY' ? rule.inTime: '-'}} </td>
+            <td> {{rule.name != 'LATE' ? rule.outTime: '-'}} </td>
+            <td> {{rule.penalty}} </td>
+            <td>
+              <button
+              class="btn btn-sm btn-warning"
+              (click)="changeRules(rule.id ?? -1)"
+            >
+              Change
+            </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  
-
+</div>

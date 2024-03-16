@@ -45,7 +45,9 @@ export class Payroll {
         public travelInformation?: number,
         public providentInformation?: number,
         public taxInformation?: number,
-        public totalLeaveDays?: number
+        public totalLeaveDays?: number,
+        public fine?: number,
+        public fineDay?: number
     ) { }
 }
 

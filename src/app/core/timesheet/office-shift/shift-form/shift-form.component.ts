@@ -40,15 +40,19 @@ export class ShiftFormComponent implements OnInit {
 
 
 
-  convertTime(time : string){
+  convertTime(time: string) {
+
     let t = time.split("\u202F");
     let z = t[0].split(":");
     let hour = z[0];
     let minute = z[1];
-    if(t[1] == "PM"){
+    if (t[1] == "PM" && Number(hour) < 12) {
       hour = (Number(hour) + 12).toString();
-    } else if (hour.length < 1){
-      hour = "0"+ hour;
+    } else if (t[1] == "AM" && Number(hour) == 12) {
+      hour = "00";
+    }
+    else if (hour.length == 1) {
+      hour = "0" + hour;
     }
 
     return `${hour}:${minute}`

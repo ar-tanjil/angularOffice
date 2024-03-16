@@ -44,6 +44,10 @@
                                     <div> <span class="fw-bolder">Designation</span>
                                          <small class="ms-3">{{payroll.jobTitle}}</small> </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Fine Day</span>
+                                         <small class="ms-3">{{payroll.fineDay}}</small> </div>
+                                </div>
                                
                             </div>
                         </div>
@@ -59,40 +63,40 @@
                             <tbody>
                             <tr>
                                 <th scope="row">Basic</th>
-                                <td>{{payroll.basicSalary}}</td>
+                                <td>{{payroll.basicSalary | currency}}</td>
                                 <th>LOP</th>
-                                <td>{{payroll.unpaidLeave}} </td>
+                                <td>{{payroll.unpaidLeave | currency}} </td>
                             </tr>
                             <tr>
                                 <th scope="row">MA <span class="fw-normal ms-2">
                                     ({{payroll.medicalInformation}}%) </span></th>
-                                <td>{{payroll.medicalAllowance}}</td>
+                                <td>{{payroll.medicalAllowance | currency }}</td>
                                 <th>PF <span class="fw-normal ms-2">
                                     ({{payroll.providentInformation}}%) </span>
                                    </th>
-                                <td>{{payroll.providentFund}} </td>
+                                <td>{{payroll.providentFund | currency}} </td>
                             </tr>
                             <tr>
                                 <th scope="row">CA <span class="fw-normal ms-2">
                                     ({{payroll.travelInformation}}%) </span></th>
-                                <td>{{payroll.travelAllowance}}</td>
+                                <td>{{payroll.travelAllowance | currency}}</td>
                                 <th>TDS <span class="fw-normal ms-2">
                                     ({{payroll.taxInformation??0}}%) </span>
                                    </th>
-                                <td>{{payroll.tax}} </td>
+                                <td>{{payroll.tax | currency}} </td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Bonus </th>
-                                <td>{{payroll.bonusAmount}}</td>
+                                <td>{{payroll.bonusAmount | currency}}</td>
                                 <th>Loan Payment </th>
-                                <td>{{payroll.loanPayment}} </td>
+                                <td>{{payroll.loanPayment | currency}} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Reimbursement </th>
-                                <td>{{payroll.reimbursement}}</td>
-                                <th>Other </th>
-                                <td>{{payroll.otherDeduction}} </td>
+                                <td>{{payroll.reimbursement | currency }}</td>
+                                <th>Fine </th>
+                                <td>{{payroll.fine | currency }} </td>
                             </tr>
                             <tr class="border-top">
                                 <th scope="row">Total Earning</th>
@@ -104,7 +108,7 @@
                         </table>
                     </div>
                     <div class="row">
-                        <div class="col-md-4"> <br> <span class="fw-bold">Net Pay : {{payroll.netSalary}} Tk.</span> </div>
+                        <div class="col-md-4"> <br> <span class="fw-bold">Net Pay : {{payroll.netSalary | currency}} Tk.</span> </div>
                         <div class="border col-md-8">
                             <div class="d-flex flex-column"> <span>In Words</span> 
                                 <span>{{toWord(payroll.netSalary ?? 0)}}</span> </div>
