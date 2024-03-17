@@ -8,6 +8,7 @@ import { auto } from '@popperjs/core';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { ClaimDatasource } from 'src/app/model/claim/claim.datasource';
 import { ToastrService } from 'ngx-toastr';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-claim',
@@ -19,15 +20,18 @@ export class ClaimComponent implements OnInit {
   employeeList: EmployeeTable[];
   claimList: Claim[];
   categoryList: ClaimCategory[];
+  admin: boolean = false;
 
   constructor(
     private dialog: MatDialog,
     private claimData: ClaimDatasource,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private jwtService: JWTTokenService
   ) {
     this.employeeList = new Array<EmployeeTable>();
     this.claimList = new Array<Claim>();
     this.categoryList = new Array<ClaimCategory>();
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
 

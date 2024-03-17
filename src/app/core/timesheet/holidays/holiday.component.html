@@ -8,7 +8,7 @@
 
 
 <div class="container-fluid">  
-    <div style="float: right" class="m-2">
+    <div style="float: right" class="m-2" *ngIf="admin">
       <button mat-raised-button 
       style=" background-color: #354f52; color: #ffff;"
       (click)="openDialog()">
@@ -31,7 +31,7 @@ Add Holiday      </button>
             <td> {{holy.day | date: 'longDate' }}  </td>
             <td> {{holy.day | date: 'EEEE' }}  </td>
             <td>
-              <a [matMenuTriggerFor]="menu1">
+              <a [matMenuTriggerFor]="menu1" *ngIf="admin">
                 <i
                   class="fa-solid fa-bars fs-4 textColor"
                   style="cursor: pointer; margin: 0"

@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { Job } from 'src/app/model/designation/job.model';
 import { JobDetailsComponent } from './job-details/job-details.component';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-designations',
@@ -17,6 +18,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 })
 export class DesignationsComponent {
 
+  admin: boolean = false;
   designations: Job[];
   private locator = (designation: Job, id?: number) => designation.id == id;
   private replaySubject: ReplaySubject<Job[]>;
@@ -24,11 +26,13 @@ export class DesignationsComponent {
   constructor(
     private jobData: JobDatasource,
     private dialog: MatDialog,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private jwtService: JWTTokenService
   ) {
     this.designations = new Array<Job>();
     this.replaySubject = new ReplaySubject<Job[]>();
     this.getAllJobs();
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
 

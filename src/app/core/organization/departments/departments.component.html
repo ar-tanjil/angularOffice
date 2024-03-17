@@ -54,7 +54,7 @@
   </div>
 </div>
 <mat-divider class="m-2"></mat-divider>
-<div style="float: right;" class="m-2">
+<div style="float: right;" class="m-2" *ngIf="admin">
   <button mat-raised-button 
   
 style=" background-color: #284b63; color: #ffff;"
@@ -69,14 +69,14 @@ style=" background-color: #284b63; color: #ffff;"
       <div class="col col-2">Deparment Name</div>
       <div class="col col-3">Department Head</div>
       <div class="col col-4">Description</div>
-      <div class="col col-5"></div>
+      <div class="col col-5" *ngIf="admin"></div>
     </li>
     <li class="table-row text-center" *ngFor="let dep of departments; let i = index;">
       <div class="col col-1" data-label="Employee Id">{{ i + 1}}</div>
       <div class="col col-2" data-label="First Name">{{dep.departmentName}}</div>
       <div class="col col-3" data-label="Last Name">{{dep.manager?.firstName}} {{dep.manager?.lastName}}</div>
       <div class="col col-4" data-label="Employee id">{{dep.departmentDesc}}</div>
-      <div class="col col-5" data-label="Department">
+      <div class="col col-5" data-label="Department" *ngIf="admin">
     
 
         <a [matMenuTriggerFor]="menu1">

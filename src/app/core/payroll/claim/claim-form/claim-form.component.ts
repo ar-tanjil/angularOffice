@@ -6,6 +6,7 @@ import { Claim, ClaimCategory } from 'src/app/model/claim/claim.model';
 import { ClaimDatasource } from 'src/app/model/claim/claim.datasource';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-claim-form',
@@ -14,7 +15,7 @@ import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 })
 export class ClaimFormComponent implements OnInit {
 
-  admin: boolean = true;
+  admin: boolean = false;
   employeeList: EmployeeTable[];
   categoryList: ClaimCategory[];
   claim: Claim;
@@ -23,19 +24,19 @@ export class ClaimFormComponent implements OnInit {
     private claimData: ClaimDatasource,
     private empData: EmployeeDatasource,
     public dialogRef: MatDialogRef<ClaimFormComponent>,
+    private jwtService: JWTTokenService,
     @Inject(MAT_DIALOG_DATA) private data: { id: number }
   ) {
     this.employeeList = new Array<EmployeeTable>();
     this.categoryList = new Array<ClaimCategory>();
     this.claim = new Claim();
+   this.admin = jwtService.getRole() == "ADMIN"; 
   }
 
 
 ngOnInit(): void {
     this.getAllCategory();
     this.getAllEmployeeShort()
-    
-    
 }
 
 
@@ -52,8 +53,10 @@ ngOnInit(): void {
   submit() {
     let claim = new Claim();
     Object.assign(claim, this.claimForm.value);
-    console.log(claim);
-    
+
+    if(!this.admin){
+      claim.employeeId = Number(this.jwtService.getId());
+    }
 
     this.claimData.saveClaim(claim).subscribe(c => {
       this.dialogRef.close(c);

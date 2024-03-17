@@ -40,6 +40,25 @@ export class PaymentListComponent implements OnInit {
 
   searchPayroll(){
 
+    if(this.searchForm.invalid){
+      return;
+    }
+
+    let id = this.searchForm.value.employeeId;
+    let period = this.searchForm.value.period.split("-");
+    let year = period[0];
+    let month = period[1];
+
+    if(id == -1){
+      this.payData.getPaymentPayrollByPeriod(year, month).subscribe(p => {
+        this.payrollList =  p;
+      })
+    } else {
+      this.payData.getPymentByEmployeeAndPeriod(id, year, month).subscribe( p => {
+        this.payrollList = p
+      })
+    }
+
   }
 
 
@@ -50,13 +69,13 @@ export class PaymentListComponent implements OnInit {
     })
   }
 
-
-
   getAllPaymentPayroll(){
     this.payData.getPaymentPayroll().subscribe(p => {
       this.payrollList =  p;
     })
   }
+
+
 
 
   payrollDetails(id: number){

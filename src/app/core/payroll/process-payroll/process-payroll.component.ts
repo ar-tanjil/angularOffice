@@ -8,6 +8,7 @@ import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { Payroll, PayrollTable } from 'src/app/model/payroll/payroll.model';
 import { DetailsPayrollComponent } from '../details-payroll/details-payroll.component';
 import { auto } from '@popperjs/core';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-process-payroll',
@@ -16,6 +17,7 @@ import { auto } from '@popperjs/core';
 })
 export class ProcessPayrollComponent implements OnInit {
 
+  admin: boolean = false;
   employeeList: EmployeeTable[];
   payrollList: PayrollTable[];
   payroll: Payroll;
@@ -23,14 +25,13 @@ export class ProcessPayrollComponent implements OnInit {
   constructor(
     private empData: EmployeeDatasource,
     private payData: PayrollDatasource,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private jwtService: JWTTokenService
   ) {
     this.employeeList = new Array<EmployeeTable>();
     this.payrollList = new Array<Payroll>();
     this.payroll = new Payroll();
-
-   
-
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
   ngOnInit(): void {
@@ -61,6 +62,10 @@ export class ProcessPayrollComponent implements OnInit {
 
   processPayroll() {
 
+    if(this.processForm.invalid){
+      return;
+    }
+
     let id = this.processForm.value.employeeId;
     let period = this.processForm.value.period.split("-");
     let year = period[0];
@@ -72,7 +77,7 @@ export class ProcessPayrollComponent implements OnInit {
        
       });
     } else if (id) {
-      this.payData.getPayrollByEmpAndPeriod(id, year, month).subscribe(pay => {
+      this.payData.processPayrollByEmployee(id, year, month).subscribe(pay => {
         this.getAllPendingPayroll();
       })
     }

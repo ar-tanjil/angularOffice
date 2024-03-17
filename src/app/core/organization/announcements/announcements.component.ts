@@ -6,6 +6,7 @@ import { FormAnnouncementComponent } from './form-announcement/form-announcement
 import { auto } from '@popperjs/core';
 import { Announcement } from 'src/app/model/announcement/announcement.model';
 import { AnnouncementDatasource } from 'src/app/model/announcement/announcement.datasource';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-announcements',
@@ -15,12 +16,16 @@ import { AnnouncementDatasource } from 'src/app/model/announcement/announcement.
 export class AnnouncementsComponent implements OnInit {
 
   announcementList: Announcement[] = [];
+  admin: boolean = false;
 
   constructor(
     private annData: AnnouncementDatasource,
     private dialog: MatDialog,
-    private toster: ToastrService
-  ){}
+    private toster: ToastrService,
+    private jwtService: JWTTokenService
+  ){
+    this.admin = jwtService.getRole() == "ADMIN";
+  }
 
 
 

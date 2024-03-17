@@ -45,6 +45,11 @@ export class JWTTokenService {
       return this.decodedToken ? this.decodedToken['sub'] : null;
     }
 
+    getName(){
+      this.decodeToken();
+      return this.decodedToken ? this.decodedToken['name'] : null;
+    }
+
     getRole(){
         this.decodeToken();
         return this.decodedToken ? this.decodedToken['role']: null;

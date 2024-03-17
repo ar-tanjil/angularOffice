@@ -6,7 +6,7 @@
 <mat-divider class="m-2"></mat-divider>
 
 <div class="container-fluid">
-    <div style="float: right" class="m-2">
+    <div style="float: right" class="m-2" *ngIf="admin">
       <button
         mat-raised-button
         style=" background-color: #354f52; color: #ffff;"
@@ -30,7 +30,7 @@
           <th scope="row">Tax Rate</th>
           <!-- <th scope="row">Designation</th>
               <th scope="row">Department</th> -->
-          <th></th>
+          <th *ngIf="admin"></th>
         </tr>
       </thead>
   
@@ -43,7 +43,7 @@
           <td >{{ tax.percentage+"%" }}</td>
           <!-- <td> {{emp.jobTitle}} </td>
           <td> {{emp.departmentName}} </td> -->
-          <td>
+          <td *ngIf="admin">
             <!-- <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i> -->
             <a [matMenuTriggerFor]="menu1">
               <i

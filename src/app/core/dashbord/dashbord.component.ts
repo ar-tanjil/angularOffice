@@ -20,6 +20,8 @@ export class DashbordComponent implements OnInit {
   todayPresent: number = 0;
   todayOnLeave: number = 0;
   allTodo: ToDo[] = [];
+  name: string = "";
+  greeting: string = "";
 
 
 
@@ -28,7 +30,8 @@ export class DashbordComponent implements OnInit {
     private payData: PayrollDatasource,
     private empData: EmployeeDatasource,
     private attenData: AttendanceDatasource,
-    private todoData: ToDoDatasource
+    private todoData: ToDoDatasource,
+    private jwtService: JWTTokenService
   ) {
 
 
@@ -41,9 +44,14 @@ export class DashbordComponent implements OnInit {
     this.getTotalSalary();
     this.getAllToDo();
     this.getOnLeave();
+    this.getName();
+    this.greetingMethod();
   }
 
 
+  getName(){
+   this.name =  this.jwtService.getName() ?? "";
+  }
 
   getTotalEmployee() {
     this.empData.countEmployee().subscribe(total => {
@@ -64,13 +72,31 @@ export class DashbordComponent implements OnInit {
   }
 
 
-  getOnLeave(){
+  getOnLeave() {
     this.attenData.countLeaveToday().subscribe(n => {
       this.todayOnLeave = n;
     })
   }
 
 
+ greetingMethod(){
+    let myDate = new Date();
+    console.log(myDate);
+    
+    let hrs = myDate.getHours();
+  console.log(hrs);
+  
+    let greet = "";
+
+    if (hrs < 12)
+      greet = 'Good Morning';
+    else if (hrs >= 12 && hrs <= 17)
+      greet = 'Good Afternoon';
+    else if (hrs >= 17 && hrs <= 24)
+      greet = 'Good Evening';
+
+    this.greeting =  greet;
+  }
 
 
 
@@ -82,28 +108,29 @@ export class DashbordComponent implements OnInit {
       this.allTodo = todo;
     })
   }
-  getActive(){
+  getActive() {
     this.todoData.getActiveByEmployee().subscribe(todo => {
       this.allTodo = todo;
     })
   }
 
-  getCompleted(){
+  getCompleted() {
     this.todoData.getCompletedByEmployee().subscribe(todo => {
       this.allTodo = todo;
     })
   }
 
 
-  changeTodo(id: number, cheker: any){
-    if(id == -1){
+  changeTodo(id: number, cheker: any) {
+    if (id == -1) {
       return;
     }
-    if(cheker.value){
-      this.todoData.completTodo(id).subscribe(a =>{
+    if (cheker.value) {
+      this.todoData.completTodo(id).subscribe(a => {
         this.getAllToDo();
       }
-    )}
+      )
+    }
   }
 
   saveTodo(task: any) {
@@ -114,15 +141,15 @@ export class DashbordComponent implements OnInit {
 
     let todo = new ToDo();
     todo.description = task.value;
-   
+
     this.todoData.save(todo).subscribe(() => {
       this.getAllToDo();
       task.value = ""
     })
   }
 
-  deleteTodo(id: number){
-    if(id == -1){
+  deleteTodo(id: number) {
+    if (id == -1) {
       return;
     }
 

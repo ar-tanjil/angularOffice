@@ -6,6 +6,7 @@ import { AttendanceDatasource } from 'src/app/model/attendance/attendance.dataso
 import { OfficeDays, Rule } from 'src/app/model/attendance/attendance.model';
 import { RulesFormComponent } from './rules-form/rules-form.component';
 import { RolesComponent } from '../../employee/roles/roles.component';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-office-shift',
@@ -17,13 +18,16 @@ export class OfficeShiftComponent implements OnInit {
 
   days: OfficeDays[];
   rules: Rule[];
+  admin: boolean = false;
 
   constructor(
     private attenData: AttendanceDatasource,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private jwtService: JWTTokenService
   ){
     this.days = new Array<OfficeDays>();
     this.rules = new Array<Rule>();
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
 

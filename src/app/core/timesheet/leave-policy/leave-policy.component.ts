@@ -4,6 +4,7 @@ import { LeavePolicy } from 'src/app/model/attendance/attendance.model';
 import { PolicyFormComponent } from './policy-form/policy-form.component';
 import { auto } from '@popperjs/core';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-leave-policy',
@@ -13,12 +14,14 @@ import { AttendanceDatasource } from 'src/app/model/attendance/attendance.dataso
 export class LeavePolicyComponent implements OnInit {
 
   leavePolicy: LeavePolicy[] = new Array<LeavePolicy>();
-
-
+  admin: boolean = false;
   constructor(
     private dialog: MatDialog,
-    private attData: AttendanceDatasource
-  ){}
+    private attData: AttendanceDatasource,
+    private jwtService: JWTTokenService
+  ){
+    this.admin = jwtService.getRole() == "ADMIN";
+  }
 
 
   ngOnInit(): void {

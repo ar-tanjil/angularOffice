@@ -36,6 +36,8 @@ export class DetailsPayrollComponent implements OnInit {
   getPayrollById(id: number){
     this.payData.getPayrollById(id).subscribe(pay => {
       this.payroll = pay;
+	  console.log(this.payroll);
+	  
     })
   }
 
@@ -77,5 +79,14 @@ toWord(num: number) {
 	return result.trim()+' Taka'
 }
 
+
+printPayroll(id : number){
+	if(!id){
+		return;
+	}
+	let url = `http://localhost:8080/jasper/payslip/${id}`;
+
+	window.open(url, "_blank");
+}
 
 }

@@ -31,6 +31,8 @@ export class ProfileComponent {
   holiday: boolean = false;
   otheProfile: boolean = false;
   leavePolicy: LeavePolicy = new LeavePolicy();
+  admin: boolean = false;
+  userName: string = "";
 
 
   constructor(private empData: EmployeeDatasource,
@@ -42,11 +44,11 @@ export class ProfileComponent {
     this.date = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 6)
       .toISOString().split("T")[0];
 
+      this.admin = jwtService.getRole() == "ADMIN";
+      this.userName = jwtService.getUser()?? "";
   }
 
   ngOnInit() {
-
-
     this.activerRoute.params.subscribe(params => {
 
       let profileId = this.jwtService.getId();

@@ -8,6 +8,7 @@ import { auto } from '@popperjs/core';
 import { SalaryDetailsComponent } from './salary-details/salary-details.component';
 import { PayslipComponent } from './payslip/payslip.component';
 import { loadTranslations } from '@angular/localize';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-payroll',
@@ -15,6 +16,7 @@ import { loadTranslations } from '@angular/localize';
   styleUrls: ['./payroll.component.scss']
 })
 export class PayrollComponent implements OnInit {
+  admin: boolean = false;
   month!: number;
   year!: number;
   salaryTable: Salary[];
@@ -22,10 +24,13 @@ export class PayrollComponent implements OnInit {
   private replaySubject: ReplaySubject<Salary[]>;
 
 
-  constructor(private model: PayrollDatasource, private dialog: MatDialog) {
+  constructor(private model: PayrollDatasource, 
+    private dialog: MatDialog,
+    private jwtService: JWTTokenService) {
     this.lastMonth();
     this.salaryTable = new Array<Salary>();
     this.replaySubject = new ReplaySubject<Salary[]>();
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
 
@@ -108,8 +113,6 @@ export class PayrollComponent implements OnInit {
   getAllSalary() {
     this.model.getAllSalary().subscribe(emp => {
       this.salaryTable = emp;
-      console.log(emp);
-      
       this.replaySubject.next(emp);
       this.replaySubject.complete();
     })

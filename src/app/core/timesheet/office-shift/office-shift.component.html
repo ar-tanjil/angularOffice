@@ -17,7 +17,7 @@
             <th>Days</th>
             <th>Start Time</th>
             <th>End Time</th>
-            <th>Change</th>
+            <th *ngIf="admin">Change</th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
             </td>
             <td *ngIf="day.status != 'WEEKEND'">{{ day.startTime }}</td>
             <td *ngIf="day.status != 'WEEKEND'">{{ day.endTime }}</td>
-            <td>
+            <td *ngIf="admin">
               <button
                 class="btn btn-sm btn-warning"
                 (click)="updateDialog(day.id ?? -1)"
@@ -49,7 +49,7 @@
             <th>Check In</th>
             <th>Check Out</th>
             <th>Penalty</th>
-            <th></th>
+            <th *ngIf="admin"></th>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +58,7 @@
             <td> {{  rule.name != 'EARLY' ? rule.inTime: '-'}} </td>
             <td> {{rule.name != 'LATE' ? rule.outTime: '-'}} </td>
             <td> {{rule.penalty}} </td>
-            <td>
+            <td *ngIf="admin">
               <button
               class="btn btn-sm btn-warning"
               (click)="changeRules(rule.id ?? -1)"

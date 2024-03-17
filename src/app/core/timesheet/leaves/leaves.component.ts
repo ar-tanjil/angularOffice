@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
 import { Leave } from 'src/app/model/attendance/attendance.model';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-leaves',
@@ -11,16 +12,20 @@ import { Leave } from 'src/app/model/attendance/attendance.model';
 })
 export class LeavesComponent implements OnInit {
   panelOpenState = false;
+  admin: boolean = false;
+  
 
   leaves: Leave[];
   replaySubject: ReplaySubject<Leave[]>;
 
   constructor(
     private attnData: AttendanceDatasource,
-    private toster: ToastrService
+    private toster: ToastrService,
+    private jwtService: JWTTokenService
     ){
     this.leaves = new Array<Leave>();
     this.replaySubject = new ReplaySubject<Leave[]>(1);
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
   ngOnInit(): void {

@@ -7,7 +7,7 @@
 
 
 <div class="container-fluid">
-  <div style="float: right" class="m-2">
+  <div style="float: right" class="m-2" >
     <button mat-raised-button 
     [routerLink]="['/leavePolicy']"
     style=" background-color: #354f52; color: #ffff;">
@@ -26,7 +26,7 @@
         <th>Leave Type</th>
         <th>Day</th>
         <th>Status</th>
-        <th></th>
+        <th *ngIf="admin"></th>
         <!-- <th>Aproved By</th> -->
     </tr></thead>
     <tbody>
@@ -36,7 +36,7 @@
           <td> {{leave.type | titlecase}} Leave </td>
           <td> {{leave.day | date : 'fullDate'}} </td>
           <td> {{leave.status | titlecase}} </td>
-          <td>
+          <td *ngIf="admin">
 
            <a  [matMenuTriggerFor]="menu1">
                 <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>

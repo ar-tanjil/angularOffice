@@ -18,7 +18,7 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4> {{(emp.firstName ?? "" |titlecase) + " "+(emp.lastName ?? ""|titlecase)}} </h4>
+                      <h4 class="mb-1"><i class="fa-solid fa-at"></i> {{userName}} </h4>
                       <p class="text-secondary mb-1"> {{emp.jobTitle ?? "" | titlecase}} </p>
                       <!-- <p class="text-muted font-size-sm"> {{(emp.city ?? "" | titlecase) + ", "+ (emp.country ?? ""|titlecase)}} </p> -->
                       <button mat-raised-button 
@@ -139,7 +139,7 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
+                  <div class="row" *ngIf="admin || !otheProfile">
                     <div class="col-sm-6">
                       <a class="btn btn-info " [routerLink]="['/register', 'edit', emp.id]">Edit</a>
                     </div>

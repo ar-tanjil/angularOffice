@@ -35,8 +35,8 @@ export class Payroll {
         public grossSalary?: number,
         public reimbursement?: number,
         public otherDeduction?: number,
-        public workingDays?: number,
-        public unpaidLeaveDays?: number,
+        public workingDay?: number,
+        public unpaidLeaveDay?: number,
         public jobTitle?: string,
         public departmentName?: string,
         public employeeId?: number,
@@ -45,7 +45,7 @@ export class Payroll {
         public travelInformation?: number,
         public providentInformation?: number,
         public taxInformation?: number,
-        public totalLeaveDays?: number,
+        public totalLeaveDay?: number,
         public fine?: number,
         public fineDay?: number
     ) { }

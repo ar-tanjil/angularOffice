@@ -7,6 +7,7 @@ import { auto } from '@popperjs/core';
 import Swal from 'sweetalert2';
 import { Holiday } from 'src/app/model/attendance/attendance.model';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-holiday',
@@ -15,16 +16,19 @@ import { AttendanceDatasource } from 'src/app/model/attendance/attendance.dataso
 })
 export class HolidayComponent {
 
+  admin: boolean = false;
   holiday: Holiday[];
   replaySubject: ReplaySubject<Holiday[]>;
 
   constructor(
     private attenData: AttendanceDatasource,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private jwtService: JWTTokenService
   ) {
     this.holiday = new Array<Holiday>();
     this.replaySubject = new ReplaySubject<Holiday[]>(1);
     this.getAllHoliday();
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
 

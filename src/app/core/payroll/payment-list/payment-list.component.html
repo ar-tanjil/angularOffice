@@ -52,6 +52,7 @@
             <th>Period</th>
             <th>Gross Salary</th>
             <th>Net Salary</th>
+            <th>Status</th>
             <th>Details</th>
           </tr>
         </thead>
@@ -64,8 +65,8 @@
             <td> {{payroll.period | date: "MMMM - YYYY"}} </td>
             <td> {{payroll.grossSalary | currency : "Tk "}} </td>
             <td> {{payroll.netSalary | currency : "Tk "}} </td>
+            <td> {{payroll.status}} </td>
             <td>
-                {{payroll.status}}
                <button class="btn btn-sm btn-primary" (click)="payrollDetails(payroll.id ?? -1)">Details</button> 
               <!-- <button class="btn btn-sm btn-warning ms-2" (click)="deletePayroll(payroll.id ?? -1)">Delete</button>
               <button class="btn btn-sm btn-success ms-2" (click)="paymentPayroll(payroll.id ?? -1)">Payment</button> -->

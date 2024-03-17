@@ -30,10 +30,6 @@ export class AttendanceComponent implements OnInit {
       this.timePeriod = new TimePeriod();
       this.timePeriod.startDate = new Date(this.period.startDate);
       this.timePeriod.endDate = new Date(this.period.endDate);
-
-      console.log(this.timePeriod);
-      
-
       this.attendanceLogForm.patchValue(this.period);
       this.employeeList = new Array<EmployeeTable>();
       

@@ -29,6 +29,12 @@ export class PayrollDatasource {
         return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/process/${year}/${month}`);
     }
 
+    processPayrollByEmployee(id: number, year: number, month: number): Observable<void> {
+        return this.sendRequest<void>("GET", `${this.payrollUrl}/process/employee/${id}/${year}/${month}`);
+    }
+
+   
+
     getPendingPayroll(): Observable<PayrollTable[]> {
         return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/pending`);
     }
@@ -37,9 +43,19 @@ export class PayrollDatasource {
         return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/payment`);
     }
 
+    getPaymentPayrollByPeriod(year: number, month: number): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/employee/payment/all/${year}/${month}`);
+    }
+
+    getPymentByEmployeeAndPeriod(id: number, year: number, month: number):Observable<PayrollTable[]>{
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/employee/payment/${id}/${year}/${month}`);
+    }
+
     getPayrollByEmpAndPeriod(empId: number, year: number, month: number): Observable<Payroll> {
         return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/employee/${empId}/${year}/${month}`);
     }
+
+
 
     getPayrollById(id: number): Observable<Payroll> {
         return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/${id}`);

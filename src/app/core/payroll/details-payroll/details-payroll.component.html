@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div> <span class="fw-bolder">Total Working Days</span>
-                                        <small class="ms-3">{{payroll.workingDays}}</small> </div>
+                                        <small class="ms-3">{{payroll.workingDay}}</small> </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div> <span class="fw-bolder">Leave Day</span> 
-                                        <small class="ms-3"></small> {{payroll.totalLeaveDays}} </div>
+                                        <small class="ms-3"></small> {{payroll.totalLeaveDay}} </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div> <span class="fw-bolder">Undpaid Leave Day</span> 
-                                        <small class="ms-3"> {{payroll.unpaidLeaveDays}} </small> </div>
+                                        <small class="ms-3"> {{payroll.unpaidLeaveDay}} </small> </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -120,7 +120,8 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close (click)="printPayroll(payrollId)" class="bg-success">Print</button>
+  <button mat-button mat-dialog-close  class="bg-secondary">Cancel</button>
 </mat-dialog-actions>
 
 

@@ -14,7 +14,8 @@
           <tr>
             <th>Claim Category</th>
             <th>
-              <button class="btn btn-sm btn-primary" (click)="openCategoyrDialog()">
+              <button class="btn btn-sm btn-primary" (click)="openCategoyrDialog()" 
+              *ngIf="admin">
                 <i class="fa-solid fa-plus"></i>
               </button>
             </th>
@@ -75,7 +76,7 @@
               <th>Date</th>
               <th>Amount</th>
               <th>Status</th>
-              <th></th>
+              <th *ngIf="admin"></th>
             </tr>
           </thead>
           <tbody>
@@ -89,7 +90,7 @@
               <td>{{ claim.date }}</td>
               <td>{{ claim.amount }}</td>
               <td>{{ claim.claimStatus }}</td>
-              <td>
+              <td *ngIf="admin">
                 <a [matMenuTriggerFor]="menu1" *ngIf="buttonShow(claim.claimStatus??'')">
                   <i
                     class="fa-solid fa-bars fs-4 textColor"
