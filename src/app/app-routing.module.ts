@@ -27,6 +27,7 @@ import { ClaimComponent } from './core/payroll/claim/claim.component';
 import { OfficeShiftComponent } from './core/timesheet/office-shift/office-shift.component';
 import { AnnouncementsComponent } from './core/organization/announcements/announcements.component';
 import { PaymentListComponent } from './core/payroll/payment-list/payment-list.component';
+import { OffboardingComponent } from './core/employee/offboarding/offboarding.component';
 
 const routes: Routes = [
   {
@@ -177,6 +178,11 @@ const routes: Routes = [
   {
     path: "payment",
     component: PaymentListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "offboarding",
+    component: OffboardingComponent,
     canActivate: [AuthGuard]
   },
   {

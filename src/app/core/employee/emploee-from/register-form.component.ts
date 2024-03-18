@@ -21,6 +21,7 @@ export class RegisterFormComponent implements OnInit {
   employee: Employee = new Employee();
   departmentList!: Department[];
   designationList!: Job[];
+  editing: boolean = false;
 
   title: string = "Add New Employee";
 
@@ -38,7 +39,10 @@ export class RegisterFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+      if(this.data.id){
+        this.editing = true;
+        this.getEmployeeId(this.data.id);
+      }
   }
 
 
@@ -50,8 +54,6 @@ export class RegisterFormComponent implements OnInit {
   }
 
   getDesignation(dep: any): void {
-   console.log(dep);
-   
     if(!dep){
       return
     }
@@ -84,22 +86,31 @@ export class RegisterFormComponent implements OnInit {
       city: new FormControl(),
       country: new FormControl(),
       jobId: new FormControl("", Validators.required),
-      departmentId: new FormControl("", Validators.required)
+      departmentId: new FormControl("", Validators.required),
+      scriptHireDate: new FormControl(),
+      gender: new FormControl()
     }
   )
 
   submitForm() {
     if (this.employeeForm.valid) {
-      Object.assign(this.employee, this.employeeForm.value);
-   
-      
-      if(this.data.id){
+      Object.assign(this.employee, this.employeeForm.value);  
+      if(this.editing){
+        console.log("hiii");
+        
         this.empData.update(this.employee).subscribe(emp => {
+          console.log(emp);
+          
           if(emp){
           this.dialogRef.close(emp)
           }
         })
       } else{
+        let scriptHireDate:Date = this.employeeForm.value.scriptHireDate;
+        let day = new Date(scriptHireDate.getFullYear(), scriptHireDate.getMonth(), scriptHireDate.getDate(), 6)
+        this.employee.hireDate = day;
+
+
         this.empData.save(this.employee).subscribe(emp => {
           console.log(emp);
 
@@ -122,6 +133,26 @@ export class RegisterFormComponent implements OnInit {
       this.title = `Add new Employee`
     }
   }
+
+
+
+  getEmployeeId(id: number){
+    this.empData.getById(id).subscribe(emp => {
+      this.employee = emp;
+      this.getDesignation(emp.departmentId);
+      console.log(this.employee);
+      
+      this.employeeForm.patchValue(this.employee);
+    })
+  }
+
+
+
+
+
+
+
+
 
 
   // Maintain Group Positon

@@ -1,0 +1,72 @@
+<div class="card-custom">
+    <div class="card-body">
+        <h1 class="fw-bold"><i class="fa-solid fa-users fs-1 m-2"></i>Offboarding</h1>
+    </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
+
+<div class="container">
+
+    <div class="p-3">
+        <form [formGroup]="terminationForm" (ngSubmit)="submit()">
+            <div style="width: 200px; display: inline-block;  margin: 5px;">
+                <label>Select Employee</label>
+                <select class="form-select" formControlName="employeeId">
+                    <option value="-1" selected>All</option>
+                    <option *ngFor="let emp of employeeList" [value]="emp.id">
+                        {{ emp.firstName }} {{ emp.lastName }}
+                    </option>
+                </select>
+            </div>
+
+            <div style="width: 200px; display: inline-block ;  margin: 5px;">
+                <div class="form-group">
+                    <label>Separation Date</label>
+                    <input type="date" class="form-control" formControlName="separationDate" />
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Process Termination</button>
+        </form>
+    </div>
+
+    <div class="mt-3">
+        <table class="table w-50 mx-auto">
+            <thead>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <th> Name</th>
+                    <td> Ashiq </td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td> Department Name </td>
+                </tr>
+                <tr>
+                    <th>Desination </th>
+                    <td>job title</td>
+                </tr>
+                <tr>
+                    <th>Join date</th>
+                    <td>date</td>
+                </tr>
+                <tr>
+                    <th>EPF</th>
+                    <td>Mony</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th> <span class="float-end">Confirm</span> </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+</div>

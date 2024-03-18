@@ -37,6 +37,8 @@ export class EmployeeTableComponent {
       this.employeeTable = emp;
       this.replaySubject.next(emp);
       this.replaySubject.complete();
+      console.log("hi");
+      
     })
   }
 
@@ -51,9 +53,7 @@ export class EmployeeTableComponent {
     }
     );
     addEmployeeDialog.afterClosed().subscribe(ob => {
-
       this.getEmployTable();
-
     })
   }
 

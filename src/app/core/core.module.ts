@@ -53,6 +53,7 @@ import { PaymentListComponent } from './payroll/payment-list/payment-list.compon
 import { FormAnnouncementComponent } from './organization/announcements/form-announcement/form-announcement.component';
 import { JobDetailsComponent } from './organization/desigantaions/job-details/job-details.component';
 import { RulesFormComponent } from './timesheet/office-shift/rules-form/rules-form.component';
+import { OffboardingComponent } from './employee/offboarding/offboarding.component';
 
 @NgModule({
     declarations: [
@@ -103,7 +104,8 @@ import { RulesFormComponent } from './timesheet/office-shift/rules-form/rules-fo
         PaymentListComponent,
         FormAnnouncementComponent,
         JobDetailsComponent,
-        RulesFormComponent
+        RulesFormComponent,
+        OffboardingComponent
     ],
     exports: [
         NavbarComponent,

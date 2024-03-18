@@ -11,6 +11,9 @@ import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
 import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 import { Time } from '@angular/common';
+import { RegisterFormComponent } from '../employee/emploee-from/register-form.component';
+import { SafeCall } from '@angular/compiler';
+import { Salary } from 'src/app/model/payroll/payroll.model';
 
 @Component({
   selector: 'app-profile',
@@ -33,9 +36,11 @@ export class ProfileComponent {
   leavePolicy: LeavePolicy = new LeavePolicy();
   admin: boolean = false;
   userName: string = "";
+  salary: Salary = new Salary();
 
 
   constructor(private empData: EmployeeDatasource,
+    private payData: PayrollDatasource,
     private jwtService: JWTTokenService,
     private attenData: AttendanceDatasource,
     private activerRoute: ActivatedRoute,
@@ -45,7 +50,7 @@ export class ProfileComponent {
       .toISOString().split("T")[0];
 
       this.admin = jwtService.getRole() == "ADMIN";
-      this.userName = jwtService.getUser()?? "";
+      // this.userName = jwtService.getUser()?? "";
   }
 
   ngOnInit() {
@@ -54,6 +59,8 @@ export class ProfileComponent {
       let profileId = this.jwtService.getId();
 
       let id = params["id"] ?? this.jwtService.getId()
+
+      this.getSalary(id)
 
       if(profileId != id){
         this.otheProfile = true;
@@ -130,7 +137,7 @@ export class ProfileComponent {
 
   
   openDialog() {
-    let addSalaryDialog = this.dialog.open(LeaveRequestComponent, {
+    let leaveDialog = this.dialog.open(LeaveRequestComponent, {
       height: auto,
       width: '45%',
       data: {
@@ -138,11 +145,36 @@ export class ProfileComponent {
       }
     }
     );
-    addSalaryDialog.afterClosed().subscribe(ob => {
-      console.log(ob);
+    leaveDialog.afterClosed().subscribe(ob => {
       
     })
   }
+
+  updateDialog(){
+    let leaveDialog = this.dialog.open(RegisterFormComponent, {
+      height: auto,
+      width: auto,
+      data: {
+        id: this.emp.id
+      }
+    }
+    );
+    leaveDialog.afterClosed().subscribe(ob => {
+      this.empData.getById(this.emp.id ?? 0).subscribe(e => {
+        this.emp = e ?? new Employee();
+        
+      })
+    })
+  }
+
+
+
+  getSalary(empId: number){
+    this.payData.getSalaryByEmployee(empId).subscribe(s => {
+      this.salary = s;
+    })
+  }
+
 
 
   ngOnDestroy() {

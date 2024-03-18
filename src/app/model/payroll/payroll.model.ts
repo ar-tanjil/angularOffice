@@ -64,6 +64,7 @@ export class Salary {
         public medical?: number,
         public travel?: number,
         public loan?: number,
+        public epf?: number,
         public employeeTable?: EmployeeTable
     ) { }
 }

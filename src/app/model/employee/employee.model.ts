@@ -24,7 +24,8 @@ export class Employee {
         public separationDate?: Date,
         public applicationId?: number,
         public jobTitle?: string,
-        public departmentName?: string
+        public departmentName?: string,
+        public gender?: string
     ) { }
 }
 
