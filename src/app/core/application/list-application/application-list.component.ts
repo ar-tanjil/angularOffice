@@ -28,7 +28,7 @@ export class ApplicationListComponent implements OnInit{
 
   
   getApplicationList(){
-    this.appData.getAll().subscribe(app => {
+    this.appData.getAllTable().subscribe(app => {
       this.applicationList = app;
       this.replaySubject.next(app);
       this.replaySubject.complete();

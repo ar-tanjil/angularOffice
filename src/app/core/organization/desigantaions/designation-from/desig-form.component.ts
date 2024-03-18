@@ -24,7 +24,6 @@ export class DesigFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
     public dialogRef: MatDialogRef<DesigFormComponent>
   ) {
-
     this.designation = new Job();
     this.departmentList  = new Array<Department>()
   }

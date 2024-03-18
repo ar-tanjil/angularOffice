@@ -8,10 +8,10 @@
                 <mat-form-field class="form-field"  appearance="outline">
                     <mat-label>Select Leave Type</mat-label>
                     <mat-select formControlName="type">
-                      <mat-option value="MEDICAL"
+                      <mat-option value="MEDICAL" *ngIf="medicalLeave"
                       >Medical
                       </mat-option>
-                      <mat-option value="CASUAL"
+                      <mat-option value="CASUAL" *ngIf="casualLeave"
                       >Casual
                       </mat-option>
                       <mat-option value="UNPAID"

@@ -16,8 +16,8 @@ export class ClaimDatasource{
         return this.sendRequest<Claim[]>("GET", this.claimUrl);
     }
 
-    getClaimlByEmoyeeId(id: number): Observable<Claim>{
-        return this.sendRequest<Claim>("GET", `${this.claimUrl}/${id}`);
+    getClaimlByEmoyeeId(id: number): Observable<Claim[]>{
+        return this.sendRequest<Claim[]>("GET", `${this.claimUrl}/employee/${id}`);
     }
 
     saveClaim(claim : Claim):Observable<Claim>{

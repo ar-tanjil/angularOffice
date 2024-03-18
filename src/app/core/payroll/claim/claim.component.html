@@ -41,7 +41,7 @@
               </option>
             </select>
           </div>
-          <div
+          <!-- <div
             style="
               width: 200px;
               display: inline-block;
@@ -52,7 +52,7 @@
               <label>Select Period</label>
               <input type="month" matInput class="form-control" />
             </div>
-          </div>
+          </div> -->
           <button class="btn btn-primary mx-1" type="submit">Show</button>
         </form>
         <div style="float: right">
@@ -91,7 +91,7 @@
               <td>{{ claim.amount }}</td>
               <td>{{ claim.claimStatus }}</td>
               <td *ngIf="admin">
-                <a [matMenuTriggerFor]="menu1" *ngIf="buttonShow(claim.claimStatus??'')">
+                <a [matMenuTriggerFor]="menu1" *ngIf="buttonShow(claim.claimStatus??'', claim.claimCategory?.claimType)">
                   <i
                     class="fa-solid fa-bars fs-4 textColor"
                     style="cursor: pointer; margin: 0"

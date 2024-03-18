@@ -14,6 +14,8 @@ import { Leave } from 'src/app/model/attendance/attendance.model';
 export class LeaveRequestComponent {
 
   leave: Leave;
+  medicalLeave: boolean = false;
+  casualLeave: boolean = false;
 
   constructor(
     private attenData: AttendanceDatasource,
@@ -24,7 +26,19 @@ export class LeaveRequestComponent {
   }
 
   ngOnInit(){
+    if(this.data.id){
+      this.checkLeavePolicy(this.data.id);
+    }
+  }
 
+  checkLeavePolicy(id: number){
+    this.attenData.checkCasualLeavePolicy(id).subscribe(b => {
+      this.casualLeave = b;
+    })
+
+    this.attenData.checkMedicalLeavePolicy(id).subscribe(b => {
+      this.medicalLeave = b;
+    })
   }
 
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Application } from 'src/app/model/application/application.model';
 import { ApplicationDatasource } from 'src/app/model/application/application.datsource';
 import { Job } from 'src/app/model/designation/job.model';
+import { JobDatasource } from 'src/app/model/designation/job.datasource';
 
 
 @Component({
@@ -20,24 +21,34 @@ export class ApplicationFormComponent implements OnInit {
   job: Job;
 
   constructor(
-    private appModel: ApplicationDatasource, 
+    private appModel: ApplicationDatasource,
     private activeRoute: ActivatedRoute,
-    private appData: ApplicationDatasource, 
+    private appData: ApplicationDatasource,
+    private jobData: JobDatasource,
     private router: Router) {
-      this.application = new Application();
-      this.job = new Job();
-    
-      activeRoute.params.subscribe(params => {
+    this.application = new Application();
+    this.job = new Job();
+
+    activeRoute.params.subscribe(params => {
       this.editing = params["mode"] == 'edit';
       let id = params["id"];
+
+      if (this.editing) {
         this.getApplicationForUpdate(id);
+      } else{
+        jobData.getById(id).subscribe(j => {
+          this.job = j;
+          this.title = j.jobTitle ?? "";
+          this.applicationForm.value.jobId = this.job.id;
+        })
+      }
     })
   }
 
 
 
   ngOnInit(): void {
- 
+
   }
 
 
@@ -71,6 +82,8 @@ export class ApplicationFormComponent implements OnInit {
     if (this.applicationForm.valid) {
 
       Object.assign(this.application, this.applicationForm.value);
+      console.log(this.application);
+      
       this.appModel.save(this.application).subscribe(app => {
         this.router.navigate(["applicationList"]);
       })

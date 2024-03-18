@@ -46,6 +46,11 @@ export class AttendanceDatasource {
 
     }
 
+    giveMockAttendance(id: number): Observable<Attendance> {
+        return this.sendRequest<Attendance>("GET", `${this.attendanceUrl}/give/employee/${id}`);
+
+    }
+
 
     // Leave --------------------------------------------
     saveLeave(leave: Leave): Observable<Leave> {
@@ -110,6 +115,15 @@ export class AttendanceDatasource {
 
     getAllLeavePolicy():Observable<LeavePolicy[]>{
         return this.sendRequest<LeavePolicy[]>("GET",`${this.leavePolicyUrl}`);
+    }
+
+    
+    checkMedicalLeavePolicy(id: number):Observable<boolean>{
+        return this.sendRequest<boolean>("GET",`${this.leavePolicyUrl}/check/medical/${id}`);
+    }
+
+    checkCasualLeavePolicy(id: number):Observable<boolean>{
+        return this.sendRequest<boolean>("GET",`${this.leavePolicyUrl}/check/casual/${id}`);
     }
 
 

@@ -97,7 +97,8 @@ export class DetailsApplicationComponent {
   reject(id: number) {
 
     this.appData.delete(id).subscribe(() => {
-      this.toaster.warning("Deleted")
+      this.toaster.warning("Deleted");
+      this.router.navigate(['/applicationList'])
     });
 
   }

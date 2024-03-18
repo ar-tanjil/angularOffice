@@ -9,6 +9,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { ClaimDatasource } from 'src/app/model/claim/claim.datasource';
 import { ToastrService } from 'ngx-toastr';
 import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 
 @Component({
   selector: 'app-claim',
@@ -25,6 +26,7 @@ export class ClaimComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private claimData: ClaimDatasource,
+    private empData: EmployeeDatasource,
     private toaster: ToastrService,
     private jwtService: JWTTokenService
   ) {
@@ -39,6 +41,7 @@ export class ClaimComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCategory();
     this.getAllClaim();
+    this.getAllEmployeeList();
   }
 
   getAllCategory() {
@@ -61,10 +64,16 @@ export class ClaimComponent implements OnInit {
   })
 
   search() {
-
+    this.claimData.getClaimlByEmoyeeId(this.searchForm.value.employeeId).subscribe(c => {
+      this.claimList = c;
+    })
   }
 
-
+  getAllEmployeeList() {
+    this.empData.getAll().subscribe(list => {
+      this.employeeList = list;
+    })
+  }
 
 
   openClaimDialog() {
@@ -116,8 +125,11 @@ export class ClaimComponent implements OnInit {
 
   }
 
-  buttonShow(claimStatus: string) {
+  buttonShow(claimStatus: string, category?: string) {
     if (claimStatus == 'ONPROCESS' || claimStatus == 'PAYMENT') {
+      return false;
+    } 
+    if(claimStatus == "APPROVED" && category == "LOAN"){
       return false;
     }
     return true;

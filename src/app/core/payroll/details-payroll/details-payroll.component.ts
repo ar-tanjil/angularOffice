@@ -36,13 +36,14 @@ export class DetailsPayrollComponent implements OnInit {
   getPayrollById(id: number){
     this.payData.getPayrollById(id).subscribe(pay => {
       this.payroll = pay;
-	  console.log(this.payroll);
-	  
     })
   }
 
 
-toWord(num: number) {
+toWord(numfull: number) {
+	let str = numfull.toString().split(".");
+
+	let num = Number(str[0]);
     if (num < 0)
       return false;
 	 let single_digit = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine']
@@ -76,7 +77,17 @@ toWord(num: number) {
 		return word
 	}
 	let result = translate(num) 
-	return result.trim()+' Taka'
+
+	let num2 = 0;
+	let paisa = "";
+	if(str[1]){
+		num2 = Number(str[1]);
+		paisa = " Paisa"
+	}
+
+	let result2 = translate(num2);
+
+	return result.trim()+' Taka ' + result2.trim() + paisa + " ."; 
 }
 
 

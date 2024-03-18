@@ -39,6 +39,7 @@ export class ProfileComponent {
   salary: Salary = new Salary();
 
 
+
   constructor(private empData: EmployeeDatasource,
     private payData: PayrollDatasource,
     private jwtService: JWTTokenService,
@@ -67,7 +68,7 @@ export class ProfileComponent {
       }
 
       this.getLeavePolicy(id);
-
+      
       this.empData.getById(id).subscribe(e => {
         this.emp = e ?? new Employee();
         this.getAttendanc(id, this.date);
@@ -75,11 +76,13 @@ export class ProfileComponent {
       })
     });
 
+
     this.intervalId = setInterval(() => {
       this.time = new Date();
     }, 1000);
 
   }
+
 
 
 
