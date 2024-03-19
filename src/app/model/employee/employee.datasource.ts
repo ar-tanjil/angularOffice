@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Employee, EmployeeTable } from "./employee.model";
+import { Employee, EmployeeTable, User } from "./employee.model";
 import { HttpClient } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
@@ -51,6 +51,20 @@ export class EmployeeDatasource{
     getEmployeeByDepartment(departmentId: number):Observable<EmployeeTable[]>{
         return this.sendRequest<EmployeeTable[]>("GET", `${this.url}/department/${departmentId}`);
     }
+
+
+// ----------------------------------- user
+
+getAllUser():Observable<User[]>{
+    return this.sendRequest<User[]>("GET", `${this.url}/all/user`);
+}
+
+changeRole(id: number):Observable<void>{
+    return this.sendRequest<void>("GET", `${this.url}/change/user/role/${id}`);
+}
+
+
+
 
     private sendRequest<T>(verb: string, url: string, body?: Employee): Observable<T>{
         return this.http.request<T>(verb, url, {

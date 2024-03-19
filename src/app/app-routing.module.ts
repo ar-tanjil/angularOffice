@@ -28,6 +28,7 @@ import { OfficeShiftComponent } from './core/timesheet/office-shift/office-shift
 import { AnnouncementsComponent } from './core/organization/announcements/announcements.component';
 import { PaymentListComponent } from './core/payroll/payment-list/payment-list.component';
 import { OffboardingComponent } from './core/employee/offboarding/offboarding.component';
+import { RolesComponent } from './core/employee/roles/roles.component';
 
 const routes: Routes = [
   {
@@ -181,8 +182,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: "offboarding",
-    component: OffboardingComponent,
+    path: "role",
+    component: RolesComponent,
     canActivate: [AuthGuard]
   },
   {

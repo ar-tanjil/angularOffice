@@ -44,3 +44,15 @@ export class EmployeeTable {
 
     }
 }
+
+export class User {
+    constructor(
+        public id?: number,
+        public name?: string,
+        public username?: string,
+        public role?: string,
+        public enabled?: string
+    ) {
+
+    }
+}

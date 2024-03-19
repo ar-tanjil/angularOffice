@@ -1,1 +1,33 @@
-<p>roles works!</p>
+<div class="card-custom">
+    <div class="card-body">
+      <h1 class="fw-bold m-0"><i class="fa-solid fa-users-gear fs-1 m-2"></i>Role</h1>
+    </div>
+  </div>
+  <mat-divider class="m-2"></mat-divider>
+
+  <div class="container">
+        <table class="table table-striped w-75 mx-auto">
+                <thead>
+                    <tr><th>Sl</th>
+                        <th>Name</th>
+                        <th>User Name</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Change Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of userList; let i = index">
+                        <td> {{i + 1}} </td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.role}}</td>
+                        <td>{{user.enabled}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" 
+                            (click)="changerUserRole(user.id ?? -1)">Change </button>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+  </div>
