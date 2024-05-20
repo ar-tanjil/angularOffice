@@ -16,6 +16,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -36,7 +40,11 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
         MatToolbarModule,
         MatMenuModule,
         MatDialogModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatStepperModule,
+        MatTabsModule,
+        MatExpansionModule,
+        MatListModule
     ]
 })
 export class MaterialModule{

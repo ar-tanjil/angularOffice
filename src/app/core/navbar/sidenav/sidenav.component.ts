@@ -21,4 +21,19 @@ payroll: boolean = false;
   togglePayroll(){
      this.payroll = this.payroll ? false : true;
   }
+
+
+
+  
+organization: boolean = false;
+toggleOrganization(){
+   this.organization = this.organization ? false : true;
+}
+
+
+timesheet: boolean = false;
+toggleTimesheet(){
+   this.timesheet = this.timesheet ? false : true;
+}
+
 }

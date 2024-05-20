@@ -8,7 +8,7 @@
     <i class="fa-solid fa-list fs-3 fw-bold"></i>
     </button>
   </div>
-  <div class="fs-4 fw-bolder mx-3">Office</div>
+  <div class="fs-4 fw-bolder mx-3"> {{user|uppercase}} ({{role|titlecase}}) </div>
   <span style="flex: 1 0 0"></span>
   <div >
     <h4 class="m-0 fw-bold"> {{date | date : 'EE, MMMM d-yyyy'}} </h4>
@@ -35,7 +35,7 @@
  
   </div>
   <div>
-    <mat-icon 
+    <mat-icon (click)="logOut()" style="cursor: pointer;" class="ms-5"
       >exit_to_app</mat-icon
     >
   </div>

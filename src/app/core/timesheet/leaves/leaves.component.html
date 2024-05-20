@@ -1,0 +1,59 @@
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold"><i class="fa-solid fa-person-walking-arrow-right fs-1 m-2"></i>Leaves</h1>
+  </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
+
+
+<div class="container-fluid">
+  <div style="float: right" class="m-2" >
+    <button mat-raised-button 
+    [routerLink]="['/leavePolicy']"
+    style=" background-color: #354f52; color: #ffff;">
+      Leave Policy
+    </button>
+  </div>
+
+  <h1 class="text-center m-0">Leave Request</h1>
+
+ 
+  <table class="table table-striped">
+ 
+    <thead><tr>
+      <th>#</th>
+        <th>Employee Name</th>
+        <th>Leave Type</th>
+        <th>Day</th>
+        <th>Status</th>
+        <th *ngIf="admin"></th>
+        <!-- <th>Aproved By</th> -->
+    </tr></thead>
+    <tbody>
+        <tr *ngFor="let leave of leaves; let i = index">
+          <td> {{i + 1}} </td>
+          <td> {{leave.employeeName}} </td>
+          <td> {{leave.type | titlecase}} Leave </td>
+          <td> {{leave.day | date : 'fullDate'}} </td>
+          <td> {{leave.status | titlecase}} </td>
+          <td *ngIf="admin">
+
+           <a  [matMenuTriggerFor]="menu1">
+                <i class="fa-solid fa-bars fs-4 textColor" style="cursor: pointer; margin: 0;"></i>
+                <mat-menu #menu1="matMenu">
+                  <button mat-menu-item (click)="grantLeave(leave.id ?? -1)">
+                    <i class="fa-solid fa-file textColor"></i>
+                   Grant
+                  </button>
+                  <button mat-menu-item (click)="rejectLeave(leave.id ?? -1)">
+                    <i class="fa-solid fa-user-tie textColor" ></i>
+                   Reject
+                  </button>
+                </mat-menu>
+              </a>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+</div>

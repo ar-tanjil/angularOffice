@@ -1,3 +1,4 @@
+import { EmployeeTable } from './../employee/employee.model';
 import { NgModel } from "@angular/forms";
 
 export class PayrollTable {
@@ -8,9 +9,15 @@ export class PayrollTable {
         public netSalary?: number,
         public period?: Date,
         public grossSalary?: number,
-        public jobTitle?: string
+        public jobTitle?: string,
+        public departmentName?: string,
+        public status?: string
     ) { }
 }
+
+
+
+
 
 export class Payroll {
     constructor(
@@ -26,9 +33,21 @@ export class Payroll {
         public providentFund?: number,
         public netSalary?: number,
         public grossSalary?: number,
-        public otherEarning?: number,
+        public reimbursement?: number,
         public otherDeduction?: number,
-        public employeeId?: number
+        public workingDay?: number,
+        public unpaidLeaveDay?: number,
+        public jobTitle?: string,
+        public departmentName?: string,
+        public employeeId?: number,
+        public employeeName?: string,
+        public medicalInformation?: number,
+        public travelInformation?: number,
+        public providentInformation?: number,
+        public taxInformation?: number,
+        public totalLeaveDay?: number,
+        public fine?: number,
+        public fineDay?: number
     ) { }
 }
 
@@ -37,16 +56,16 @@ export class Salary {
     constructor(
         public id?: number,
         public employeeId?: number,
-        public firstName?: string,
         public basic?: number,
         public medicalAllowance?: number,
         public providentFund?: number,
-        public jobTitle?: String,
-        public departmentName?: string,
+        public travelAllowance?: number,
         public provident?: number,
         public medical?: number,
-        public bonus?: number,
-        public loan?: number
+        public travel?: number,
+        public loan?: number,
+        public epf?: number,
+        public employeeTable?: EmployeeTable
     ) { }
 }
 
@@ -86,49 +105,12 @@ export class Tax {
     }
 }
 
-export class AttendanceSheet {
-    constructor(
-        public present?: boolean[],
-        public firstName?: number
-    ) { }
-}
-
-export class AttendanceDemo {
-    constructor(
-        public day?: Date,
-        public present?: boolean,
-        public employeeId?: number
-    ) { }
-}
-
-export class Attendance {
-    constructor(
-        public id?: number,
-        public day?: string,
-        public entryTime?: string,
-        public leaveTime?: string,
-        public employeeId?: string
-    ) { }
-}
 
 
-export class Holiday{
-    constructor(
-        public id?: number,
-        public day?: Date,
-        public reason?: string
-    ){}
-}
-
-export class Leave{
-    constructor(
-        public id?: number,
-        public day?: Date,
-        public type?: string,
-        public reason?: string,
-        public status?: boolean,
-        public employeeId?: number
-    ){
-
-    }
-}
+// export class AttendanceDemo {
+//     constructor(
+//         public day?: Date,
+//         public present?: boolean,
+//         public employeeId?: number
+//     ) { }
+// }

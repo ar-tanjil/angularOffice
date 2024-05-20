@@ -1,38 +1,35 @@
 <h2 mat-dialog-title>Add Salary</h2>
-<mat-dialog-content class="mat-typography">
-    <div>
+<mat-dialog-content class="mat-typography example">
+    <div class="mt-2">
         <div class="row">
             <form [formGroup]="salaryForm" (ngSubmit)="submit()">
 
-                <mat-form-field class="form-field" *ngIf="!editing">
+                <mat-form-field class="form-field" appearance="outline" *ngIf="!editing">
                     <mat-label>Employee Id</mat-label>
-                    <input type="text"
-                           matInput
-                           formControlName="employeeId"
-                           required
-                           placeholder="Select Employee Id"
-                           [matAutocomplete]="autoGroup">
-                      <mat-autocomplete #autoGroup="matAutocomplete">
-                          <mat-option *ngFor="let emp of employee" [value]="emp.id">
-                            {{emp.firstName}}
-                          </mat-option>
-                      
-                    </mat-autocomplete>
+                    <mat-select formControlName="employeeId">
+                        <mat-option *ngFor="let emp of employee" [value]="emp.id">
+                          {{emp.firstName}} {{emp.lastName}}
+                        </mat-option>
+                      </mat-select>
                   </mat-form-field>
 
 
 
-                <mat-form-field class="form-field">
+                <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Basic</mat-label>
                     <input matInput placeholder="Basic Salary" formControlName="basic" />
                 </mat-form-field>
-                <mat-form-field class="form-field">
+                <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Medical Allowance</mat-label>
                     <input matInput placeholder="0%" formControlName="medicalAllowance" />
                 </mat-form-field>
-                <mat-form-field class="form-field">
+                <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Provident Fund</mat-label>
                     <input matInput placeholder="0%" formControlName="providentFund" />
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Travel Allowance</mat-label>
+                    <input matInput placeholder="0%" formControlName="travelAllowance" />
                 </mat-form-field>
 
                 <mat-dialog-actions align="end">

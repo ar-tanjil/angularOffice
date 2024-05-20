@@ -1,11 +1,36 @@
-<div style="min-height: 20vh;">
+<!-- <h2 mat-dialog-title class="">Notification</h2> -->
+<mat-dialog-content class="mat-typography example ">
+ <section class="section-50">
+  <div class="container">
+    <h3 class="m-b-50 heading-line">
+      Notifications <i class="fa fa-bell text-muted"></i>
+    </h3>
 
-<table class="table">
-    <thead></thead>
-    <tbody>
-        <tr *ngFor="let noti of notification">
-            <td> {{noti.content}} </td>
-        </tr>
-    </tbody>
-</table>
-</div>
+    <div class="notification-ui_dd-content" *ngFor="let noti of notification">
+      <div class="notification-list notification-list--unread">
+        <div class="notification-list_content">
+          <div class="notification-list_img">
+            <img src="https://i.imgur.com/zYxDCQT.jpg" alt="user" />
+          </div>
+          <div class="notification-list_detail">
+            <!-- <p><b>John Doe</b> reacted to your post</p> -->
+            <p class="text-muted">
+             {{noti.content}}
+            </p>
+            <!-- <p class="text-muted"><small>10 mins ago</small></p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 
+     <div class="text-center">
+          <a href="#!" class="dark-link">Load more activity</a>
+      </div>  -->
+    </div>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions> 
+
+

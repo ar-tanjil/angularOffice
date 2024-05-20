@@ -1,18 +1,18 @@
 <h2 mat-dialog-title>Add Tax</h2>
 <mat-dialog-content class="mat-typography">
-    <div>
+    <div class="mt-2">
         <div class="row">
             <form [formGroup]="taxForm" (ngSubmit)="submit()">
 
-                <mat-form-field class="form-field">
+                <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Min Range</mat-label>
                     <input matInput placeholder="Minumum Tax Range" formControlName="minRange" />
                 </mat-form-field>
-                <mat-form-field class="form-field">
+                <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Max Range</mat-label>
                     <input matInput placeholder="Maximum Tax Range" formControlName="maxRange" />
                 </mat-form-field>
-                <mat-form-field class="form-field">
+                <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Percentage</mat-label>
                     <input matInput placeholder="Tax On Income" formControlName="percentage" />
                 </mat-form-field>

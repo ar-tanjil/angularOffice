@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from './model/authentication/storageService';
+import { JWTTokenService } from './model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'officeAngular';
+
+  constructor(
+    store: LocalStorageService, 
+   private jwtService: JWTTokenService
+    ){
+      jwtService.loginCheck()
+      console.log(this.login);
+      
+  }
+
+  get login(): boolean{
+    return this.jwtService.isLoggedIn; 
+  }
+
 }

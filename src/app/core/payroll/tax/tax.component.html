@@ -1,11 +1,12 @@
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold m-0"><i class="fa-solid fa-coins fs-1 m-2"></i>Tax</h1>
+  </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
+
 <div class="container-fluid">
-    <h3 class="fw-bold d-inline-block">
-      <i class="fa-solid fa-coins fs-3 m-2"></i>Tax
-    </h3>
-    <!-- /Breadcrumb -->
-    <mat-divider class="m-2"></mat-divider>
-  
-    <div style="float: right" class="m-2">
+    <div style="float: right" class="m-2" *ngIf="admin">
       <button
         mat-raised-button
         style=" background-color: #354f52; color: #ffff;"
@@ -17,7 +18,7 @@
 
    
     <h1 class="text-center">
-      Current Income Tax Rate
+      Income Tax Rate
     </h1>
   
     <table class="table table-hover table-striped w-75 mx-auto">
@@ -29,7 +30,7 @@
           <th scope="row">Tax Rate</th>
           <!-- <th scope="row">Designation</th>
               <th scope="row">Department</th> -->
-          <th></th>
+          <th *ngIf="admin"></th>
         </tr>
       </thead>
   
@@ -42,7 +43,7 @@
           <td >{{ tax.percentage+"%" }}</td>
           <!-- <td> {{emp.jobTitle}} </td>
           <td> {{emp.departmentName}} </td> -->
-          <td>
+          <td *ngIf="admin">
             <!-- <i class="fa-solid fa-file fs-4 textColor" [routerLink]="['/detailsApp', app.id]"  style="cursor: pointer; margin: 0;"></i> -->
             <a [matMenuTriggerFor]="menu1">
               <i

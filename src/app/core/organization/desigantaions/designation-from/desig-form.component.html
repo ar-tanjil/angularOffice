@@ -1,0 +1,235 @@
+<!-- <mat-card class="mat-card">
+  <mat-card-content>
+    <mat-card-header>
+      <mat-card-title> {{ title }} </mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="designationForm" (ngSubmit)="submitForm()">
+      <div class="row">
+        <div class="col=12">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Job Title</mat-label>
+            <input
+              matInput
+              placeholder="New Job Title"
+              formControlName="jobTitle"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Min Salary</mat-label>
+            <input
+              input="number"
+              matInput
+              placeholder="Min Salary"
+              formControlName="minSalary"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Max Salary</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Max Salary"
+              formControlName="maxSalary"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label *ngIf="!editing">Total Post</mat-label>
+            <mat-label *ngIf="editing">Add new Post</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="Total Post"
+              formControlName="totalPost"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field *ngIf="!editing">
+            <mat-label>Select Department</mat-label>
+            <mat-select formControlName="departmentId">
+              <mat-option *ngFor="let dep of departmentList" [value]="dep.id">
+                {{ dep.departmentName }}
+              </mat-option>
+              <mat-option value=1>Account</mat-option>
+          <mat-option value=1>Salse</mat-option>
+            </mat-select>
+            <mat-hint>Here's the dropdown arrow ^</mat-hint>
+          </mat-form-field>
+        </div>
+        <button 
+        class="btn btn-sm btn-primary my-2"
+        type="button" 
+        (click)="addRequirement()">
+          Add Requirement
+        </button>
+        <ng-container formGroupName="requirements">
+          <div class="col-6" *ngFor="let c of keywordGroup.controls; let i = index;
+          let count = count">
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Requirements {{i + 1}}</mat-label>
+              <input
+                matInput
+                placeholder="Requirements"
+                [formControlName]="i"
+              />
+              <button *ngIf="count > 1"
+                 matSuffix mat-icon-button aria-label="Clear"
+                 (click)="removeRequirement(i)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </ng-container>
+      </div>
+
+      <input
+        type="submit"
+        class="btn btn-primary d-block mx-auto"
+        value="submit"
+      />
+      
+              <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password">
+              </mat-form-field>
+  
+             
+              
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Hire Date</mat-label>
+          <input matInput type="date" formControlName="hireDate" />
+        </mat-form-field>
+  
+              <mat-checkbox>Hide required marker</mat-checkbox>
+              <div>
+                  <label>Float label: </label>
+                  <mat-radio-group>
+                    <mat-radio-button value="auto">Auto</mat-radio-button>
+                    <mat-radio-button value="always">Always</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+  
+               
+
+                
+<mat-dialog-actions align="end">
+  <button mat-raised-button class="btn btn-sm" color="primary">Print</button>
+<button mat-raised-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+    </form>
+  </mat-card-content>
+</mat-card> -->
+
+
+
+
+
+
+
+
+<h2 mat-dialog-title>Create New Job</h2>
+<mat-dialog-content class="mat-typography example">
+  <form [formGroup]="designationForm" (ngSubmit)="submitForm()">
+    <div class="row">
+      <div class="col=12">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Job Title</mat-label>
+          <input
+            matInput
+            placeholder="New Job Title"
+            formControlName="jobTitle"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Min Salary</mat-label>
+          <input
+            input="number"
+            matInput
+            placeholder="Min Salary"
+            formControlName="minSalary"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Max Salary</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder="Max Salary"
+            formControlName="maxSalary"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label *ngIf="!editing">Total Post</mat-label>
+          <mat-label *ngIf="editing">Add new Post</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder="Total Post"
+            formControlName="totalPost"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field *ngIf="!editing" appearance="outline">
+          <mat-label>Select Department</mat-label>
+          <mat-select formControlName="departmentId">
+            <mat-option *ngFor="let dep of departmentList" [value]="dep.id">
+              {{ dep.departmentName }}
+            </mat-option>
+            <!-- <mat-option value=1>Account</mat-option>
+        <mat-option value=1>Salse</mat-option> -->
+          </mat-select>
+          <!-- <mat-hint>Here's the dropdown arrow ^</mat-hint> -->
+        </mat-form-field>
+      </div>
+      <button 
+      class="btn btn-sm btn-primary my-2"
+      type="button" 
+      (click)="addRequirement()">
+        Add Requirement
+      </button>
+      <ng-container formGroupName="requirements">
+        <div class="col-6" *ngFor="let c of keywordGroup.controls; let i = index;
+        let count = count">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Requirements {{i + 1}}</mat-label>
+            <input
+              matInput
+              placeholder="Requirements"
+              [formControlName]="i"
+            />
+            <button *ngIf="count > 1"
+               matSuffix mat-icon-button aria-label="Clear"
+               (click)="removeRequirement(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </div>
+
+    <input
+      type="submit"
+      class="btn btn-primary d-block mx-auto"
+      value="submit"
+    />      
+
+  </form>
+</mat-dialog-content>
+<!-- <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->
+

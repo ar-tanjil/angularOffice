@@ -1,3 +1,5 @@
-<app-navbar>
+<app-navbar *ngIf="login">
     <router-outlet></router-outlet>
 </app-navbar>
+
+<router-outlet *ngIf="!login"></router-outlet>

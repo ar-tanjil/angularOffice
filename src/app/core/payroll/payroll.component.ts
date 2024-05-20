@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ReplaySubject, retry } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
 import { PayrollTable, Salary } from 'src/app/model/payroll/payroll.model';
 import { AddSalaryComponent } from './add-salary/add-salary.component';
 import { auto } from '@popperjs/core';
 import { SalaryDetailsComponent } from './salary-details/salary-details.component';
 import { PayslipComponent } from './payslip/payslip.component';
+import { loadTranslations } from '@angular/localize';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-payroll',
@@ -14,6 +16,7 @@ import { PayslipComponent } from './payslip/payslip.component';
   styleUrls: ['./payroll.component.scss']
 })
 export class PayrollComponent implements OnInit {
+  admin: boolean = false;
   month!: number;
   year!: number;
   salaryTable: Salary[];
@@ -21,10 +24,13 @@ export class PayrollComponent implements OnInit {
   private replaySubject: ReplaySubject<Salary[]>;
 
 
-  constructor(private model: PayrollDatasource, private dialog: MatDialog) {
+  constructor(private model: PayrollDatasource, 
+    private dialog: MatDialog,
+    private jwtService: JWTTokenService) {
     this.lastMonth();
     this.salaryTable = new Array<Salary>();
     this.replaySubject = new ReplaySubject<Salary[]>();
+    this.admin = jwtService.getRole() == "ADMIN";
   }
 
 
@@ -35,12 +41,15 @@ export class PayrollComponent implements OnInit {
   }
 
 
+  refresh(){
+    this.model.deleteAllPayroll().subscribe(() => {
 
-
+    })
+}
 
   lastMonth() {
     let date: Date = new Date();
-    let month: number = date.getMonth() - 1;
+    let month: number = date.getMonth();
     let year: number = date.getFullYear();
     if (month < 0) {
       month += 12;
@@ -72,7 +81,7 @@ export class PayrollComponent implements OnInit {
 
     let addSalaryDialog = this.dialog.open(AddSalaryComponent, {
       height: auto,
-      width: '45%',
+      width: auto,
       data: {
         id: id
       }
@@ -90,7 +99,7 @@ export class PayrollComponent implements OnInit {
 
     let addSalaryDialog = this.dialog.open(SalaryDetailsComponent, {
       height: auto,
-      width: '45%',
+      width: auto,
       data: {
         id: id
       }

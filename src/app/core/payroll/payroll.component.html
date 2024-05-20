@@ -1,11 +1,16 @@
-<div class="container-fluid">
-  <h3 class="fw-bold d-inline-block">
-    <i class="fa-solid fa-wallet fs-3 m-2"></i>Employee Salary
-  </h3>
-  <!-- /Breadcrumb -->
-  <mat-divider class="m-2"></mat-divider>
 
-  <div style="float: right" class="m-2">
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold m-0"><i class="fa-solid fa-wallet fs-1 m-2"></i>Employee Salary</h1>
+  </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
+
+
+
+<div class="container-fluid">
+
+  <div style="float: right" class="m-2" *ngIf="admin">
     <button
       mat-raised-button
       style=" background-color: #354f52; color: #ffff;"
@@ -34,9 +39,9 @@
     <tbody>
       <tr *ngFor="let sal of salaryTable; let i = index" class="text-center">
         <th scope="col">{{ i + 1 }}</th>
-        <td>{{ sal.firstName }}</td>
-        <td>{{ sal.jobTitle }}</td>
-        <td>{{ sal.departmentName }}</td>
+        <td>{{ sal.employeeTable?.firstName }}</td>
+        <td>{{ sal.employeeTable?.jobTitle }}</td>
+        <td>{{ sal.employeeTable?.departmentName }}</td>
         <td>{{ sal.basic | currency : "BDT " }}</td>
         <!-- <td> {{emp.jobTitle}} </td>
         <td> {{emp.departmentName}} </td> -->
@@ -55,14 +60,18 @@
                 <i class="fa-solid fa-file textColor"></i>
                 Salary Details
               </button>
-              <button mat-menu-item (click)="updateDialog(sal.employeeId ?? -1)">
+              <button *ngIf="admin" mat-menu-item (click)="updateDialog(sal.employeeId ?? -1)">
                 <i class="fa-solid fa-pen-to-square textColor"></i>
                 Update
               </button>
-              <button mat-menu-item (click)="generatePayslip(sal.employeeId ?? -1)">
+              <!-- <button mat-menu-item (click)="generatePayslip(sal.employeeId ?? -1)">
                 <i class="fa-solid fa-file-invoice-dollar textColor"></i>
                 Generate Payslip
               </button>
+              <button mat-menu-item (click)="refresh()">
+                <i class="fa-solid  textColor"></i>
+                Refresh
+              </button> -->
             </mat-menu>
           </a>
         </td>

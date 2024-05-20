@@ -7,6 +7,7 @@ import { auto } from '@popperjs/core';
 import { ReplaySubject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
 
 @Component({
   selector: 'app-tax',
@@ -15,18 +16,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TaxComponent {
 
+  admin: boolean = false;
   taxTable: Tax[];
   private replaySubject: ReplaySubject<Tax[]>;
   private locator = (tax: Tax, id?: number) => tax.id == id;
   constructor(
     private payData: PayrollDatasource,
     private dialog: MatDialog,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private jwtService: JWTTokenService
     ){
       this.taxTable = new Array<Tax>();
       this.replaySubject = new ReplaySubject<Tax[]>(1);
       this.getAllTax();
-
+      this.admin = jwtService.getRole() == "ADMIN";
     }
 
 
@@ -44,7 +47,7 @@ export class TaxComponent {
   openDialog(){
     let addSalaryDialog = this.dialog.open(AddTaxComponent, {
       height: auto,
-      width: '30%',
+      width: auto,
       data: {
         id: null
       }

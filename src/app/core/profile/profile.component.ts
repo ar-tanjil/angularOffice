@@ -1,16 +1,19 @@
-import { Holiday } from './../../model/payroll/payroll.model';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
-import { Employee } from 'src/app/model/employee/employee';
-import { AddSalaryComponent } from '../payroll/add-salary/add-salary.component';
-import { Subscription, retry } from 'rxjs';
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { Employee } from 'src/app/model/employee/employee.model';
+import { Subscription} from 'rxjs';
 import { PayrollDatasource } from 'src/app/model/payroll/payroll.datasouce';
-import { Attendance } from 'src/app/model/payroll/payroll.model';
-import { LeaveRequestComponent } from './leave-request/leave-request.component';
+import { LeaveRequestComponent } from '../timesheet/leaves/leave-form/leave-request.component';
 import { auto } from '@popperjs/core';
+import { Attendance, LeavePolicy } from 'src/app/model/attendance/attendance.model';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
+import { AttendanceDatasource } from 'src/app/model/attendance/attendance.datasource';
+import { JWTTokenService } from 'src/app/model/authentication/jwtToken.service';
+import { Time } from '@angular/common';
+import { RegisterFormComponent } from '../employee/emploee-from/register-form.component';
+import { SafeCall } from '@angular/compiler';
+import { Salary } from 'src/app/model/payroll/payroll.model';
 
 @Component({
   selector: 'app-profile',
@@ -26,31 +29,53 @@ export class ProfileComponent {
   checkInButton!: string;
   date!: string;
   attendance: Attendance = new Attendance();
-  checkInTime!: string;
-  checkOutTime!: string;
+  checkInTime!: string | Date;
+  checkOutTime!: string | Date;
   holiday: boolean = false;
+  otheProfile: boolean = false;
+  leavePolicy: LeavePolicy = new LeavePolicy();
+  admin: boolean = false;
+  userName: string = "";
+  salary: Salary = new Salary();
 
-  constructor(private empData: EmpDatasource,
+
+
+  constructor(private empData: EmployeeDatasource,
     private payData: PayrollDatasource,
+    private jwtService: JWTTokenService,
+    private attenData: AttendanceDatasource,
     private activerRoute: ActivatedRoute,
     private dialog: MatDialog) {
     let day = new Date();
     this.date = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 6)
       .toISOString().split("T")[0];
 
-
+      this.admin = jwtService.getRole() == "ADMIN";
+      // this.userName = jwtService.getUser()?? "";
   }
 
   ngOnInit() {
-
     this.activerRoute.params.subscribe(params => {
-      let id = params["id"] ?? 1
+
+      let profileId = this.jwtService.getId();
+
+      let id = params["id"] ?? this.jwtService.getId()
+
+      this.getSalary(id)
+
+      if(profileId != id){
+        this.otheProfile = true;
+      }
+
+      this.getLeavePolicy(id);
+      
       this.empData.getById(id).subscribe(e => {
         this.emp = e ?? new Employee();
         this.getAttendanc(id, this.date);
         
       })
     });
+
 
     this.intervalId = setInterval(() => {
       this.time = new Date();
@@ -60,8 +85,9 @@ export class ProfileComponent {
 
 
 
+
   checkHoliday(day: string){
-    this.payData.checkHoliday(day).subscribe(check => {
+    this.attenData.checkHoliday(day).subscribe(check => {
       this.holiday = check;
       this.getCheckInOut(this.attendance);
     })
@@ -76,19 +102,19 @@ export class ProfileComponent {
     this.checkInButton = "Check In";
     }
 
-    if (att.entryTime) {
+    if (att.checkIn) {
       this.checkInButton = "Check Out"
     }
 
 
-    this.checkInTime = att.entryTime ?? "--/--/--";
-    this.checkOutTime = att.leaveTime ?? "--/--/--";
+    this.checkInTime = att.checkIn ?? "--/--/--";
+    this.checkOutTime = att.checkOut ?? "--/--/--";
   }
 
 
   giveAttendance(id: number) {
     if (id > 0) {
-      this.payData.giveAttendance(id).subscribe(e => {
+      this.attenData.giveAttendance(id).subscribe(e => {
         this.getAttendanc(id, this.date);
       })
     }
@@ -97,7 +123,7 @@ export class ProfileComponent {
 
 
   getAttendanc(id: number, day: string) {
-    this.payData.getAttendanceByDay(id, day).subscribe(att => {
+    this.attenData.getAttendanceByDay(id, day).subscribe(att => {
       this.attendance = att ?? new Attendance();
      
       this.checkHoliday(this.date);
@@ -105,31 +131,52 @@ export class ProfileComponent {
     })
   }
 
+  getLeavePolicy(id: number){
+    this.attenData.getPolicyByEmployee(id).subscribe( policy => {
+      this.leavePolicy = policy;
+    })
+  }
 
 
   
   openDialog() {
-    let addSalaryDialog = this.dialog.open(LeaveRequestComponent, {
+    let leaveDialog = this.dialog.open(LeaveRequestComponent, {
       height: auto,
       width: '45%',
       data: {
-        id: null
+        id: this.emp.id
       }
     }
     );
-    addSalaryDialog.afterClosed().subscribe(ob => {
-      console.log(ob);
+    leaveDialog.afterClosed().subscribe(ob => {
       
+    })
+  }
+
+  updateDialog(){
+    let leaveDialog = this.dialog.open(RegisterFormComponent, {
+      height: auto,
+      width: auto,
+      data: {
+        id: this.emp.id
+      }
+    }
+    );
+    leaveDialog.afterClosed().subscribe(ob => {
+      this.empData.getById(this.emp.id ?? 0).subscribe(e => {
+        this.emp = e ?? new Employee();
+        
+      })
     })
   }
 
 
 
-
-  // getPerid(date: Date) {
-  //   this.sartDate = new Date(date.getFullYear(), date.getMonth(), 1, 6)
-  //     .toISOString().split("T")[0];
-  // }
+  getSalary(empId: number){
+    this.payData.getSalaryByEmployee(empId).subscribe(s => {
+      this.salary = s;
+    })
+  }
 
 
 
@@ -139,6 +186,7 @@ export class ProfileComponent {
       this.subscription.unsubscribe();
     }
   }
+
 
 
 

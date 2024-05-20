@@ -1,27 +1,33 @@
-import { Component } from '@angular/core';
-import { DesinationDatasource } from 'src/app/model/designation/desig.datasource';
-import { Designation } from 'src/app/model/designation/designation';
-import { DesigModel } from 'src/app/model/designation/designation.model';
+import { Component, OnInit } from '@angular/core';
+import {  JobDatasource } from 'src/app/model/designation/job.datasource';
+import { Job } from 'src/app/model/designation/job.model';
+
 
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.scss']
 })
-export class ApplicationComponent {
+export class ApplicationComponent implements OnInit {
 
-vacantJobs: Designation[] = new Array <Designation>();
+vacantJobs: Job[] = new Array <Job>();
 
-  constructor(private model: DesigModel, private data: DesinationDatasource) {
-    this.data.getAllVacanctPost().subscribe(v => {
-      this.vacantJobs = v;
-    })
+  constructor(
+     private jobData: JobDatasource
+     ) {
+    
   }
 
+ngOnInit(): void {
+    this.getAllVacantPost();
+}
 
-  // get getVacantJobs() {
-  //   return this.model.getVacantJobs();
-  // }
 
+
+getAllVacantPost(){
+  this.jobData.getAllVacantPost().subscribe(v => {
+    this.vacantJobs = v;
+  })
+}
 
 }

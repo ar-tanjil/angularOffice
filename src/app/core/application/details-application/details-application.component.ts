@@ -1,13 +1,11 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Application } from 'src/app/model/application/application';
+import { Application } from 'src/app/model/application/application.model';
 import { ApplicationDatasource } from 'src/app/model/application/application.datsource';
-import { ApplicationModel } from 'src/app/model/application/application.model';
-import { EmpDatasource } from 'src/app/model/employee/emp.datasource';
-import { EmpModel } from 'src/app/model/employee/emp.model';
-import { Employee } from 'src/app/model/employee/employee';
+import { Employee } from 'src/app/model/employee/employee.model';
 import Swal from 'sweetalert2';
+import { EmployeeDatasource } from 'src/app/model/employee/employee.datasource';
 
 @Component({
   selector: 'app-details-application',
@@ -25,9 +23,7 @@ export class DetailsApplicationComponent {
   constructor(private route: ActivatedRoute,
     private appData: ApplicationDatasource,
     private router: Router,
-    private empData: EmpDatasource,
-    private appModel: ApplicationModel,
-    private empModel: EmpModel,
+    private empData: EmployeeDatasource,
     private toaster: ToastrService
   ) {
 
@@ -60,10 +56,6 @@ export class DetailsApplicationComponent {
       this.toaster.success("Recruited")
       this.router.navigate(["/profile", emp.id]);
   })
-
-
-
-    this.appModel.recruitApplication(id);
   }
 
 
@@ -104,7 +96,10 @@ export class DetailsApplicationComponent {
 
   reject(id: number) {
 
-    this.appModel.deleteApplication(id);
+    this.appData.delete(id).subscribe(() => {
+      this.toaster.warning("Deleted");
+      this.router.navigate(['/applicationList'])
+    });
 
   }
 

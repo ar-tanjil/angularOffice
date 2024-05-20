@@ -1,0 +1,374 @@
+<mat-dialog-content class="mat-typography example" >
+
+    <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center lh-1 mb-2">
+                        <h1 class="fw-bold">Payroll Details</h1>
+                         <span class="fw-normal">Payment slip for the month of {{payroll.period | date: "MMMM - YYYY"}}</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">EMP Id</span> 
+                                        <small class="ms-3"> {{payroll.employeeId}} </small> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Total Working Days</span>
+                                        <small class="ms-3">{{payroll.workingDay}}</small> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">EMP Name</span> <small class="ms-3">
+                                        {{payroll.employeeName}}</small> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Leave Day</span> 
+                                        <small class="ms-3"></small> {{payroll.totalLeaveDay}} </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Department</span> 
+                                        <small class="ms-3"></small> {{payroll.departmentName}} </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Undpaid Leave Day</span> 
+                                        <small class="ms-3"> {{payroll.unpaidLeaveDay}} </small> </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Designation</span>
+                                         <small class="ms-3">{{payroll.jobTitle}}</small> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div> <span class="fw-bolder">Fine Day</span>
+                                         <small class="ms-3">{{payroll.fineDay}}</small> </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <table class="mt-4 table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th scope="col">Earnings</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Deductions</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Basic</th>
+                                <td>{{payroll.basicSalary | currency}}</td>
+                                <th>LOP</th>
+                                <td>{{payroll.unpaidLeave | currency}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">MA <span class="fw-normal ms-2">
+                                    ({{payroll.medicalInformation}}%) </span></th>
+                                <td>{{payroll.medicalAllowance | currency }}</td>
+                                <th>PF <span class="fw-normal ms-2">
+                                    ({{payroll.providentInformation}}%) </span>
+                                   </th>
+                                <td>{{payroll.providentFund | currency}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">CA <span class="fw-normal ms-2">
+                                    ({{payroll.travelInformation}}%) </span></th>
+                                <td>{{payroll.travelAllowance | currency}}</td>
+                                <th>TDS <span class="fw-normal ms-2">
+                                    ({{payroll.taxInformation??0}}%) </span>
+                                   </th>
+                                <td>{{payroll.tax | currency}} </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Bonus </th>
+                                <td>{{payroll.bonusAmount | currency}}</td>
+                                <th>Loan Payment </th>
+                                <td>{{payroll.loanPayment | currency}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Reimbursement </th>
+                                <td>{{payroll.reimbursement | currency }}</td>
+                                <th>Fine </th>
+                                <td>{{payroll.fine | currency }} </td>
+                            </tr>
+                            <tr class="border-top">
+                                <th scope="row">Total Earning</th>
+                                <td></td>
+                                <th>Total Deductions</th>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"> <br> <span class="fw-bold">Net Pay : {{payroll.netSalary | currency}} Tk.</span> </div>
+                        <div class="border col-md-8">
+                            <div class="d-flex flex-column"> <span>In Words</span> 
+                                <span>{{toWord(payroll.netSalary ?? 0)}}</span> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="printPayroll(payrollId)" class="bg-success">Print</button>
+  <button mat-button mat-dialog-close  class="bg-secondary">Cancel</button>
+</mat-dialog-actions>
+
+
+
+
+
+
+
+
+
+
+
+     <!-- <table class="table table-bordered">
+        <h1 class="text-center">Employee Informaiton</h1>    
+        <tr >
+                <th>Name</th>
+                <td>{{payroll.employeeName}} </td>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td> {{payroll.departmentName}} </td>
+            </tr>
+            <tr>
+                <th>Desigantion</th>
+                <td> {{payroll.jobTitle}} </td>
+            </tr>
+            <tr>
+                <th>Pay Period</th>
+                <td> {{payroll.period | date: "MMMM - YYYY"}} </td>
+            </tr>
+            <tr>
+                <th>Work Days</th>
+                <td> {{payroll.workingDays}} </td>
+            </tr>
+            <tr>
+                <th>Total Leave Days</th>
+                <td> {{payroll.totalLeaveDays}} </td>
+            </tr>
+            <tr>
+                <th>Unpaid Leave Days</th>
+                <td> {{payroll.unpaidLeaveDays}} </td>
+            </tr>
+    </table>     -->
+
+
+    <!-- <table class="table table-bordered">
+        <h1 class="text-center mt-1">Earnings</h1>
+        <tr>
+            <th colspan="2">Basic</th>
+            <td> {{payroll.basicSalary | currency}} </td>
+        </tr>
+        <tr>
+            <th >Medical Allowance</th>
+            <td> {{payroll.medicalInformation}}% </td>
+            <td>{{payroll.medicalAllowance | currency}} </td>
+        </tr>
+        <tr>
+            <th>Travel Allowance</th>
+            <td> {{payroll.travelInformation}}% </td>
+            <td> {{payroll.travelAllowance | currency}} </td>
+        </tr>
+        <tr>
+            <th colspan="2">Bonus</th>
+            <td> {{payroll.bonusAmount | currency}} </td>
+        </tr>
+
+        <h1 class="text-center mt-1">Deducitons</h1>
+         <tr>
+             <th colspan="2">Unpaid Leave</th>
+             <td> {{payroll.unpaidLeave | currency}} </td>
+         </tr>
+         <tr>
+             <th>Provident Fund</th>
+             <td> {{payroll.providentInformation}}% </td>
+             <td> {{payroll.providentFund | currency}} </td>
+         </tr>
+         <tr>
+             <th colspan="2">Other</th>
+             <td> {{payroll.otherDeduction | currency}} </td>
+         </tr>
+         <h1 class="text-center m-1">Total</h1>
+         <tr>
+            <th colspan="2">Gross Salary</th>
+            <td> {{payroll.grossSalary| currency}} </td>
+        </tr>
+        <tr>
+            <th>Tax</th>
+            <td> {{payroll.taxInformation}}% </td>
+            <td> {{payroll.tax | currency}} </td>
+        </tr>
+        <tr>
+            <th colspan="2">Reimbursement</th>
+            <td> {{payroll.reimbursement | currency}} </td>
+        </tr>
+        <tr>
+            <th colspan="2">Loan Payment</th>
+            <td>{{payroll.loanPayment | currency}} </td>
+        </tr>
+         <tr>
+            <th colspan="2">Net Pay</th>
+            <td> {{payroll.netSalary | currency}} </td>
+        </tr>
+     </table> -->
+
+    <!-- <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center lh-1 mb-2">
+                    <h6 class="fw-bold">Payslip</h6> <span class="fw-normal">Payment slip for the month of June 2021</span>
+                </div>
+                <div class="d-flex justify-content-end"> <span>Working Branch:ROHINI</span> </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">EMP Code</span> <small class="ms-3">39124</small> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">EMP Name</span> <small class="ms-3">Ashok</small> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">PF No.</span> <small class="ms-3">101523065714</small> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">NOD</span> <small class="ms-3">28</small> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">ESI No.</span> <small class="ms-3"></small> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">Mode of Pay</span> <small class="ms-3">SBI</small> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">Designation</span> <small class="ms-3">Marketing Staff (MK)</small> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div> <span class="fw-bolder">Ac No.</span> <small class="ms-3">*******0701</small> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="mt-4 table table-bordered">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th scope="col">Earnings</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Deductions</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Basic</th>
+                                <td>16250.00</td>
+                                <td>PF</td>
+                                <td>1800.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">DA</th>
+                                <td>550.00</td>
+                                <td>ESI</td>
+                                <td>142.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">HRA</th>
+                                <td>1650.00 </td>
+                                <td>TDS</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">WA</th>
+                                <td>120.00 </td>
+                                <td>LOP</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">CA</th>
+                                <td>0.00 </td>
+                                <td>PT</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">CCA</th>
+                                <td>0.00 </td>
+                                <td>SPL. Deduction</td>
+                                <td>500.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">MA</th>
+                                <td>3000.00</td>
+                                <td>EWF</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sales Incentive</th>
+                                <td>0.00</td>
+                                <td>CD</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Leave Encashment</th>
+                                <td>0.00</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Holiday Wages</th>
+                                <td>500.00</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Special Allowance</th>
+                                <td>100.00</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Bonus</th>
+                                <td>1400.00</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Individual Incentive</th>
+                                <td>2400.00</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr class="border-top">
+                                <th scope="row">Total Earning</th>
+                                <td>25970.00</td>
+                                <td>Total Deductions</td>
+                                <td>2442.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"> <br> <span class="fw-bold">Net Pay : 24528.00</span> </div>
+                    <div class="border col-md-8">
+                        <div class="d-flex flex-column"> <span>In Words</span> <span>Twenty Five thousand nine hundred seventy only</span> </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <div class="d-flex flex-column mt-2"> <span class="fw-bolder">For Kalyan Jewellers</span> <span class="mt-4">Authorised Signatory</span> </div>
+                </div>
+            </div>
+        </div>
+    </div> -->

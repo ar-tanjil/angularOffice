@@ -1,0 +1,16 @@
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+h2{
+    line-break: 0px;
+}
+
+.seperator{
+    margin-bottom: 10px;
+    width:35px;
+    height:3px;
+    background:#777;
+    border:none;
+    margin: 0 auto 10px;
+  }

@@ -1,0 +1,54 @@
+<!-- <div class="card-custom">
+    <div class="card-body">
+      <h1 class="fw-bold"><i class="fa-solid fa-scroll fs-1 m-2"></i>Announcement</h1>
+    </div>
+  </div>
+  <mat-divider class="m-2"></mat-divider> -->
+  <div style="float: right;" class="m-2" *ngIf="admin">
+    <button mat-raised-button 
+    
+  style=" background-color: #284b63; color: #ffff;"
+  (click)="openDialog()"
+  >Announcement</button>
+  </div>
+
+  <!-- --------------------------------- -->
+
+  <section class="title container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Announcement</h1>
+        <div class="seperator"></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Start Blog Layout -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 item" *ngFor="let ann of announcementList">
+        <div class="item-in">
+          <h4> {{ann.title}} </h4>
+          <h5> {{ann.subject}} </h5>
+          <h5> {{ann.date}} </h5>
+          <div class="seperator" style="margin-bottom: 5px;"></div>
+          <p>
+          {{ann.description}}
+          </p>
+          <!-- <a href="#">Read More
+            <i class="fa fa-long-arrow-right"></i>
+          </a> -->
+        </div>
+      </div>
+      <!-- <div class="col-md-6 item">
+        <div class="item-in">
+          <h4>Some Kind of Title</h4>
+          <div class="seperator"></div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi expedita eveniet consectetur, voluptates voluptatum, sit excepturi earum. Veniam eius amet, accusantium, deserunt officia, quos qui debitis laboriosam velit quis autem!</p>
+          <a href="#">Read More
+            <i class="fa fa-long-arrow-right"></i>
+          </a>
+        </div>
+      </div> -->
+    </div>
+  </div>

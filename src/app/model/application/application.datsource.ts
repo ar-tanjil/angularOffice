@@ -1,9 +1,10 @@
+
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError } from "rxjs";
 import { HttpMessage } from "../httpMessage.model";
-import { Application, ApplicationTable } from "./application";
-import { Employee } from "../employee/employee";
+import { Application, ApplicationTable } from "./application.model";
+import { Employee } from "../employee/employee.model";
 
 @Injectable()
 export class ApplicationDatasource{

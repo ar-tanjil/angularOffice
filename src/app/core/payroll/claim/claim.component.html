@@ -1,0 +1,117 @@
+<div class="card-custom">
+  <div class="card-body">
+    <h1 class="fw-bold m-0"><i class="fa-solid fa-coins fs-1 m-2"></i>Tax</h1>
+  </div>
+</div>
+<mat-divider class="m-2"></mat-divider>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Claim Category</th>
+            <th>
+              <button class="btn btn-sm btn-primary" (click)="openCategoyrDialog()" 
+              *ngIf="admin">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categoryList">
+            <td>{{ category.name }}</td>
+            <td>{{ category.claimType }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col ">
+      <div>
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
+          <div style="width: 200px; display: inline-block;" class="mx-1">
+            <label>Select Employee</label>
+            <select class="form-select" formControlName="employeeId">
+              <option value="-1" selected>All</option>
+              <option *ngFor="let emp of employeeList" [value]="emp.id">
+                {{ emp.firstName }}
+              </option>
+            </select>
+          </div>
+          <!-- <div
+            style="
+              width: 200px;
+              display: inline-block;
+            "
+            class="mx-1"
+          >
+            <div class="form-group">
+              <label>Select Period</label>
+              <input type="month" matInput class="form-control" />
+            </div>
+          </div> -->
+          <button class="btn btn-primary mx-1" type="submit">Show</button>
+        </form>
+        <div style="float: right">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="openClaimDialog()"
+        >
+          Add Claim
+        </button>
+      </div>
+      </div>
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>SL</th>
+              <th>Employee Name</th>
+              <th>Category</th>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th *ngIf="admin"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let claim of claimList; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                {{ claim.employee?.firstName }} {{ claim.employee?.lastName }}
+              </td>
+              <td>{{ claim.claimCategory?.name }}</td>
+              <td>{{ claim.title }}</td>
+              <td>{{ claim.date }}</td>
+              <td>{{ claim.amount }}</td>
+              <td>{{ claim.claimStatus }}</td>
+              <td *ngIf="admin">
+                <a [matMenuTriggerFor]="menu1" *ngIf="buttonShow(claim.claimStatus??'', claim.claimCategory?.claimType)">
+                  <i
+                    class="fa-solid fa-bars fs-4 textColor"
+                    style="cursor: pointer; margin: 0"
+                  ></i>
+                  <mat-menu #menu1="matMenu">
+                    <button mat-menu-item  (click)="acceptClaim(claim.id ?? -1)">
+                      <i class="fa-solid fa-file textColor"></i>
+                      Grant
+                    </button>
+                    <button mat-menu-item  (click)="rejectClaim(claim.id ?? -1)">
+                      <i class="fa-solid fa-user-tie textColor"></i>
+                      Reject
+                    </button>
+                  </mat-menu>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

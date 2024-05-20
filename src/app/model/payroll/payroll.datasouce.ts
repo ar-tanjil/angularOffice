@@ -1,67 +1,96 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, catchError } from "rxjs";
-import { HttpMessage } from "../httpMessage.model";
-import { Attendance, AttendanceSheet, Holiday, Leave, Payroll, PayrollTable, Salary, Tax } from "./payroll.model";
+import { Payroll, PayrollTable, Salary, Tax } from "./payroll.model";
 
 @Injectable()
 export class PayrollDatasource {
 
-    private payUrl: string = "http://localhost:8080/payrolls";
-    private salUrl: string = "http://localhost:8080/salaries";
-    private attUrl: string = "http://localhost:8080/attendances";
+    private payrollUrl: string = "http://localhost:8080/payrolls";
+    private salaryUrl: string = "http://localhost:8080/salaries";
     private taxUrl: string = "http://localhost:8080/taxes";
-    private holiUrl: string = "http://localhost:8080/holidays";
-    private leaveUrl: string = "http://localhost:8080/emp_leaves";
+ 
 
 
     constructor(private http: HttpClient) { };
 
-    getPayrollByPeriod(year: number, month: number): Observable<PayrollTable[]> {
-        return this.sendRequest<PayrollTable[]>("GET", `${this.payUrl}/${year}/${month}`);
+    //Payroll --------------------------------------------- 
+
+    deleteAllPayroll():Observable<void>{
+        return this.sendRequest<void>("GET", `${this.payrollUrl}/refresh`);
+    }
+
+    deletePayrollById(id: number):Observable<void>{
+        return this.sendRequest<void>("DELETE", `${this.payrollUrl}/${id}`);    
+    }
+
+
+    processPayrollByPeriod(year: number, month: number): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/process/${year}/${month}`);
+    }
+
+    processPayrollByEmployee(id: number, year: number, month: number): Observable<void> {
+        return this.sendRequest<void>("GET", `${this.payrollUrl}/process/employee/${id}/${year}/${month}`);
+    }
+
+   
+
+    getPendingPayroll(): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/pending`);
+    }
+
+    getPaymentPayroll(): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/payment`);
+    }
+
+    getPaymentPayrollByPeriod(year: number, month: number): Observable<PayrollTable[]> {
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/employee/payment/all/${year}/${month}`);
+    }
+
+    getPymentByEmployeeAndPeriod(id: number, year: number, month: number):Observable<PayrollTable[]>{
+        return this.sendRequest<PayrollTable[]>("GET", `${this.payrollUrl}/employee/payment/${id}/${year}/${month}`);
     }
 
     getPayrollByEmpAndPeriod(empId: number, year: number, month: number): Observable<Payroll> {
-        return this.sendRequest<Payroll>("GET", `${this.payUrl}/${empId}/${year}/${month}`);
+        return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/employee/${empId}/${year}/${month}`);
     }
+
+
+
+    getPayrollById(id: number): Observable<Payroll> {
+        return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/${id}`);
+    }
+
+    paymentPayroll(id:number){
+        return this.sendRequest<Payroll>("GET", `${this.payrollUrl}/payment/${id}`);
+    }
+
+    // Salary---------------------------------------
 
 
     countTotalSalary():Observable<number>{
-        return this.sendRequest<number>("GET", `${this.salUrl}/sum/salary`);     
+        return this.sendRequest<number>("GET", `${this.salaryUrl}/sum/salary`);     
     }
 
     getSalaryByEmployee(id: number): Observable<Salary> {
-        return this.sendRequest<Salary>("GET", `${this.salUrl}/${id}`);
+        return this.sendRequest<Salary>("GET", `${this.salaryUrl}/${id}`);
     }
 
     saveSalaryByEmployee(salary: Salary): Observable<Salary> {
-        return this.sendRequest<Salary>("POST", `${this.salUrl}/${salary.employeeId}`, salary)
+        return this.sendRequest<Salary>("POST", `${this.salaryUrl}/${salary.employeeId}`, salary)
     }
 
     updateSalaryByEmployee(salary: Salary): Observable<Salary> {
-        return this.sendRequest<Salary>("PATCH", `${this.salUrl}/${salary.employeeId}`, salary)
+        return this.sendRequest<Salary>("PATCH", `${this.salaryUrl}/${salary.employeeId}`, salary)
     }
 
     getAllSalary(): Observable<Salary[]> {
-        return this.sendRequest<Salary[]>("GET", this.salUrl);
+        return this.sendRequest<Salary[]>("GET", this.salaryUrl);
     }
 
-    countTodayAttendance():Observable<number>{
-        return this.sendRequest<number>("GET", `${this.attUrl}/count/present`);    
-    }
+   
 
-    getAttendanceSheet(start: string, end: string): Observable<AttendanceSheet[]> {
-        return this.sendRequest<AttendanceSheet[]>("GET", `${this.attUrl}/${start}/${end}`);
-    }
-
-    getAttendanceByDay(id: number, day: string): Observable<Attendance> {
-        return this.sendRequest<Attendance>("GET", `${this.attUrl}/day/${id}/${day}`);
-    }
-
-    giveAttendance(id: number): Observable<Attendance> {
-        return this.sendRequest<Attendance>("POST", `${this.attUrl}/${id}`);
-
-    }
+    // Tax ----------------------------------------------------------
 
     getAllTax():Observable<Tax[]>{
         return this.sendRequest<Tax[]>("GET", this.taxUrl);
@@ -83,45 +112,14 @@ export class PayrollDatasource {
         return this.sendRequest<Tax>("DELETE", `${this.taxUrl}/${id}`);
     }
 
-    getAllHoliday():Observable<Holiday[]>{
-        return this.sendRequest<Holiday[]>("GET", this.holiUrl);
-    }
-
-    getHolidayById(id: number): Observable<Holiday> {
-        return this.sendRequest<Holiday>("GET", `${this.holiUrl}/${id}`);
-    }
-
-    saveHoliday(holiday: Holiday): Observable<Holiday>{
-        return this.sendRequest<Holiday>("POST", this.holiUrl, holiday);
-    }
-
-    updateHoliday(holiday: Holiday): Observable<Holiday>{
-        return this.sendRequest<Holiday>("PUT", this.holiUrl, holiday);
-    }
-
-    deleteHoliday(id: number): Observable<Holiday>{
-        return this.sendRequest<Holiday>("DELETE", `${this.holiUrl}/${id}`);
-    }
-
-    checkHoliday(day: string): Observable<boolean>{
-        return this.sendRequest<boolean>("GET", `${this.holiUrl}/check/${day}`);
-    }
-
-
-
-    saveLeave(leave: Leave): Observable<Leave>{
-        return this.sendRequest<Leave>("POST", `${this.leaveUrl}`, leave);
-    }
-
-    grantLeavve():Observable<Leave>{
-        return this.sendRequest<Leave>("PUT", `${this.leaveUrl}`);    
-    }
-
+   
     
 
-    private sendRequest<T>(verb: string, url: string, body?: T): Observable<T> {
+    private sendRequest<T>(verb: string, url: string,body?: T, params?:HttpParams): Observable<T> {
+
         return this.http.request<T>(verb, url, {
-            body: body
+            body: body,
+            params: params
         }).pipe(catchError((error: Response) => {
             throw (`Network Error: ${error.statusText} (${error.status})`)
         }));
